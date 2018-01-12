@@ -148,7 +148,7 @@
 <body>
 <div data-role="page">
 <div data-role="header">
-<h1>행복해</h1>
+<h1>회원가입</h1>
 </div>
 <div data-role="content">
 		<form id="joinForm" name="JoinForm" role="form" action="join.lms"

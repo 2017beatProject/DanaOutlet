@@ -4,7 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bit.daNaOutlet.model.MemberDao">
+	<!--회원관리부분 -->
 	<select id="selectAll" resultType="com.bit.daNaOutlet.model.entity.MemberVo">
 		SELECT * FROM DANAMEMBER
 	</select>
+	<select id="selectOne" parameterType="int" resultType="com.bit.daNaOutlet.model.entity.MemberVo">
+		SELECT * FROM DANAMEMBER WHERE MNUM=#{value}
+	</select>
+	<select id="mnumOne" resultType="int">
+		SELECT MAX(MNUM+1) FROM DANAMEMBER
+	</select>
+	<insert id="memberAdd" parameterType="com.bit.daNaOutlet.model.entity.MemberVo">
+		INSERT INTO DANAMEMBER(MNUM,NAME,PHONE,MBIRTH,ID,MAIL,ADDR,ADDRN,PASSWORD,SEX) VALUES(#{mnum},#{name},#{phone},#{mbirth},#{id},#{mail},#{addr},#{addrn},#{password},#{sex})
+	</insert>
+	<!--클립부분  -->
+	<select id="clipList" resultType="com.bit.daNaOutlet.model.entity.ClipVo">
+		SELECT * FROM DANACLIP 
+	</select>	
 </mapper>
+

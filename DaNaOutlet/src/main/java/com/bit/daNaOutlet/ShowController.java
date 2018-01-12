@@ -1,57 +1,72 @@
 package com.bit.daNaOutlet;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- * Handles requests for the application home page.
- */
+import com.bit.daNaOutlet.model.entity.MemberVo;
+import com.bit.daNaOutlet.service.MemberService;
+
 @Controller
 public class ShowController {
+	@Autowired
+	MemberService memberService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(ShowController.class);
-	
-	
-	@RequestMapping(value = "/main/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
+	//메인화면
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Model model) throws Exception {
+
+		memberService.selectAll(model);
 		return "main";
 	}
-	
-	@RequestMapping(value="/main/join",method = RequestMethod.GET)
+	//회원가입
+	@RequestMapping(value="/join",method = RequestMethod.GET)
 	public String join() {
 		
 		return "join";
 	}
-	
-	
-	@RequestMapping(value="/main/login")
+	//로그인
+	@RequestMapping(value="/login")
 	public String login() {
 		
 		return "login";
 	}
 	
-	
-	@RequestMapping(value="/member/list", method=RequestMethod.GET)
-	public String memberList(@PathVariable String path) {
-		
-		return "list";
+	//회원관리
+	@RequestMapping(value="/member", method=RequestMethod.GET)
+	public String memberList(Model model) throws Exception {
+
+		memberService.selectAll(model);
+		return "member/memberView";
 	}
+	
+	//회원개인신상조회
+	@RequestMapping(value="/member/{mnum}", method=RequestMethod.GET)
+	public String memberOne(@PathVariable("mnum") int mnum, Model model) throws Exception {
+		memberService.selectOne(model , mnum);
+
+		return "member/memberOne";
+	}
+	
+	@RequestMapping(value="/join",method = RequestMethod.POST) // 회원 가입 부분 
+	public String joinSuccess(@ModelAttribute MemberVo bean,Model model) throws Exception {
+		memberService.memberAdd(bean);		
+		return "member/success";
+	}
+	
+	
+	//클립 메인
+	@RequestMapping(value="/clip/",method=RequestMethod.GET)
+	public String clipList(Model model) throws Exception {
+		memberService.clipList(model);
+		return "clip/main";
+	}
+	
 }
