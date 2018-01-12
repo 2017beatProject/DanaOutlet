@@ -21,7 +21,7 @@ public class ShowController {
 	private static final Logger logger = LoggerFactory.getLogger(ShowController.class);
 	
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -35,11 +35,19 @@ public class ShowController {
 		return "main";
 	}
 	
-	@RequestMapping(value="/daNaOutlet/{path}")
-	public String hotDeal(@PathVariable String path) {
+	@RequestMapping(value="/main/join",method = RequestMethod.GET)
+	public String join() {
 		
-		return path;
+		return "join";
 	}
+	
+	
+	@RequestMapping(value="/main/login")
+	public String login() {
+		
+		return "login";
+	}
+	
 	
 	@RequestMapping(value="/member/list", method=RequestMethod.GET)
 	public String memberList(@PathVariable String path) {
