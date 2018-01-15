@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
 import com.bit.daNaOutlet.model.MemberDao;
+import com.bit.daNaOutlet.model.entity.LoginVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
 
 @Component
@@ -38,6 +39,17 @@ public class MemberServiceImpl implements MemberService {
 	public void clipList(Model model) throws Exception {		
 		model.addAttribute("clipList",dao.clipList());
 		
+	}
+
+	@Override
+	public String login(LoginVo bean) throws Exception {		
+				
+				System.out.println("조회값이 얼마인가?"+dao.login(bean));
+		if(dao.login(bean)>0) {
+		return "로그인확인";		
+		}else {
+			return "로그인실패";
+		}
 	}
 
 }

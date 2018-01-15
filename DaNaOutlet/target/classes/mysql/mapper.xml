@@ -17,6 +17,10 @@
 	<insert id="memberAdd" parameterType="com.bit.daNaOutlet.model.entity.MemberVo">
 		INSERT INTO DANAMEMBER(MNUM,NAME,PHONE,MBIRTH,ID,MAIL,ADDR,ADDRN,PASSWORD,SEX) VALUES(#{mnum},#{name},#{phone},#{mbirth},#{id},#{mail},#{addr},#{addrn},#{password},#{sex})
 	</insert>
+	<select id="loginChk" resultType="int" parameterType="com.bit.daNaOutlet.model.entity.LoginVo">	
+		SELECT COUNT(*) FROM DANAMEMBER where id like #{loginId} and password like #{loginPw}
+	</select>
+	
 	<!--클립부분  -->
 	<select id="clipList" resultType="com.bit.daNaOutlet.model.entity.ClipVo">
 		SELECT * FROM DANACLIP 

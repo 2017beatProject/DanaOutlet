@@ -8,31 +8,24 @@
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
 	<title>Home</title>
 	<!-- http://apis.skplanetx.com/11st/v2/common/products?version={version}&page={page}&count={count}&searchKeyword={searchKeyword}&sortCode={sortCod -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
-	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 	
 	<script>
 	var datas;
 	var products;
-	 
+	var user; 
+	
+	function logoutMsg(){
+		alert("로그아웃상태이당");
+	}
+	
+	
+	
 	$(function(){	
 	
-		  //<![CDATA[
-		    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-		    Kakao.init('1ed0a4ca651380fc768bf01eb21201e5');
-		    // 카카오 로그인 버튼을 생성합니다.
-		    Kakao.Auth.createLoginButton({
-		      container: '#kakao-login-btn',
-		      success: function(authObj) {
-		        alert(JSON.stringify(authObj));
-		      },
-		      fail: function(err) {
-		         alert(JSON.stringify(err));
-		      }
-		    });
-		  //]]>
-		
+
+		  
+		  
 	
 		$('#btn').on('click',function(){
 			$('ul').remove();
@@ -78,11 +71,14 @@
 			}
 					);
 		
-		});
+		});//상품검색 function end
 		
 		
 		
-	});
+		
+		
+		
+	});//window function end
 	
 	</script>
 
@@ -93,14 +89,13 @@
 </h1>
 
 <a href="join">회원가입</a>
-<a id="kakao-login-btn"></a>
-<a href="http://developers.kakao.com/logout"></a>
+
 <div id="test">	
 	<label for="productSearch">상품검색</label>
 	<input type="text" id="productSearch" name="productSearch"/>
 	<button id="btn">검색</button>
 </div>
-
+<p></p>
 
 </body>
 </html>

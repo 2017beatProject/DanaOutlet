@@ -1,8 +1,5 @@
 package com.bit.daNaOutlet;
 
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,11 +29,11 @@ public class ShowController {
 		
 		return "join";
 	}
-	//로그인
-	@RequestMapping(value="/login")
+	//로그인화면
+	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String login() {
 		
-		return "login";
+		return "login/login";
 	}
 	
 	//회원관리
@@ -56,7 +53,7 @@ public class ShowController {
 	}
 	
 	@RequestMapping(value="/join",method = RequestMethod.POST) // 회원 가입 부분 
-	public String joinSuccess(@ModelAttribute MemberVo bean,Model model) throws Exception {
+	public String joinSuccess(@ModelAttribute MemberVo bean) throws Exception {
 		memberService.memberAdd(bean);		
 		return "member/success";
 	}

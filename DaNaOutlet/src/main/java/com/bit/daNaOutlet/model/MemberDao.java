@@ -3,6 +3,7 @@ package com.bit.daNaOutlet.model;
 import java.util.List;
 
 import com.bit.daNaOutlet.model.entity.ClipVo;
+import com.bit.daNaOutlet.model.entity.LoginVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
 
 public interface MemberDao {
@@ -15,4 +16,8 @@ public interface MemberDao {
 	
 	//클립 Dao
 	List<ClipVo> clipList() throws Exception;
+	
+	//로그인 Dao
+	int login(LoginVo bean)throws Exception;
+	
 } 
