@@ -52,4 +52,12 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
+	@Override
+	public String loginKakao(LoginVo bean) {
+		
+		if(dao.loginKakao(bean)>0) {return "로그인확인";}
+		
+		return "로그인실패";
+	}
+
 }

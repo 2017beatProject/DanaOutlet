@@ -19,5 +19,9 @@ public interface MemberDao {
 	
 	//·Î±×ÀÎ Dao
 	int login(LoginVo bean)throws Exception;
+
+	int loginKakao(LoginVo bean);
+
+	int kakolognum() throws Exception;
 	
 } 

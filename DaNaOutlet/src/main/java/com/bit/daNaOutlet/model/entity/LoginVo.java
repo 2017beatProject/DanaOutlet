@@ -4,6 +4,7 @@ public class LoginVo {
 
 	String loginId;
 	String loginPw;
+	String nickName;
 	
 	public LoginVo() {
 		// TODO Auto-generated constructor stub
@@ -29,6 +30,15 @@ public class LoginVo {
 
 	public void setLoginPw(String loginPw) {
 		this.loginPw = loginPw;
+	}
+
+	
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	@Override

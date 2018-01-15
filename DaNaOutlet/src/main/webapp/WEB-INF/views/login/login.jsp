@@ -14,30 +14,73 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <script>
-	$(function() {
+var authKey;
+var param={};	
 
 		$(function() {
-			//<![CDATA[
-			// 사용할 앱의 JavaScript 키를 설정해 주세요.
+			//일반 로그인----------------------------
+			$('form').on('submit', function() {
+				var param = {
+					'loginId' : $('#loginId').val(),
+					'loginPw' : $('#loginPw').val()
+				}
+				$.ajax({
+					'url' : '/login',
+					'type' : 'post',
+					'data' : param,
+					'success' : function(data) {
+						alert("통신성공" + data);
+					},
+					'err' : function(data) {
+						alert("로그인에러");
+					}
+
+				});
+				return false;
+			});					
+			
+			//카카오 로그인--------------------------------
 			Kakao.init('1ed0a4ca651380fc768bf01eb21201e5');
-			// 카카오 로그인 버튼을 생성합니다.
+			// 카카오 로그인 버튼을 생성.
+				
 			Kakao.Auth.createLoginButton({
 				'container' : '#kakao-login-btn',
 				'success' : function(authObj) {
 					alert(JSON.stringify(authObj));
-
-					$('p').append(authObj.access_token);
-					/* 	        $('p').append(authObj.token_type);
-					 $('p').append(authObj.refresh_token);
-					 $('p').append(authObj.expires_in);
-					 $('p').append(authObj.scope); */
+					authKey=authObj.access_token;
+					   Kakao.API.request({
+					          url: '/v1/user/me',
+					          success: function(res) {
+					            
+					            param={
+					            		'loginId':res.id,
+					            		'nickname':res.properties.nickname
+					            };
+					            alert(param.loginId + param.nickname);
+					          },
+					          fail: function(error) {
+					            alert(JSON.stringify(error));
+					          }
+					        });					
+	
+					 $.ajax({
+						 	'url' : '/loginKakao',
+							'type' : 'post',
+							'data': param,
+							'success' : function(data) {
+								alert("통신성공" + data);
+							},
+							'err' : function(data) {
+								alert("로그인에러");
+							}						 
+					 });
 				},
 				'fail' : function(err) {
 					alert(JSON.stringify(err));
 				}
 			});
-			//
-
+			
+			//---------------------------로그인여부확인
 			$('#loginchk').on(
 					'click',
 					function() {
@@ -51,38 +94,30 @@
 							}
 						});
 
-					});//로그인체크 function		  
+					});//로그인여부확인 end		  
 
+					
+					//로그아웃--------------------------
 			$('#logout').on('click', function() {
 				Kakao.Auth.logout(function() {
 					alert("로그아웃");
+					$.ajax({
+					 	'url' : '/logout',
+						'type' : 'post',
+						'data' : param,
+						'success' : function(data) {
+							alert("로그아웃통신성공" + data);
+						},
+						'err' : function(data) {
+							alert("로그아웃에러");
+						}						 
+				 });
 				});
 
-			});
+			});//로그아웃 비동기 통신 end
 
-		});
+		});// window ready end
 
-		$('form').on('submit', function() {
-			var param = {
-				'loginId' : $('#loginId').val(),
-				'loginPw' : $('#loginPw').val()
-			}
-			$.ajax({
-				'url' : '/login',
-				'type' : 'post',
-				'data' : param,
-				'success' : function(data) {
-					alert("통신성공" + data);
-				},
-				'err' : function(data) {
-					alert("로그인에러");
-				}
-
-			});
-			return false;
-		});
-
-	});
 </script>
 
 </head>
