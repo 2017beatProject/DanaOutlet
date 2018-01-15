@@ -1,7 +1,8 @@
 package com.bit.daNaOutlet.model.entity;
 
 public class LoginVo {
-
+	
+	int idKakaoLog;
 	String loginId;
 	String loginPw;
 	String nickName;
@@ -10,11 +11,17 @@ public class LoginVo {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public LoginVo(String loginId, String loginPw) {
+
+
+	public LoginVo(int idKakaoLog, String loginId, String loginPw, String nickName) {
 		super();
+		this.idKakaoLog = idKakaoLog;
 		this.loginId = loginId;
 		this.loginPw = loginPw;
+		this.nickName = nickName;
 	}
+
+
 
 	public String getLoginId() {
 		return loginId;
@@ -39,6 +46,15 @@ public class LoginVo {
 
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
+	}
+
+		
+	public int getIdKakaoLog() {
+		return idKakaoLog;
+	}
+
+	public void setIdKakaoLog(int idKakaoLog) {
+		this.idKakaoLog = idKakaoLog;
 	}
 
 	@Override

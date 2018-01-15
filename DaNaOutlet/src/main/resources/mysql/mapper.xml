@@ -21,10 +21,10 @@
 		SELECT COUNT(*) FROM DANAMEMBER where id like #{loginId} and password like #{loginPw}
 	</select>
 	<select id="idKakoaLogCount" resultType="int">
-		SELECT MAX(idKakoaLog+1) FROM KAKAOLOGIN
+		SELECT MAX(idKakaoLog+1) FROM KAKAOLOGIN
 	</select>	
 	<select id="loginKakao" parameterType="com.bit.daNaOutlet.model.entity.LoginVo">	
-		INSERT INTO KAKAOLOGIN VALUES(, #{loginId}, #{nickName}, now())
+		INSERT INTO KAKAOLOGIN VALUES(#{idKakaoLog}, #{loginId}, #{nickName}, now())
 	</select>
 	
 	<!--클립부분  -->

@@ -75,7 +75,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int kakolognum() throws Exception { // 회원 번호 프라이머리키 시퀀스 기능 대신 해주는 Dao
-		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.mnumOne");
+		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.idKakoaLogCount");
 	}
 	
 }

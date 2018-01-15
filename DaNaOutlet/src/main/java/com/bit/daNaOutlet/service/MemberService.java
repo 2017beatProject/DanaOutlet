@@ -20,5 +20,5 @@ public interface MemberService {
 	
 	String login(LoginVo bean) throws Exception;
 
-	String loginKakao(LoginVo bean);
+	String loginKakao(LoginVo bean) throws Exception;
 }

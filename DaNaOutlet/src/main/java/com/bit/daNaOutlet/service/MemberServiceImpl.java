@@ -53,8 +53,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public String loginKakao(LoginVo bean) {
-		
+	public String loginKakao(LoginVo bean) throws Exception {
+		bean.setIdKakaoLog(dao.kakolognum());
 		if(dao.loginKakao(bean)>0) {return "로그인확인";}
 		
 		return "로그인실패";

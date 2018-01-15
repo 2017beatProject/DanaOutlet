@@ -35,6 +35,7 @@ public class LoginController {
 	public void loginKakao(HttpServletResponse resp, @ModelAttribute LoginVo bean) throws Exception {
 		resp.setCharacterEncoding("UTF-8");
 		System.out.println("카카오아이디:"+bean.getLoginId());
+		System.out.println("카카오아이디:"+bean.getNickName());
 		PrintWriter out = resp.getWriter();
 		out.print(memberService.loginKakao(bean));
 	}

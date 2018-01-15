@@ -15,7 +15,8 @@
 
 <script>
 var authKey;
-var param={};	
+var param={};
+var resparam={};
 
 		$(function() {
 			//일반 로그인----------------------------
@@ -44,17 +45,18 @@ var param={};
 			// 카카오 로그인 버튼을 생성.
 				
 			Kakao.Auth.createLoginButton({
-				'container' : '#kakao-login-btn',
+				'container' : '#kakao-login-btn',		
+				'persistAccessToken' : false,
 				'success' : function(authObj) {
 					alert(JSON.stringify(authObj));
 					authKey=authObj.access_token;
 					   Kakao.API.request({
 					          url: '/v1/user/me',
 					          success: function(res) {
-					            
+					            resparam=res;
 					            param={
 					            		'loginId':res.id,
-					            		'nickname':res.properties.nickname
+					            		'nickName':res.properties.nickname
 					            };
 					            alert(param.loginId + param.nickname);
 					          },
@@ -74,7 +76,7 @@ var param={};
 								alert("로그인에러");
 							}						 
 					 });
-				},
+				},				
 				'fail' : function(err) {
 					alert(JSON.stringify(err));
 				}

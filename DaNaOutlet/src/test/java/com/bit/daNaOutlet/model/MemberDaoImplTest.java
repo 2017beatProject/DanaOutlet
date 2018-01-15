@@ -23,7 +23,7 @@ public class MemberDaoImplTest {
 	
 	@Test
 	public void test() throws Exception {
-		LoginVo bean=new LoginVo("test01","test1");
+		LoginVo bean=new LoginVo();
 		System.out.println(bean.getLoginId());
 		assertNotNull(dao.login(bean));
 	}
