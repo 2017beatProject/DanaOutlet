@@ -94,6 +94,9 @@
 	<label for="productSearch">상품검색</label>
 	<input type="text" id="productSearch" name="productSearch"/>
 	<button id="btn">검색</button>
+	
+	<a href="/upload">업로드 테스트 </a>
+ <a href="/hotdeal"> 핫 딜 테스트 </a>
 </div>
 <p></p>
 
