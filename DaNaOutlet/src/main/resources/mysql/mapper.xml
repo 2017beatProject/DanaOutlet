@@ -17,15 +17,20 @@
 	<insert id="memberAdd" parameterType="com.bit.daNaOutlet.model.entity.MemberVo">
 		INSERT INTO DANAMEMBER(MNUM,NAME,PHONE,MBIRTH,ID,MAIL,ADDR,ADDRN,PASSWORD,SEX) VALUES(#{mnum},#{name},#{phone},#{mbirth},#{id},#{mail},#{addr},#{addrn},#{password},#{sex})
 	</insert>
+	
+	<!-- 일반로그인  -->
 	<select id="loginChk" resultType="int" parameterType="com.bit.daNaOutlet.model.entity.LoginVo">	
 		SELECT COUNT(*) FROM DANAMEMBER where id like #{loginId} and password like #{loginPw}
 	</select>
+	
+	<!-- 카카오로그인 -->
 	<select id="idKakoaLogCount" resultType="int">
 		SELECT MAX(idKakaoLog+1) FROM KAKAOLOGIN
 	</select>	
 	<select id="loginKakao" parameterType="com.bit.daNaOutlet.model.entity.LoginVo">	
 		INSERT INTO KAKAOLOGIN VALUES(#{idKakaoLog}, #{loginId}, #{nickName}, now())
 	</select>
+	
 	
 	<!-- 핫딜 부분 -->
  	<select id="hotDealNumOne" resultType="int">
@@ -40,9 +45,7 @@
  	<insert id="hotDealAdd" parameterType="com.bit.daNaOutlet.model.entity.HotDealVo">
  		INSERT INTO HOTDEAL(PRICE,HOTDEALNUM,LINK,PRODUCTNAME,PRODUCTINTRO) VALUES(#{price},#{hotDealNum},#{link},#{productName},#{productIntro})
  	</insert>
- 
-	
-	
+ 		
 	<!--클립부분  -->
 	<select id="clipList" resultType="com.bit.daNaOutlet.model.entity.ClipVo">
 		SELECT * FROM DANACLIP 

@@ -84,6 +84,10 @@
 
 </head>
 <body>
+<!-- header -->
+
+<jsp:include page="template/login_template.jsp"></jsp:include>
+
 <h1>
 	Hello world!  
 </h1>

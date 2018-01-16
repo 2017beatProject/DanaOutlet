@@ -5,7 +5,9 @@
 	<meta name="author" content="Cho">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../resources/css/jquery.mobile-1.4.5.css" />
+<link rel="stylesheet" media="(max-width:700px)" type="text/css" href="../resources/css/jquery.mobile-1.4.5.css" />
+<link rel="stylesheet" media="(min-width:699px)" type="text/css" href="../resources/css/join.css"/>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -142,6 +144,8 @@
 </script> --%>
 </head>
 <body>
+<jsp:include page="template/login_template.jsp"></jsp:include>
+
 <div data-role="page">
 <div data-role="header">
 <h1>회원가입</h1>
