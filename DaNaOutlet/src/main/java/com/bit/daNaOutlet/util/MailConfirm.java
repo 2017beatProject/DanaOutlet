@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MailConfirm extends HttpServlet{
@@ -21,8 +23,9 @@ public class MailConfirm extends HttpServlet{
 		// TODO Auto-generated constructor stub
 		
 	}
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+	
+	@RequestMapping(value="/confirm", method=RequestMethod.GET)
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
 		req.getRequestDispatcher("login/mailCheck.jsp").forward(req, resp);	
@@ -31,7 +34,7 @@ public class MailConfirm extends HttpServlet{
 		
 	}
 	
-	@Override
+	@RequestMapping(value="/confirm", method=RequestMethod.POST)
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		resp.setCharacterEncoding("UTF-8");

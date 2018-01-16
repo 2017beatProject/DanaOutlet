@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
  
 
@@ -52,7 +54,7 @@ public class SendEMail extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 
      */
-
+    @RequestMapping(value="/sendMail", method=RequestMethod.GET)
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.getRequestDispatcher("SendEmail.jsp");
@@ -66,7 +68,7 @@ public class SendEMail extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 
      */
-
+    @RequestMapping(value="/sendMail", method=RequestMethod.POST)
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // TODO Auto-generated method stub
@@ -157,11 +159,9 @@ public class SendEMail extends HttpServlet {
         } finally {
 
  
-
         }
 
     }
 
  
-
 }

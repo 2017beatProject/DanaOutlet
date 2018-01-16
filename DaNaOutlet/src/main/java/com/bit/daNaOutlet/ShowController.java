@@ -28,6 +28,21 @@ public class ShowController {
 		memberService.selectAll(model);
 		return "main";
 	}
+	
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String search(Model model) throws Exception {
+
+		memberService.selectAll(model);
+		return "search";
+	}
+	
+	@RequestMapping(value = "/board", method = RequestMethod.GET)
+	public String board(Model model) throws Exception {
+
+		memberService.selectAll(model);
+		return "board";
+	}
+	
 	//회원가입
 	@RequestMapping(value="/join",method = RequestMethod.GET)
 	public String join() {

@@ -18,7 +18,7 @@
 <script src="../resources/js/idValidation.js"></script>
 <script src="../resources/js/jquery.mobile-1.4.5.js"></script>
 
-<%-- <script>
+<script>
 	var errList = [ "pwInputErr", "pwInputReErr", "nameErr", "bDayErr",
 			"genErr", "phoErr", "emErr", "addressErr" ];
 	var inputList = [ "pwInput", "pwInputRe", "userName", "bDay", "gender",
@@ -54,7 +54,7 @@
 
 	function waitingConfirm() {
 		$.ajax({
-			'url' : '/BEAT_LMS/confirm',
+			'url' : '/confirm',
 			'type' : 'POST',						
 			'success' : function(conData) {
 				maildata = conData.confirm[0].mail;			
@@ -141,7 +141,7 @@
 					});
 				});
 	});
-</script> --%>
+</script>
 </head>
 <body>
 <jsp:include page="template/login_template.jsp"></jsp:include>
