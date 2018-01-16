@@ -36,11 +36,20 @@ public class ShowController {
 		return "search";
 	}
 	
+	// 게시판 메인
 	@RequestMapping(value = "/board", method = RequestMethod.GET)
 	public String board(Model model) throws Exception {
 
 		memberService.selectAll(model);
-		return "board";
+		return "board/board";
+	}
+	
+	// 게시판(임시로 정해둠)
+	@RequestMapping(value = "/board/detail", method = RequestMethod.GET)
+	public String detail(Model model) throws Exception {
+
+		memberService.selectAll(model);
+		return "board/detail";
 	}
 	
 	//회원가입
