@@ -46,10 +46,18 @@ public class ShowController {
 	
 	// 게시판(임시로 정해둠)
 	@RequestMapping(value = "/board/detail", method = RequestMethod.GET)
-	public String detail(Model model) throws Exception {
+	public String boardDetail(Model model) throws Exception {
 
 		memberService.selectAll(model);
 		return "board/detail";
+	}
+	
+	// 게시판(임시로 정해둠)
+		@RequestMapping(value = "/board/selectOne", method = RequestMethod.GET)
+		public String boardSelectOne(Model model) throws Exception {
+
+			memberService.selectAll(model);
+			return "board/selectOne";
 	}
 	
 	//회원가입
