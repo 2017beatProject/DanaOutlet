@@ -1,5 +1,6 @@
 package com.bit.daNaOutlet;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +39,24 @@ public class LoginController {
 		System.out.println("카카오아이디:"+bean.getNickName());
 		PrintWriter out = resp.getWriter();
 		out.print(memberService.loginKakao(bean));
+	}
+
+	@RequestMapping(value="/idDoubleChk", method=RequestMethod.POST)
+	public void idDoubleChk(HttpServletResponse resp) throws IOException {
+		resp.setContentType("application/json; charset=UTF-8");
+		PrintWriter out = resp.getWriter();
+		
+		out.print("{\"list\":[");
+		out.print("{\"sabun\":1111,\"name\":\"guest01\"}");
+		out.print(",");
+		out.print("{\"sabun\":2222,\"name\":\"guest02\"}");
+		out.print(",");
+		out.print("{\"sabun\":3333,\"name\":\"guest03\"}");
+		out.print(",");
+		out.print("{\"sabun\":4444,\"name\":\"guest04\"}");
+		out.print(",");
+		out.print("{\"sabun\":5555,\"name\":\"guest05\"}");
+		out.print("]}");
 	}
 	
 }

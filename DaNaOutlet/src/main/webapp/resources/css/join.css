@@ -64,7 +64,7 @@ position: relative;
 top: 290px;
 left: 377px;
 }
-#btn{
+#joinbtn{
 position: relative;
 top: 310px;
 left: 400px;
@@ -103,6 +103,12 @@ position: relative;
    position: relative;
    top: 10px;
    left: 110px;
+   font-size: 13px;
+}
+#addErr{
+   position: relative;
+   top: 10px;
+   left: 40px;
    font-size: 13px;
 }
 #nameErr{

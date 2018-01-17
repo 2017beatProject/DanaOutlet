@@ -2,7 +2,7 @@ function IddoubleCheck(){
 			$('#id button').on('click',function() {		
 				 mid= $('#id').find('input').eq(0).val();			 		 		 
 						$.ajax({
-							'url' : '/BEAT_LMS/target/join.json',
+							'url' : '/idDoubleChk',
 							'type' : 'POST',						
 							'error' : function() {
 								alert("경고");
@@ -10,10 +10,10 @@ function IddoubleCheck(){
 							'success' : function(data) {
 								$("#id span").remove();
 								var tf=true;
-								datakit=data.list[0].mid;
+								datakit=data;
 								
 								for(var i=0;i<data.list.length;i++){
-									midlist=data.list[i].mid;
+									midlist=data.list[i].sabun;
 									if(mid==midlist){
 										tf=false;
 										break;
