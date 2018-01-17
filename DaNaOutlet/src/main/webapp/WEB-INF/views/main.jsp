@@ -1,9 +1,12 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
@@ -15,8 +18,10 @@
 <script src="resources/js/jquery.bxslider.js"></script>
 <script src="resources/js/bootstrap.js"></script>
 <script type="text/javascript">
-
+	var psn;
 	$(document).ready(function() {
+		psn = $("#fixedbar").scrollTop();
+
 		$('.bxslider').bxSlider({
 			auto : true,
 			speed : 300,
@@ -28,38 +33,55 @@
 			controls : false
 		});
 	});
+	$(function() {
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 66) {
+				$("#fixedbar").css({
+					"position" : "fixed",
+					"top" : psn,
+					"z-index" : "2"
+					
 
+				});
+			} else {
+				$("#fixedbar").css({
+					"position" : "relative",
+					"top" : "0px"
+				});
+			}
+		});
+
+	});
 </script>
 <style type="text/css">
 body {
-	align-content: center; 
+	align-content: center;
 	text-overflow: inherit; 
 	text-align: center;
-	text-decoration: none; 
-	font-size: 12px; 
-	padding-top: 70px; 
-	overflow-x:hidden;   
+	text-decoration: none;
+	font-size: 12px;
+	padding-top: 70px;
+	overflow-x:hidden;  
 }
- 
+
 #hotdeal>li>a{text-decoration : none; }
 .caption>a{text-decoration : none; } 
 .col-sm-3>a{text-decoration : none;}
- a{
- 	color: black;
- }
+
+
 #footer {
-	top: 450px; 
+	top: 400px; 
 	right: 15px;
-	background-color: blue; 
+	background-color: blue;
 	width: 50px;
 	height: 50px;
-	position: fixed; 
+	position: fixed;
 	margin: 0px;
 	text-decoration : none;
 }
 
-#topper { 
-	top: 400px;
+#topper {
+	top: 350px;
 	right: 15px;
 	background-color: white;
 	width: 50px;
@@ -85,13 +107,9 @@ text-decoration : none;
   
 #alittle {
 	display: inline-block;
-	text-align: left;
 }  
 #iconImg{
 	display: none; 
-}
-h5{
-	text-align: left;
 }
  @media(max-width:575px) {
 	#iconImg{
@@ -102,9 +120,6 @@ h5{
 	float: left;
 	}
 } 
-#hot{
-	float: left;
-}
 </style>
 </head> 
 <body>
@@ -117,10 +132,8 @@ h5{
 					<span class="sr-only">Toggle navigation</span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
-				</button> 
-				 <a class="navbar-brand" href="#"> 
-				<img src="resources/imgs/logo.png" alt="" height="30px">
-				</a>
+				</button>
+				<img src="resources/imgs/logo.png" alt="" height="50px">
 			</div>
 
 			<div id="navbar" class="navbar-collapse collapse">
@@ -143,20 +156,21 @@ h5{
 	</nav>
 	<!-- bxslider start -->
 	<div>
+	
 		<ul class="bxslider">
 			<li>
 				<div>
-					<h5>1/3</h5>
+					<h1>1/3</h1>
 				</div> <img src="resources/imgs/1.jpg" width="100%" />
-			</li> 
-			<li> 
+			</li>
+			<li>
 				<div>
-					<h5>2/3</h5>
+					<h1>2/3</h1>
 				</div> <img src="resources/imgs/2.jpg" width="100%" />
 			</li>
 			<li>
 				<div>
-					<h5>3/3</h5>
+					<h1>3/3</h1>
 				</div> <img src="resources/imgs/3.jpg" width="100%" />
 			</li>
 		</ul>
@@ -181,22 +195,22 @@ h5{
 		</div> 
 		<div class="row">
 			<div class="col-sm-3 col-xs-3">
-				<a href="#"><img alt="" src="resources/imgs/t5.png" class="img-thumbnail" id="iconImg2"><br /><label id="iconImg">자동차</label></a>
+				<a href="#"><img alt="" src="resources/imgs/t1.png" class="img-thumbnail" id="iconImg2"><br /><label id="iconImg">자동차</label></a>
 			</div>
 			<div class="col-sm-3 col-xs-3">
-				<a href="#"><img alt="" src="resources/imgs/t6.png" class="img-thumbnail" id="iconImg2"><br /><label id="iconImg">자동차</label></a>
+				<a href="#"><img alt="" src="resources/imgs/t2.png" class="img-thumbnail" id="iconImg2"><br /><label id="iconImg">자동차</label></a>
 			</div>
 			<div class="col-sm-3 col-xs-3">
-				<a href="#"><img alt="" src="resources/imgs/t7.png" class="img-thumbnail" id="iconImg2"><br /><label id="iconImg">자동차</label></a>
+				<a href="#"><img alt="" src="resources/imgs/t3.png" class="img-thumbnail" id="iconImg2"><br /><label id="iconImg">자동차</label></a>
 			</div>
 			<div class="col-sm-3 col-xs-3">
-				<a href="#"><img alt="" src="resources/imgs/t8.png" class="img-thumbnail" id="iconImg2"><br /><label id="iconImg">자동차</label></a>
-			</div> 
-		</div> 
+				<a href="#"><img alt="" src="resources/imgs/t4.png" class="img-thumbnail" id="iconImg2"><br /><label id="iconImg">자동차</label></a>
+			</div>
+		</div>
 	</div>
 	<!-- menubar end -->
 	<!-- 쇼킹특가 -->
-	<div class="navbar navbar-default" role="alert"><h3>쇼킹특가</h3></div>
+	<div class="alert alert-success" role="alert"><h1>쇼킹특가</h1></div>
 	<!-- start -->
 	<div class="container">
 		<div class="row">
@@ -225,41 +239,19 @@ h5{
 	<!-- 쇼킹특가 end -->
 	<!-- 핫딜 지금뜨는상품 -->
 	<div>
-		<div class="navbar navbar-default" role="alert"><h3>핫딜 지금 뜨는 상품</h3></div>
+		<div class="alert alert-info" role="alert"><h1>핫딜 지금 뜨는 상품</h1></div>
 		<ul id="hotdeal">
-			<li id="hot"><a href="#"><img alt="..." src="resources/imgs/3.jpg">
+			<li><a href="#"><img alt="..." src="resources/imgs/3.jpg">
 				<div id="alittle">
-					<span>티몬 </span>
-					<p>유가네 닭갈비 1+1/볶음밥 쿠폰적용가능</p>
+					 <span>티몬 </span>
+					<p>반값세일</p>
 					<div>
-						<span>2,622개 구매</span> | <span>무료배송</span>
+						<span>722개 구매</span> | <span>무료배송</span>
 					</div>
-					<span><strong>10,710</strong>원</span>
-				</div> </a>
-			</li>
+					<span><strong>2000</strong>원</span>
+				</div> </a></li>
 		</ul>
 	</div> 
-	<!-- dd -->
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-5 col-xs-5">
-				<img src="resources/imgs/4.jpg" alt="...">
-				
-			</div>
-			<div class="col-sm-7 col-xs-7">
-				<div id="alittle">
-				<br/><br/>
-					<span>티몬 </span>
-					<p>유가네 닭갈비 1+1/볶음밥 쿠폰적용가능</p>
-					<div>
-						<span>2,622개 구매</span> | <span>무료배송</span>
-					</div>
-					<span><strong>10,710</strong>원</span>
-				</div> 
-			</div>
-		</div>
-	</div>
-	<!-- dddd -->
 	<!-- 핫딜 지금뜨는상품 end -->
 	<div></div>
 	<!--footer  -->
@@ -267,7 +259,7 @@ h5{
 		<a href="#">최근본상품</a>
 	</div>
 	<div id="topper">
-		<a href=".navbar-header">△<br />Top
+		<a href="#">△<br />Top
 		</a>
 	</div>
 </body>

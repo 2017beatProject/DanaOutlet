@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 
 import com.bit.daNaOutlet.model.entity.ClipVo;
-import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
 import com.bit.daNaOutlet.model.entity.LoginVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
@@ -101,23 +100,5 @@ public class MemberDaoImpl implements MemberDao {
 	public int kakolognum() throws Exception { // 회원 번호 프라이머리키 시퀀스 기능 대신 해주는 Dao
 		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.idKakoaLogCount");
 	}
-	
-	
-	/* Dpg 관련 부분*/
-	@Override
-	public List<DpgVo> dpgAll() throws Exception {
-		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgAll");
-	}
-	@Override
-	public int dpgNumOne() throws Exception {
-		
-		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.dpgNumOne");
-	}
-	@Override
-	public void dpgAdd(DpgVo bean) throws Exception {
-		session.insert("com.bit.daNaOutlet.model.MemberDao.dpgAdd", bean);	
-	}
-	/* ......................................................... */
-	
 
 }
