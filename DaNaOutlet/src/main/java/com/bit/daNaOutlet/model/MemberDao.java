@@ -3,6 +3,7 @@ package com.bit.daNaOutlet.model;
 import java.util.List;
 
 import com.bit.daNaOutlet.model.entity.ClipVo;
+import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
 import com.bit.daNaOutlet.model.entity.LoginVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
@@ -36,5 +37,13 @@ public interface MemberDao {
 	int loginKakao(LoginVo bean);
 
 	int kakolognum() throws Exception;
+
+	
+	/*DPG ฐüทร DAO */
+	List<DpgVo> dpgAll() throws Exception;
+	
+	int dpgNumOne() throws Exception;
+
+	void dpgAdd(DpgVo bean) throws Exception;
 
 }

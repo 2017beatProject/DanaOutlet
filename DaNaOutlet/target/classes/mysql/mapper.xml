@@ -49,6 +49,17 @@
 	<!--클립부분  -->
 	<select id="clipList" resultType="com.bit.daNaOutlet.model.entity.ClipVo">
 		SELECT * FROM DANACLIP 
-	</select>	
+	</select>
+	
+	<!-- DPG 부분 -->	
+	<select id="dpgAll" resultType="com.bit.daNaOutlet.model.entity.DpgVo">
+		SELECT * FROM DANADPG
+	</select>
+	
+	<select id="dpgNumOne" resultType="int">
+		SELECT MAX(DPGNUM+1) FROM DANADPG
+	</select>
+	<insert id="dpgAdd" parameterType="com.bit.daNaOutlet.model.entity.DpgVo">
+		INSERT INTO DANADPG(DPGNUM,DPGTITLE,DPGWRITER,DPGFROM,DPGSUBJECT,DPGCONTENT,DPGIMGLINK) VALUES(#{dpgNum},#{dpgTitle},#{dpgWriter},#{dpgFrom},#{dpgSubject},#{dpgContent},#{dpgImgLink})
+	</insert>
 </mapper>
-
