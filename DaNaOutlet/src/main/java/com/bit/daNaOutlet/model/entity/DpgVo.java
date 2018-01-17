@@ -11,6 +11,11 @@ public class DpgVo {
 	private String dpgSubject;
 	private String dpgContent;
 	private String dpgImgLink;
+	
+	public DpgVo() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public int getDpgNum() {
 		return dpgNum;
 	}
