@@ -10,6 +10,7 @@ import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
 import com.bit.daNaOutlet.model.entity.LoginVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
+import com.bit.daNaOutlet.model.entity.ReplyVo;
 
 public class MemberDaoImpl implements MemberDao {
 	SqlSession session;
@@ -103,11 +104,16 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	/* Dpg 관련 부분*/
-	@Override
+	@Override//Dpg 리스트
 	public List<DpgVo> dpgAll() throws Exception {
 		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgAll");
 	}
-	@Override
+	@Override//Dpg 디테일
+	public DpgVo dpgOne(int dpgNum) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.dpgOne", dpgNum);
+	}
+	@Override//Dpg 시퀀스
 	public int dpgNumOne() throws Exception {
 		
 		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.dpgNumOne");
@@ -117,6 +123,15 @@ public class MemberDaoImpl implements MemberDao {
 		session.insert("com.bit.daNaOutlet.model.MemberDao.dpgAdd", bean);	
 	}
 	/* ......................................................... */
+
+	@Override
+	public List<ReplyVo> replyCall(int fatherContentsNum) throws Exception {
+		
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.replyCall", fatherContentsNum);
+	}
+
+	
+
 	
 
 

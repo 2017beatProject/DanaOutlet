@@ -1,10 +1,13 @@
 package com.bit.daNaOutlet.service;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
@@ -15,12 +18,22 @@ import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
 import com.bit.daNaOutlet.model.entity.LoginVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
+import com.bit.daNaOutlet.model.entity.ReplyVo;
 import com.bit.daNaOutlet.util.Commons;
 
 @Component
 public class MemberServiceImpl implements MemberService {
-	@Autowired
-	MemberDao dao;
+	
+	Logger log;
+	@Autowired	
+	MemberDao dao;	
+	
+	
+	public MemberServiceImpl() {
+		log=Logger.getLogger(MemberServiceImpl.class.getName());
+	}
+			
+			
 	
 	@Override
 	public void selectAll(Model model) throws Exception {		
@@ -35,7 +48,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void memberAdd(MemberVo bean) throws Exception {
+	public void memberAdd(MemberVo bean) throws Exception {	
 		bean.setMnum(dao.mNumOne()); // 번호는 bean 담아있지않아서 dao에서 맥스값+1한 값을 set함 
 		dao.memberAdd(bean);	
 	}
@@ -104,6 +117,54 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void dpgAll(Model model) throws Exception {
 		model.addAttribute("list",dao.dpgAll());
+		
+	}
+	
+	@Override
+	public void dpgOne(Model model, int dpgNum) throws Exception {
+		model.addAttribute("bean", dao.dpgOne(dpgNum));
 	}
 
+	/* 댓글 서비스*/	
+	@Override
+	public List<ReplyVo> replyCall(int fatherContentsNum, HttpServletResponse resp) throws Exception {
+				
+		log.debug(dao.replyCall(fatherContentsNum).toString());	
+		
+		List<ReplyVo> list=dao.replyCall(fatherContentsNum);
+		/*	
+		 * json 확인용 logger
+		 * 		System.out.print("{\"list\":[");
+					for(int i=0;i<list.size();i++) {
+						System.out.print("{\"log\":\""+list.get(i).getFatherContentsNum()+"\","
+								+ "\"id\":\""+list.get(i).getReplyId()+"\","
+								+ "\"contents\":\""+list.get(i).getReplyContent()+"\","
+								+ "\"nalja\":\""+list.get(i).getReplyDate()+"\","
+								+ "\"depth\":\""+list.get(i).getReplyDepth()+"\","
+								+ "\"conId\":\""+list.get(i).getReplyConId()+"\","
+								+ "\"fatherNum\":\""+list.get(i).getFatherContentsNum()+"\"}");
+					if(i!=list.size()-1) {System.out.print(",");}
+							
+					}
+					System.out.print("]}");*/
+					resp.setContentType("text/json");
+					resp.setCharacterEncoding("UTF-8");
+					PrintWriter out=resp.getWriter();
+					out.print("{\"list\":[");
+					for(int i=0;i<list.size();i++) {
+					out.print("{\"log\":\""+list.get(i).getFatherContentsNum()+"\","
+							+ "\"id\":\""+list.get(i).getReplyId()+"\","
+							+ "\"contents\":\""+list.get(i).getReplyContent()+"\","
+							+ "\"nalja\":\""+list.get(i).getReplyDate()+"\","
+							+ "\"depth\":\""+list.get(i).getReplyDepth()+"\","
+							+ "\"conId\":\""+list.get(i).getReplyConId()+"\","
+							+ "\"fatherNum\":\""+list.get(i).getFatherContentsNum()+"\"}");
+					if(i!=list.size()-1) {out.print(",");}
+							
+					}
+					out.print("]}");		
+		return null;
+	}
+
+	
 }

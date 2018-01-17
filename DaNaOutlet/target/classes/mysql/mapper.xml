@@ -55,11 +55,17 @@
 	<select id="dpgAll" resultType="com.bit.daNaOutlet.model.entity.DpgVo">
 		SELECT * FROM DANADPG
 	</select>
-	
+	<select id="dpgOne" resultType="com.bit.daNaOutlet.model.entity.DpgVo" parameterType="int">
+		SELECT * FROM DANADPG WHERE DPGNUM=#{VALUE}
+	</select>
 	<select id="dpgNumOne" resultType="int">
 		SELECT MAX(DPGNUM+1) FROM DANADPG
 	</select>
 	<insert id="dpgAdd" parameterType="com.bit.daNaOutlet.model.entity.DpgVo">
 		INSERT INTO DANADPG(DPGNUM,DPGTITLE,DPGWRITER,DPGFROM,DPGSUBJECT,DPGCONTENT,DPGIMGLINK) VALUES(#{dpgNum},#{dpgTitle},#{dpgWriter},#{dpgFrom},#{dpgSubject},#{dpgContent},#{dpgImgLink})
 	</insert>
+	<!--댓글내용 호출  -->
+	<select id="replyCall" resultType="com.bit.daNaOutlet.model.entity.ReplyVo" parameterType="int">
+		SELECT * FROM REPLYASSEMBLE WHERE FATHERCONTENTSNUM=#{VALUE}
+	</select>
 </mapper>

@@ -3,6 +3,7 @@ package com.bit.daNaOutlet.service;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
 import com.bit.daNaOutlet.model.entity.LoginVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
+import com.bit.daNaOutlet.model.entity.ReplyVo;
 
 public interface MemberService {
 
@@ -21,7 +23,7 @@ public interface MemberService {
 
 	void selectOne(Model model, int mnum) throws Exception;
 	
-	void memberAdd(MemberVo bean) throws Exception;
+	void memberAdd(MemberVo bean) throws Exception;	
 	
 
 	/* ÇÖµô°ü·Ã¼­ºñ½º */
@@ -42,4 +44,9 @@ public interface MemberService {
  
  	void dpgAll(Model model) throws Exception;
 	
+ 	/*´ñ±Û ¼­ºñ½º*/
+ 	List<ReplyVo> replyCall( int fatherContentsNum, HttpServletResponse resp) throws Exception;
+
+	void dpgOne(Model model, int dpgNum) throws Exception;
+ 	
 }

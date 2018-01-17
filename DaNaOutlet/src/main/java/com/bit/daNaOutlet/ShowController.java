@@ -1,6 +1,10 @@
 package com.bit.daNaOutlet;
 
+import java.io.PrintWriter;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
+import com.bit.daNaOutlet.model.entity.ReplyVo;
 import com.bit.daNaOutlet.service.MemberService;
 
 @Controller
@@ -72,9 +77,9 @@ public class ShowController {
 
 		return "member/memberOne";
 	}
-	
-	@RequestMapping(value="/join",method = RequestMethod.POST) // 회원 가입 부분 
-	public String joinSuccess(@ModelAttribute MemberVo bean) throws Exception {
+	 // 회원 가입 부분 
+	@RequestMapping(value="/join",method = RequestMethod.POST)
+	public String joinSuccess(@ModelAttribute MemberVo bean) throws Exception {	
 		memberService.memberAdd(bean);		
 		return "member/success";
 	}
@@ -115,8 +120,16 @@ public class ShowController {
 		@RequestMapping(value="/dpg/view",method=RequestMethod.GET)
 		public String dpgtestView(Model model) throws Exception {
 			memberService.dpgAll(model);
-			return "dpg/dpgviewtest";
+			return "dpg/contents_detail";
 		}
+		@RequestMapping(value="/dpg/view/{dpgNum}",method=RequestMethod.GET)
+		public String dpgtestView(Model model, @PathVariable int dpgNum) throws Exception {
+			memberService.dpgOne(model, dpgNum);
+			return "dpg/contents_detail";
+		}
+		
+		
+		
 		@RequestMapping(value="/dpg/test",method=RequestMethod.GET)
 		public String dpgUpView() throws Exception {	
 			return "dpg/dpgtest";
@@ -126,5 +139,13 @@ public class ShowController {
 			memberService.dpgAdd(bean,file,req);
 			return "dpg/success";
 		}
+		
+		//댓글test
+		@RequestMapping(value="/replyCall",method=RequestMethod.GET)
+		public void dpgReplyTest(HttpServletResponse resp, Model model, @RequestParam("num") int fatherContentsNum) throws Exception {
+			
+			memberService.replyCall(fatherContentsNum, resp);
+		}
+		
 	
 }

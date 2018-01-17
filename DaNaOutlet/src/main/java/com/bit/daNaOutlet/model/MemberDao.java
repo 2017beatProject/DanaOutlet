@@ -7,6 +7,7 @@ import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
 import com.bit.daNaOutlet.model.entity.LoginVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
+import com.bit.daNaOutlet.model.entity.ReplyVo;
 
 public interface MemberDao {
 	/* -- 회원 관련 DAO -- */
@@ -45,5 +46,11 @@ public interface MemberDao {
 	int dpgNumOne() throws Exception;
 
 	void dpgAdd(DpgVo bean) throws Exception;
+	
+	/*DPG댓글 관련 DAO*/
+	List<ReplyVo> replyCall(int fatherContentsNum) throws Exception;
+
+	Object dpgOne(int dpgNum) throws Exception;
+	
 
 }
