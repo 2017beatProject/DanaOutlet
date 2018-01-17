@@ -109,8 +109,10 @@
 </head>
 
 <body>
+<jsp:include page="template/navigation.jsp" flush="false" />
+
 	<h1>
-		검색페이지
+		검색페이지1
 	</h1>
 	<a href="join">회원가입</a>
 

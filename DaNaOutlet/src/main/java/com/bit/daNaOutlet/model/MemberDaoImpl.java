@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 
 import com.bit.daNaOutlet.model.entity.ClipVo;
+import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
 import com.bit.daNaOutlet.model.entity.LoginVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
@@ -87,12 +88,9 @@ public class MemberDaoImpl implements MemberDao {
 	public int login(LoginVo bean) throws Exception {
 		// 단위테스트 완료
 		return (Integer) session.selectOne("com.bit.daNaOutlet.model.MemberDao.loginChk", bean);
-
 	}
-
 	@Override // 카카오톡 로그인
 	public int loginKakao(LoginVo bean) {
-
 		return session.insert("com.bit.daNaOutlet.model.MemberDao.loginKakao", bean);
 	}
 
@@ -100,5 +98,33 @@ public class MemberDaoImpl implements MemberDao {
 	public int kakolognum() throws Exception { // 회원 번호 프라이머리키 시퀀스 기능 대신 해주는 Dao
 		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.idKakoaLogCount");
 	}
+	/* Dpg 관련 부분*/
+	@Override
+	public List<DpgVo> dpgBestList() throws Exception {
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgBestList");
+	}
+	@Override
+	public List<DpgVo> dpgImgLinkList() throws Exception {
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgImgLinkList");
+	}
+
+	@Override
+	public List<DpgVo> dpgNoneLinkList() throws Exception {
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgNoneLinkList");
+
+	}
+	@Override
+	public int dpgNumOne() throws Exception {
+		
+		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.dpgNumOne");
+	}
+	@Override
+	public void dpgAdd(DpgVo bean) throws Exception {
+		session.insert("com.bit.daNaOutlet.model.MemberDao.dpgAdd", bean);	
+	}
+	/* ......................................................... */
+
+	
+	
 
 }

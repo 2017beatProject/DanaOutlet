@@ -123,38 +123,8 @@ text-decoration : none;
 </style>
 </head> 
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top"> 
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<img src="resources/imgs/logo.png" alt="" height="50px">
-			</div>
+	<jsp:include page="template/navigation.jsp" flush="false" />
 
-			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="">메인</a></li>
-					<li><a href="#">가구 분류</a></li>
-					<li><a href="#">게시판</a></li>
-					<li><a href="#">이벤트</a></li>
-					<li><a class="btn btn-default" data-toggle="collapse"
-						href="#collapseExample" aria-expanded="false"
-						aria-controls="collapseExample" placeholder=".col-xs-4">검색</a></li>
-				</ul>
-				<div class="collapse" id="collapseExample">
-					<div class="well">
-						<input type="text" class="form-control" placeholder="Text input">
-					</div>
-				</div>
-			</div>
-		</div>
-	</nav>
-	<!-- bxslider start -->
 	<div>
 	
 		<ul class="bxslider">
