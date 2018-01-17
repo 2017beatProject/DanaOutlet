@@ -38,12 +38,12 @@ body {
 						<li class="divider"></li>
 					</ul></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><button type="button" class="btn btn-default navbar-btn"
-						data-toggle="modal" data-target="#join">회원가입</button></li>
-				<li><button type="button" class="btn btn-primary navbar-btn"
-						data-toggle="modal" data-target="#login">로그인</button></li>
-			</ul>
+			<div class="nav navbar-nav navbar-right">
+				<button type="button" class="btn btn-default navbar-btn"
+						data-toggle="modal" data-target="#join">회원가입</button>
+				<button type="button" class="btn btn-primary navbar-btn"
+						data-toggle="modal" data-target="#login">로그인</button>
+			</div>
 			<!-- 로그인 시작 -->
 
 			<div class="modal fade" id="login" tabindex="-1" role="dialog"

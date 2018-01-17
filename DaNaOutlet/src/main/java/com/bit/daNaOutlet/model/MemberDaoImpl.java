@@ -114,6 +114,10 @@ public class MemberDaoImpl implements MemberDao {
 
 	}
 	@Override
+	public List<DpgVo> dpgAdminList() throws Exception {
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgAdminList");
+	}
+	@Override
 	public int dpgNumOne() throws Exception {
 		
 		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.dpgNumOne");
@@ -123,6 +127,8 @@ public class MemberDaoImpl implements MemberDao {
 		session.insert("com.bit.daNaOutlet.model.MemberDao.dpgAdd", bean);	
 	}
 	/* ......................................................... */
+
+
 
 	
 	

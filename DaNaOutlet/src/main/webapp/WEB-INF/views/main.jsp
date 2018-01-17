@@ -55,9 +55,9 @@
 </script>
 <style type="text/css">
 body {
-	align-content: center;
+	/* align-content: center; */
 	text-overflow: inherit; 
-	text-align: center;
+	/* text-align: center; */
 	text-decoration: none;
 	font-size: 12px;
 	padding-top: 70px;

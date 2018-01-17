@@ -38,6 +38,19 @@
  			<li>${bean.dpgImgLink }</li>
  			<li><img src="../resources/imgs/dpgimgs/${bean.dpgImgLink}"></li>
  		</ul>
+ 	</c:forEach>
+ 	
+ 	
+ 	<h2>  여기 밑은 공지사항</h2>
+ 	
+ 	<c:forEach items="${adminList}" var="bean">
+ 		<ul>
+ 			<li>${bean.dpgNum }</li>
+ 			<li>${bean.dpgTitle }</li>
+ 			<li>${bean.dpgImgLink }</li>
+ 			<li>${bean.dpgContent }</li>
+ 			<li><img src="../resources/imgs/dpgimgs/${bean.dpgImgLink}"></li>
+ 		</ul>
  	</c:forEach> 
  	
  	<%-- <c:forEach items="${list}" var="bean">

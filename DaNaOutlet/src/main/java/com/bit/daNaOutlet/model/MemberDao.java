@@ -45,6 +45,8 @@ public interface MemberDao {
 	
 	List<DpgVo> dpgNoneLinkList() throws Exception;
 	
+	List<DpgVo> dpgAdminList() throws Exception;
+	
 	int dpgNumOne() throws Exception;
 
 	void dpgAdd(DpgVo bean) throws Exception;

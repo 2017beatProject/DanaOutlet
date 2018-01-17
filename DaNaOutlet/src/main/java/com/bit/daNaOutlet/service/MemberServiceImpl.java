@@ -104,6 +104,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void dpgMain(Model model) throws Exception {
 		model.addAttribute("bestList",dao.dpgBestList());
+		model.addAttribute("adminList",dao.dpgAdminList());
 		model.addAttribute("imgList",dao.dpgImgLinkList());
 		model.addAttribute("list",dao.dpgNoneLinkList());
 	}
