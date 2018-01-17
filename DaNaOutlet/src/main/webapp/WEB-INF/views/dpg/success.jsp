@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>파일전송 성공</h1>
+	<img alt="logo" src="../../../../upload/siba.png">
 </body>
 </html>

@@ -7,14 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>hotdeal page</h1>
+<h1>dpg page</h1>
  	<c:forEach items="${list}" var="bean">
  		<ul>
- 			<li>${bean.price }</li>
- 			<li>${bean.hotDealNum }</li>
- 			<li>${bean.link }</li>
- 			<li><img src="../resources/imgs/hotdealimgs/${bean.productName }"></li>
- 			<li>${bean.productIntro }</li>
+ 			<li>${bean.dpgNum }</li>
+ 			<li>${bean.dpgTitle }</li>
+ 			<li>${bean.dpgWriter }</li>
+ 			<li>${bean.dpgFrom }</li>
+ 			<li>${bean.dpgSubject }</li>
+ 			<li>${bean.dpgImgLink }</li>
+ 			<li>${bean.dpgContent }</li>
+ 			<li><img src="../resources/imgs/dpgimgs/${bean.dpgImgLink}"></li>
  		</ul>
  	</c:forEach> 
 </body>

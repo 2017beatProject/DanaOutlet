@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>파일전송 성공</h1>
+	<h1>dpg 메인</h1>
 </body>
 </html>
