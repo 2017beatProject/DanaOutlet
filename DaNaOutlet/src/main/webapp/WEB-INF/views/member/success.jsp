@@ -7,5 +7,6 @@
 </head>
 <body>
 	<h1>회원가입 성공 하셨습니다.</h1>
+	<button>확인</button>
 </body>
 </html>

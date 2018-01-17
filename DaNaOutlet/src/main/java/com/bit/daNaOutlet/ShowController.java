@@ -59,7 +59,7 @@ public class ShowController {
 	//회원관리
 	@RequestMapping(value="/member", method=RequestMethod.GET)
 	public String memberList(Model model) throws Exception {
-
+		System.out.println("컨트롤타냐");
 		memberService.selectAll(model);
 		return "member/memberView";
 	}
@@ -68,7 +68,7 @@ public class ShowController {
 	@RequestMapping(value="/member/{mnum}", method=RequestMethod.GET)
 	public String memberOne(@PathVariable("mnum") int mnum, Model model) throws Exception {
 		memberService.selectOne(model , mnum);
-
+		System.out.println(mnum+"컨트롤타냐");
 		return "member/memberOne";
 	}
 	
