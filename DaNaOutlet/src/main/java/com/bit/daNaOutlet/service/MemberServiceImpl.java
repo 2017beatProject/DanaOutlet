@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bit.daNaOutlet.model.MemberDao;
+import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
 import com.bit.daNaOutlet.model.entity.LoginVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
@@ -20,13 +21,15 @@ import com.bit.daNaOutlet.util.Commons;
 public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDao dao;
-	
+	//회원관리 서비스
 	@Override
 	public void selectAll(Model model) throws Exception {		
 		model.addAttribute("list",dao.selectAll());
 		
 	}
 
+	
+	//로그인 서비스
 	@Override
 	public void selectOne(Model model, int mnum) throws Exception {
 		model.addAttribute("bean",dao.selectOne(mnum));
@@ -43,12 +46,13 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
  	public String hotDealAdd(HotDealVo bean,MultipartFile file,HttpServletRequest req) throws Exception {
- 		if(10<=dao.hotDealCount()) { // db에 저장값이 10개이상이면 밑에 수행안하구 리턴
+		if(10<=dao.hotDealCount()) { // db에 저장값이 10개이상이면 밑에 수행안하구 리턴
  			return "failed";
  		}
-		Commons comUp = new Commons();
+		String rootPath="\\hotdealimgs\\";
+ 		Commons comUp = new Commons();
  		// imgs/hotdealimgs 에다가 파일업로드 및 리턴타입 String 으로 저장할 이름값 리턴
- 		bean.setProductName(comUp.commonsUp(bean.getProductName(), file,req)); 
+ 		bean.setProductName(comUp.commonsUp(bean.getProductName(),rootPath ,file,req)); 
  		bean.setHotDealNum(dao.hotDealNumOne());
  		dao.hotDealAdd(bean); // db에 파일 정보 저장
  		return "success";
@@ -85,5 +89,26 @@ public class MemberServiceImpl implements MemberService {
 		
 		return "로그인실패";
 	}
+	
+	
+	/* DPG 관련 */
+	@Override
+	public String dpgAdd(DpgVo bean, MultipartFile file, HttpServletRequest req) throws Exception {
+
+		String rootPath="\\dpgimgs\\";
+ 		Commons comUp = new Commons();
+ 		bean.setDpgCount(0);
+ 		bean.setDpgWriter("세션아이디");
+ 		bean.setDpgImgLink(comUp.commonsDpgUp(bean.getDpgWriter(),rootPath ,file,req)); 		
+ 		bean.setDpgNum(dao.dpgNumOne());
+ 		dao.dpgAdd(bean);
+ 		return "success";		 		 		
+	}
+
+	@Override
+	public void dpgAll(Model model) throws Exception {
+		model.addAttribute("list",dao.dpgAll());
+	}
+
 
 }

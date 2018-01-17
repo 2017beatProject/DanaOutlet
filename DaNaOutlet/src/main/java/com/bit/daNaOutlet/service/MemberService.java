@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
 import com.bit.daNaOutlet.model.entity.LoginVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
@@ -35,4 +36,11 @@ public interface MemberService {
 	String login(LoginVo bean) throws Exception;
 
 	String loginKakao(LoginVo bean) throws Exception;
+	
+	
+	/* DPG 관련 서비스*/
+	String dpgAdd(DpgVo bean,MultipartFile file,HttpServletRequest req) throws Exception;
+	 
+ 	void dpgAll(Model model) throws Exception;
+	
 }

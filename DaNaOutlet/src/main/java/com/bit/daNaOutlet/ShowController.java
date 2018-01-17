@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
 import com.bit.daNaOutlet.service.MemberService;
@@ -104,5 +105,26 @@ public class ShowController {
 		memberService.clipList(model);
 		return "clip/main";
 	}
+	
+	// dpg test
+		@RequestMapping(value="/dpg",method=RequestMethod.GET)
+		public String dpgView() throws Exception {
+			return "dpg/dpg";
+		}
+		@RequestMapping(value="/dpg/view",method=RequestMethod.GET)
+		public String dpgtestView(Model model) throws Exception {
+			memberService.dpgAll(model);
+			return "dpg/dpgviewtest";
+		}
+		@RequestMapping(value="/dpg/test",method=RequestMethod.GET)
+		public String dpgUpView() throws Exception {	
+			return "dpg/dpgtest";
+		}
+		@RequestMapping(value="/dpg/test",method=RequestMethod.POST)
+		public String dpgUp(@ModelAttribute DpgVo bean,@RequestParam("file") MultipartFile file,HttpServletRequest req) throws Exception {
+			memberService.dpgAdd(bean,file,req);
+			return "dpg/success";
+		}
+	
 	
 }
