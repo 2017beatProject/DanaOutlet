@@ -132,6 +132,12 @@ public class ShowController {
 		return "dpg/dpgMain";
 	}
 
+	@RequestMapping(value = "/dpg/board", method = RequestMethod.GET)
+	public String dpgBoard(Model model) throws Exception {
+		memberService.dpgMain(model);
+		return "dpg/board";
+	}
+
 	// 게시판(임시로 정해둠)
 	@RequestMapping(value = "/dpg/detail", method = RequestMethod.GET)
 	public String dpgDetail(Model model) throws Exception {
@@ -141,11 +147,25 @@ public class ShowController {
 	}
 
 	// 게시판(임시로 정해둠)
-	@RequestMapping(value = "/dpg/selectOne", method = RequestMethod.GET)
+	@RequestMapping(value = "/dpg/board/1", method = RequestMethod.GET)
 	public String dpgSelectOne(Model model) throws Exception {
 
 		memberService.selectAll(model);
 		return "dpg/selectOne";
+	}
+
+	// 게시판 - 리뷰
+	@RequestMapping(value = "/dpg/review", method = RequestMethod.GET)
+	public String dpgReview(Model model) throws Exception {
+		memberService.selectAll(model);
+		return "dpg/review";
+	}
+
+	// 게시판 - 리뷰
+	@RequestMapping(value = "/dpg/review/1", method = RequestMethod.GET)
+	public String dpgReviewSelectOne(Model model) throws Exception {
+		memberService.selectAll(model);
+		return "dpg/selectOneReview";
 	}
 
 	// 임시 확인 디테일
