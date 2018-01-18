@@ -24,7 +24,7 @@ body {
 					class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="/"><img
-				src="../resources/imgs/logo.png" alt="" height="25px" /></a>
+				src="http://203.236.209.215:8080/resources/imgs/logo.png" alt="" height="25px" /></a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -39,9 +39,8 @@ body {
 				</a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="/dpg">DPG 메인</a></li>
-						<li><a href="#">공지사항</a></li>
-						<li><a href="/dpg/detail">게시판</a></li>
-						<li><a href="#">Q&amp;A</a></li>
+						<li><a href="/dpg/review">리뷰</a></li>
+						<li><a href="/dpg/board">게시판</a></li>
 						<li class="divider"></li>
 					</ul></li>
 			</ul>
