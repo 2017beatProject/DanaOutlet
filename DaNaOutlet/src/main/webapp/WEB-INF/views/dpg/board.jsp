@@ -90,16 +90,8 @@
 
 			</div>
 			<div class="col-sm-4 hidden-xs">
-				<div>
-					<ul class="bxslider">
-						<li><img src="../resources/imgs/bxImgs/iu1.jpg" alt=""
-							class="img-responsive" />
-						<li><img src="../resources/imgs/bxImgs/iu2.jpg" alt=""
-							class="img-responsive" /></li>
-						<li><img src="../resources/imgs/bxImgs/iu3.jpg" alt=""
-							class="img-responsive" /></li>
-					</ul>
-				</div>
+
+				<jsp:include page="../template/bxslider.jsp" flush="false" />
 			</div>
 		</div>
 	</div>

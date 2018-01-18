@@ -216,13 +216,7 @@ li {
 			<div class="row">&nbsp;</div>
 		</div>
 	</div>
-	<!-- <div id="footer">
-		<a href="#">최근본상품</a>
-	</div>
-	<div id="topper">
-		<a href=".navbar-header">△<br />Top
-		</a>
-	</div> -->
+	
 	<jsp:include page="../template/footer.jsp" flush="false" />
 
 </body>
