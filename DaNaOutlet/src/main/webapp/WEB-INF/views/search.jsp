@@ -19,6 +19,7 @@
 		var datas;
 		var products;
 		var num = 1;
+		var loadPage = 1;
 		var loaded = true;
 		var loadedNum;
 
@@ -32,7 +33,7 @@
 					'version': '1',
 					'searchKeyword': $('#productSearch').val() + ",가구",
 					'option': 'Categories',
-					'page': '1',
+					'page': loadPage,
 					'appKey': '4c3dab31-521e-368c-86db-a60223eb7e22'
 				},
 				'success': function(data) {
@@ -80,15 +81,16 @@
 		});
 		$(window).scroll(function() {
 
-			if (loaded && $(window).scrollTop() + 1000 >= $(document).height()) {
-				loaded = false;
-				setTimeout(function() {
-					num += 5;
-
-					if (loadedNum >= num + 5) {
-						loaded = true;
+			if (loaded && $(window).scrollTop() + 1000 >= $(document).height()) { // 스크롤이 끝까지 왔으면
+				loaded = false; // 아직 로딩 전인 것이고
+				setTimeout(function() { // 0.5초 이후에 실행하는데
+					num += 5; // 로딩할 숫자는 이정도이고
+					if (num >= 50) { // 50개를 이미 불러왔으면
+						loadPage+=1; // 다음 페이지로 넘어가서
+						num=1; // 다음 페이지의 첫번째 것을 불러와야 하니까
 					}
-					loadList(num);
+					loaded = true; // 로딩 후인 것으로 바꾼다
+					loadList(num); // 이제 로딩하자
 				}, 500)
 			}
 		});
@@ -132,7 +134,7 @@
 			<!-- 여기에 검색결과를 불러옵니다 -->
 		</ul>
 	</div>
-
+<jsp:include page="template/footer.jsp" flush="false" />
 </body>
 
 </html>
