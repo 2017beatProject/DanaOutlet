@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<!-- <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="../resources/js/address.js"></script>
+<script src="../resources/js/joinValidation.js"></script>
+<script src="../resources/js/Calender.js"></script>
+<script src="../resources/js/IdDoubleCheck.js"></script>
+<script src="../resources/js/idValidation.js"></script> -->
+
 <style>
 body {
 	padding-top: 70px;
@@ -31,18 +38,18 @@ body {
 						<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="/board">DPG 메인</a></li>
+						<li><a href="/dpg">DPG 메인</a></li>
 						<li><a href="#">공지사항</a></li>
-						<li><a href="/board/detail">게시판</a></li>
+						<li><a href="/dpg/detail">게시판</a></li>
 						<li><a href="#">Q&amp;A</a></li>
 						<li class="divider"></li>
 					</ul></li>
 			</ul>
 			<div class="nav navbar-nav navbar-right">
 				<button type="button" class="btn btn-default navbar-btn"
-						data-toggle="modal" data-target="#join">회원가입</button>
+					data-toggle="modal" data-target="#join">회원가입</button>
 				<button type="button" class="btn btn-primary navbar-btn"
-						data-toggle="modal" data-target="#login">로그인</button>
+					data-toggle="modal" data-target="#login">로그인</button>
 			</div>
 			<!-- 로그인 시작 -->
 

@@ -36,34 +36,11 @@ public class ShowController {
 		memberService.selectAll(model);
 		return "search";
 	}
-	
+
 	// 템플릿
 	@RequestMapping(value = "/template/navigation", method = RequestMethod.GET)
 	public String nav() throws Exception {
 		return "template/navigation";
-	}
-
-	// 게시판 메인
-	@RequestMapping(value = "/board", method = RequestMethod.GET)
-	public String board(Model model) throws Exception {
-		memberService.dpgMain(model);
-		return "dpg/dpgMain";
-	}
-
-	// 게시판(임시로 정해둠)
-	@RequestMapping(value = "/board/detail", method = RequestMethod.GET)
-	public String boardDetail(Model model) throws Exception {
-
-		memberService.selectAll(model);
-		return "board/detail";
-	}
-
-	// 게시판(임시로 정해둠)
-	@RequestMapping(value = "/board/selectOne", method = RequestMethod.GET)
-	public String boardSelectOne(Model model) throws Exception {
-
-		memberService.selectAll(model);
-		return "board/selectOne";
 	}
 
 	// 회원가입
@@ -130,24 +107,53 @@ public class ShowController {
 		return "clip/main";
 	}
 
-	// dpg test
-	@RequestMapping(value="/dpg",method=RequestMethod.GET)
-	public String dpgView() throws Exception {
-		return "dpg/dpg";
-	}
-	@RequestMapping(value="/dpg/view",method=RequestMethod.GET)
+	@RequestMapping(value = "/dpg/view", method = RequestMethod.GET)
 	public String dpgtestView(Model model) throws Exception {
 		memberService.dpgMain(model);
 		return "dpg/dpgviewtest";
 	}
-	@RequestMapping(value="/dpg/test",method=RequestMethod.GET)
-	public String dpgUpView() throws Exception {	
+
+	@RequestMapping(value = "/dpg/test", method = RequestMethod.GET)
+	public String dpgUpView() throws Exception {
 		return "dpg/dpgtest";
 	}
-	@RequestMapping(value="/dpg/test",method=RequestMethod.POST)
-	public String dpgUp(@ModelAttribute DpgVo bean,@RequestParam("file") MultipartFile file,HttpServletRequest req) throws Exception {
-		memberService.dpgAdd(bean,file,req);
+
+	@RequestMapping(value = "/dpg/test", method = RequestMethod.POST)
+	public String dpgUp(@ModelAttribute DpgVo bean, @RequestParam("file") MultipartFile file, HttpServletRequest req)
+			throws Exception {
+		memberService.dpgAdd(bean, file, req);
 		return "dpg/success";
+	}
+
+	// 게시판 메인
+	@RequestMapping(value = "/dpg", method = RequestMethod.GET)
+	public String dpg(Model model) throws Exception {
+		memberService.dpgMain(model);
+		return "dpg/dpgMain";
+	}
+
+	// 게시판(임시로 정해둠)
+	@RequestMapping(value = "/dpg/detail", method = RequestMethod.GET)
+	public String dpgDetail(Model model) throws Exception {
+
+		memberService.selectAll(model);
+		return "dpg/detail";
+	}
+
+	// 게시판(임시로 정해둠)
+	@RequestMapping(value = "/dpg/selectOne", method = RequestMethod.GET)
+	public String dpgSelectOne(Model model) throws Exception {
+
+		memberService.selectAll(model);
+		return "dpg/selectOne";
+	}
+
+	// 임시 확인 디테일
+	@RequestMapping(value = "/con-detail", method = RequestMethod.GET)
+	public String conDetail(Model model) throws Exception {
+
+		memberService.selectAll(model);
+		return "con-detail";
 	}
 
 }
