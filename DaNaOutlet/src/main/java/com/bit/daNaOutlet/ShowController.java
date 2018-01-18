@@ -28,6 +28,14 @@ public class ShowController {
 		memberService.selectAll(model);
 		return "main";
 	}
+	//임시 확인 디테일
+	@RequestMapping(value = "/con-detail", method = RequestMethod.GET)
+	public String conDetail(Model model) throws Exception {
+
+		memberService.selectAll(model);
+		return "con-detail";
+	}
+	
 	
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String search(Model model) throws Exception {

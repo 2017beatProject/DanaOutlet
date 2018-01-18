@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <html>
-
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,15 +13,13 @@
 	<script src="../resources/js/jquery-1.12.4.js"></script>
 	<script src="../resources/js/jquery.bxslider.js"></script>
 	<script src="../resources/js/bootstrap.js"></script>
-
 	<script>
 		var datas;
 		var products;
 		var num = 1;
 		var loaded = true;
 		var loadedNum;
-
-
+		
 		// 4c3dab31-521e-368c-86db-a60223eb7e22 요한
 		// 831b2c9b-12a4-3b28-a338-a5832c3ef3dd 민건
 		var loadList = function(num) {
@@ -31,6 +28,7 @@
 				'data': {
 					'version': '1',
 					'searchKeyword': $('#productSearch').val() + ",가구",
+					'sortCode':'H',
 					'option': 'Categories',
 					'page': '1',
 					'appKey': '4c3dab31-521e-368c-86db-a60223eb7e22'
@@ -113,7 +111,6 @@
 		검색페이지
 	</h1>
 	<a href="join">회원가입</a>
-
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12" >
@@ -130,7 +127,5 @@
 			<!-- 여기에 검색결과를 불러옵니다 -->
 		</ul>
 	</div>
-
 </body>
-
 </html>
