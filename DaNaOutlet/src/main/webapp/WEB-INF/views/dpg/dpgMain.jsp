@@ -78,20 +78,6 @@ li {
 <body>
 	<jsp:include page="../template/navigation.jsp" flush="false" />
 	<div class="container-fluid">
-		<!-- 게시판 링크들 나열 시작 -->
-		<div class="row">
-			<div class="col-sm-12">
-				<strong>각각의 게시판 링크들이 여기에 들어갑니다</strong> Lorem ipsum dolor sit amet,
-				consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-				labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-				exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-				esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-				cupidatat non proident, sunt in culpa qui officia deserunt mollit
-				anim id est laborum.
-			</div>
-		</div>
-		<!-- 게시판 링크들 나열 끝 -->
 		<div class="row">&nbsp;</div>
 	</div>
 	<!-- 게시판들 그리드 시작 -->
@@ -226,33 +212,7 @@ li {
 						alt="" class="img-responsive" />
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-sm-12">
-					<h2>댓글/답글</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-6">
-					<h3>최근 댓글</h3>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-					eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-					ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in
-					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-					pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-					culpa qui officia deserunt mollit anim id est laborum.
-				</div>
-				<div class="col-sm-6">
-					<h3>최근 답글</h3>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-					eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-					ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in
-					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-					pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-					culpa qui officia deserunt mollit anim id est laborum.
-				</div>
-			</div>
+			
 			<div class="row">&nbsp;</div>
 		</div>
 	</div>
@@ -263,22 +223,7 @@ li {
 		<a href=".navbar-header">△<br />Top
 		</a>
 	</div> -->
-	<footer class="footer">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-12">
-					<strong>여기에 footer가 들어갈 예정입니다</strong> Lorem ipsum dolor sit amet,
-					consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-					labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-					nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate
-					velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-					occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-					mollit anim id est laborum.
-				</div>
-			</div>
-		</div>
-	</footer>
+	<jsp:include page="../template/footer.jsp" flush="false" />
 
 </body>
 
