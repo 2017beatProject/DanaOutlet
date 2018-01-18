@@ -1,126 +1,145 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
 <html>
 
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>검색</title>
-	<link rel="stylesheet" href="../resources/css/bootstrap.css">
-	<link rel="stylesheet" href="../resources/css/bootstrap-theme.css">
-	<script src="../resources/js/jquery.min.js"></script>
-	<script src="../resources/js/jquery-1.12.4.js"></script>
-	<script src="../resources/js/jquery.bxslider.js"></script>
-	<script src="../resources/js/bootstrap.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>검색</title>
+<link rel="stylesheet" href="../resources/css/bootstrap.css">
+<link rel="stylesheet" href="../resources/css/bootstrap-theme.css">
+<script src="../resources/js/jquery.min.js"></script>
+<script src="../resources/js/jquery-1.12.4.js"></script>
+<script src="../resources/js/jquery.bxslider.js"></script>
+<script src="../resources/js/bootstrap.js"></script>
 
-	<script>
-		var datas;
-		var products;
-		var num = 1;
-		var loadPage = 1;
-		var loaded = true;
-		var loadedNum;
+<script>
+	var datas;
+	var products;
+	var num = 1;
+	var loadPage = 1;
+	var loaded = true;
+	var loadedNum;
 
-
-		// 4c3dab31-521e-368c-86db-a60223eb7e22 요한
-		// 831b2c9b-12a4-3b28-a338-a5832c3ef3dd 민건
-		var loadList = function(num) {
-			$.ajax({
-				'url': 'http://apis.skplanetx.com/11st/v2/common/products',
-				'data': {
-					'version': '1',
-					'searchKeyword': $('#productSearch').val() + ",가구",
-					'option': 'Categories',
-					'page': loadPage,
-					'appKey': '4c3dab31-521e-368c-86db-a60223eb7e22'
-				},
-				'success': function(data) {
-					console.log(data);
-					datas = data;
-					products = data.childNodes[0].childNodes[1];
-					// alert(num);
-					loadedNum = products.childNodes.length;
-					for (var i = num; i < num + 5; i++) { //products.childElementCount
-						$('#content').append('<li id="productList"><div class="row">' +
-							'<div class="col-sm-2"><a href="' + // 상품 이미지 div
+	// 4c3dab31-521e-368c-86db-a60223eb7e22 요한
+	// 831b2c9b-12a4-3b28-a338-a5832c3ef3dd 민건
+	var loadList = function(num) {
+		$
+				.ajax({
+					'url' : 'http://apis.skplanetx.com/11st/v2/common/products',
+					'data' : {
+						'version' : '1',
+						'searchKeyword' : $('#productSearch').val() + ",가구",
+						'option' : 'Categories',
+						'page' : loadPage,
+						'appKey' : '4c3dab31-521e-368c-86db-a60223eb7e22'
+					},
+					'success' : function(data) {
+						console.log(data);
+						datas = data;
+						products = data.childNodes[0].childNodes[1];
+						// alert(num);
+						loadedNum = products.childNodes.length;
+						for (var i = num; i < num + 5; i++) { //products.childElementCount
+							$('#content')
+									.append(
+											'<li id="productList"><div class="row">'
+													+ '<div class="col-sm-2"><a href="' + // 상품 이미지 div
 							products.childNodes[i].childNodes[21].firstChild.wholeText + '"><img src="' + // url
-							products.childNodes[i].childNodes[10].firstChild.wholeText + '" class="img-thumbnail" ></a></div>' + // 이미지에 링크
-							'<div class="col-sm-7"><a href="' +
-							products.childNodes[i].childNodes[21].firstChild.wholeText + '">' + // 상품명
-							products.childNodes[i].childNodes[1].firstChild.wholeText + '</a><br/>' + // 상품명 /div
-							'셀러닉네임:' + products.childNodes[i].childNodes[17].firstChild.wholeText + '<br/>' +
-							'셀러아이디:' + products.childNodes[i].childNodes[18].firstChild.wholeText + '<br/>' +
-							'셀러등급:' + products.childNodes[i].childNodes[19].firstChild.wholeText + '<br/>' +
-							'상품평가점수:' + products.childNodes[i].childNodes[20].firstChild.wholeText + '<br/>' +
-							'배송비:' + products.childNodes[i].childNodes[23].firstChild.wholeText + '<br/>' +
-							'리뷰수:' + products.childNodes[i].childNodes[24].firstChild.wholeText +
-							'</div><div class="col-sm-3"><label for="">' + '<br/>' +
-							products.childNodes[i].childNodes[2].firstChild.wholeText + '</label><label for="">원</label></div></li>' // 상품가격
-							/*'구매만족도:' + products.childNodes[i].childNodes[25].firstChild.wholeText + '' +
-							'미성년자판매여부:' + products.childNodes[i].childNodes[26].firstChild.wholeText + '' +
-							'할인:' + products.childNodes[i].childNodes[26].childNodes[0].wholeText + */
-						);
-					};
-				},
-				'error': function(data) {
-					alert("에러");
-				}
-			});
-		};
-		var search = function() {
-			$('#content').empty(); //remove();
-			loadList(num);
-		};
-		$(function() {
-			$('#btn').on('click', search);
-		});
-		$(document).ready(function() {
-			search();
-		});
-		$(window).scroll(function() {
-
-			if (loaded && $(window).scrollTop() + 1000 >= $(document).height()) { // 스크롤이 끝까지 왔으면
-				loaded = false; // 아직 로딩 전인 것이고
-				setTimeout(function() { // 0.5초 이후에 실행하는데
-					num += 5; // 로딩할 숫자는 이정도이고
-					if (num >= 50) { // 50개를 이미 불러왔으면
-						loadPage+=1; // 다음 페이지로 넘어가서
-						num=1; // 다음 페이지의 첫번째 것을 불러와야 하니까
+							products.childNodes[i].childNodes[10].firstChild.wholeText + '" class="img-thumbnail" ></a></div>'
+													+ // 이미지에 링크
+													'<div class="col-sm-7"><a href="' +
+							products.childNodes[i].childNodes[21].firstChild.wholeText + '">'
+													+ // 상품명
+													products.childNodes[i].childNodes[1].firstChild.wholeText
+													+ '</a><br/>'
+													+ // 상품명 /div
+													'셀러닉네임:'
+													+ products.childNodes[i].childNodes[17].firstChild.wholeText
+													+ '<br/>'
+													+ '셀러아이디:'
+													+ products.childNodes[i].childNodes[18].firstChild.wholeText
+													+ '<br/>'
+													+ '셀러등급:'
+													+ products.childNodes[i].childNodes[19].firstChild.wholeText
+													+ '<br/>'
+													+ '상품평가점수:'
+													+ products.childNodes[i].childNodes[20].firstChild.wholeText
+													+ '<br/>'
+													+ '배송비:'
+													+ products.childNodes[i].childNodes[23].firstChild.wholeText
+													+ '<br/>'
+													+ '리뷰수:'
+													+ products.childNodes[i].childNodes[24].firstChild.wholeText
+													+ '</div><div class="col-sm-3"><label for="">'
+													+ '<br/>'
+													+ products.childNodes[i].childNodes[2].firstChild.wholeText
+													+ '</label><label for="">원</label></div></li>' // 상품가격
+													/*'구매만족도:' + products.childNodes[i].childNodes[25].firstChild.wholeText + '' +
+													'미성년자판매여부:' + products.childNodes[i].childNodes[26].firstChild.wholeText + '' +
+													'할인:' + products.childNodes[i].childNodes[26].childNodes[0].wholeText + */
+									);
+						}
+						;
+					},
+					'error' : function(data) {
+						alert("에러");
 					}
-					loaded = true; // 로딩 후인 것으로 바꾼다
-					loadList(num); // 이제 로딩하자
-				}, 500)
-			}
-		});
-	</script>
-	<style>
-		ul {
-			list-style: none;
-		}
+				});
+	};
+	var search = function() {
+		$('#content').empty(); //remove();
+		loadList(num);
+	};
+	$(function() {
+		$('#btn').on('click', search);
+	});
+	$(document).ready(function() {
+		search();
+	});
+	$(window).scroll(function() {
 
-		li {
-			margin-top: 5px;
+		if (loaded && $(window).scrollTop() + 1000 >= $(document).height()) { // 스크롤이 끝까지 왔으면
+			loaded = false; // 아직 로딩 전인 것이고
+			setTimeout(function() { // 0.5초 이후에 실행하는데
+				num += 5; // 로딩할 숫자는 이정도이고
+				if (num >= 50) { // 50개를 이미 불러왔으면
+					loadPage += 1; // 다음 페이지로 넘어가서
+					num = 1; // 다음 페이지의 첫번째 것을 불러와야 하니까
+				}
+				loaded = true; // 로딩 후인 것으로 바꾼다
+				loadList(num); // 이제 로딩하자
+			}, 500)
 		}
+	});
+</script>
+<style>
+ul {
+	list-style: none;
+}
 
-		#pageNumber {
-			display: inline;
-		}
-	</style>
+li {
+	margin-top: 5px;
+}
+
+#pageNumber {
+	display: inline;
+}
+</style>
 </head>
 
 <body>
-<jsp:include page="template/navigation.jsp" flush="false" />
+	<jsp:include page="template/navigation.jsp" flush="false" />
 
-	<h1>
-		검색페이지1
-	</h1>
+	<h1>검색페이지1</h1>
 	<a href="join">회원가입</a>
 
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12" >
+			<div class="col-sm-12">
 				<div class="form-inline">
 					<div class="form-group">
 						<!--<label for="productSearch">상품검색</label>-->
@@ -129,12 +148,19 @@
 					</div>
 				</div>
 			</div>
+
 		</div>
-		<ul id="content">
-			<!-- 여기에 검색결과를 불러옵니다 -->
-		</ul>
+		<div class="col-sm-12">&nbsp;</div>
+		<div class="col-sm-8">
+			<ul id="content">
+				<!-- 여기에 검색결과를 불러옵니다 -->
+			</ul>
+		</div>
+		<div class="col-sm-4">
+			<jsp:include page="template/bxslider.jsp" flush="false" />
+		</div>
 	</div>
-<jsp:include page="template/footer.jsp" flush="false" />
+	<jsp:include page="template/footer.jsp" flush="false" />
 </body>
 
 </html>
