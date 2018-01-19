@@ -52,20 +52,38 @@
 	</select>
 	
 	<!-- DPG 부분 -->	
-	<select id="dpgAll" resultType="com.bit.daNaOutlet.model.entity.DpgVo">
-		SELECT * FROM DANADPG
-	</select>
-	<select id="dpgOne" resultType="com.bit.daNaOutlet.model.entity.DpgVo" parameterType="int">
-		SELECT * FROM DANADPG WHERE DPGNUM=#{VALUE}
-	</select>
-	<select id="dpgNumOne" resultType="int">
-		SELECT MAX(DPGNUM+1) FROM DANADPG
-	</select>
-	<insert id="dpgAdd" parameterType="com.bit.daNaOutlet.model.entity.DpgVo">
-		INSERT INTO DANADPG(DPGNUM,DPGTITLE,DPGWRITER,DPGFROM,DPGSUBJECT,DPGCONTENT,DPGIMGLINK) VALUES(#{dpgNum},#{dpgTitle},#{dpgWriter},#{dpgFrom},#{dpgSubject},#{dpgContent},#{dpgImgLink})
-	</insert>
-	<!--댓글내용 호출  -->
+		<!-- DPG 부분 -->   
+   <select id="dpgBestList" resultType="com.bit.daNaOutlet.model.entity.DpgVo">
+      SELECT DPGNUM,DPGTITLE,DPGIMGLINK FROM (SELECT * FROM(SELECT * FROM DANADPG WHERE DPGCOUNT>=10 and DPGIMGLINK IS NOT NULL)AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS A ORDER BY DPGNUM DESC LIMIT 2;
+   </select>
+   <select id="dpgImgLinkList" resultType="com.bit.daNaOutlet.model.entity.DpgVo">   
+      SELECT DPGNUM,DPGTITLE,DPGIMGLINK  FROM(SELECT * FROM(SELECT * FROM DANADPG WHERE DPGIMGLINK IS NOT NULL)AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS A ORDER BY DPGNUM DESC LIMIT 3;
+   </select>
+   <select id="dpgNoneLinkList" resultType="com.bit.daNaOutlet.model.entity.DpgVo">
+      SELECT DPGNUM,DPGTITLE,DPGWRITER  FROM(SELECT * FROM (SELECT * FROM DANADPG WHERE DPGIMGLINK IS NULL) AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS B ORDER BY DPGNUM DESC LIMIT 8;   
+   </select>
+   <select id="dpgAdminList" resultType="com.bit.daNaOutlet.model.entity.DpgVo">
+      SELECT DPGNUM,DPGTITLE,DPGIMGLINK,DPGCONTENT FROM(SELECT * FROM DANADPG WHERE DPGFROM='운영자') AS B ORDER BY DPGNUM DESC LIMIT 3;   
+   </select>
+   <select id="dpgNumOne" resultType="int">
+      SELECT MAX(DPGNUM+1) FROM DANADPG
+   </select>
+   <select id="dpgOne" resultType="com.bit.daNaOutlet.model.entity.DpgVo" parameterType="int">   
+   SELECT * FROM DANADPG WHERE DPGNUM=#{value}
+   </select>
+   <insert id="dpgAdd" parameterType="com.bit.daNaOutlet.model.entity.DpgVo">
+      INSERT INTO DANADPG(DPGNUM,DPGTITLE,DPGWRITER,DPGFROM,DPGSUBJECT,DPGCONTENT,DPGCOUNT,DPGIMGLINK) VALUES(#{dpgNum},#{dpgTitle},#{dpgWriter},#{dpgFrom},#{dpgSubject},#{dpgContent},#{dpgCount},#{dpgImgLink})
+   </insert>
+   
+   
+	<!--댓글내용 호출 및 입력-->
 	<select id="replyCall" resultType="com.bit.daNaOutlet.model.entity.ReplyVo" parameterType="int">
 		SELECT * FROM REPLYASSEMBLE WHERE FATHERCONTENTSNUM=#{VALUE}
-	</select>
+	</select>	
+	<select id="replyNumOne" resultType="int">
+      SELECT MAX(REPLYLOG+1) FROM REPLYASSEMBLE
+   </select>
+   <insert id="replyAdd" parameterType="com.bit.daNaOutlet.model.entity.ReplyVo">   
+   INSERT INTO REPLYASSEMBLE VALUES(#{replyLog}, #{replyId}, #{replyContent}, #{replyDate},#{replyDepth},#{replyConId},#{fatherContentsNum},#{replyImgsLink})
+   </insert>
 </mapper>

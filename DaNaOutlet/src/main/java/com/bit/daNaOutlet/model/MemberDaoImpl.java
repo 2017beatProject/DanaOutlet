@@ -102,37 +102,64 @@ public class MemberDaoImpl implements MemberDao {
 	public int kakolognum() throws Exception { // 회원 번호 프라이머리키 시퀀스 기능 대신 해주는 Dao
 		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.idKakoaLogCount");
 	}
-	
-	/* Dpg 관련 부분*/
-	@Override//Dpg 리스트
-	public List<DpgVo> dpgAll() throws Exception {
-		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgAll");
-	}
-	@Override//Dpg 디테일
+
+	/* Dpg 관련 부분 */
+	@Override // Dpg 디테일
 	public DpgVo dpgOne(int dpgNum) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.dpgOne", dpgNum);
 	}
-	@Override//Dpg 시퀀스
+
+	@Override // Dpg 시퀀스
 	public int dpgNumOne() throws Exception {
-		
+
 		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.dpgNumOne");
 	}
+
 	@Override
 	public void dpgAdd(DpgVo bean) throws Exception {
-		session.insert("com.bit.daNaOutlet.model.MemberDao.dpgAdd", bean);	
+		session.insert("com.bit.daNaOutlet.model.MemberDao.dpgAdd", bean);
 	}
 	/* ......................................................... */
 
 	@Override
+	public List<DpgVo> dpgBestList() throws Exception {
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgBestList");
+	}
+
+	@Override
+	public List<DpgVo> dpgImgLinkList() throws Exception {
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgImgLinkList");
+	}
+
+	@Override
+	public List<DpgVo> dpgNoneLinkList() throws Exception {
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgNoneLinkList");
+
+	}
+
+	@Override
+	public List<DpgVo> dpgAdminList() throws Exception {
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgAdminList");
+	}
+
+	// 댓글 Dao
+	@Override
 	public List<ReplyVo> replyCall(int fatherContentsNum) throws Exception {
-		
+
 		return session.selectList("com.bit.daNaOutlet.model.MemberDao.replyCall", fatherContentsNum);
 	}
 
+	@Override
+	public int replyNumOne() throws Exception {
+		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.replyNumOne");
 	
+	}
 
+	@Override
+	public void replyAdd(ReplyVo bean) throws Exception {
+		session.insert("com.bit.daNaOutlet.model.MemberDao.replyAdd", bean);		
+	}
 	
-
 
 }

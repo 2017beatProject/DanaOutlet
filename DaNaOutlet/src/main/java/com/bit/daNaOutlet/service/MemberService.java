@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
@@ -35,18 +36,21 @@ public interface MemberService {
 	/* 클립관련 서비스 */
 	void clipList(Model model) throws Exception;
 	
-	String login(LoginVo bean) throws Exception;
+	String login(LoginVo bean, HttpServletRequest req) throws Exception;
 
 	String loginKakao(LoginVo bean) throws Exception;
 	
 	/* DPG 관련 서비스*/	
 	String dpgAdd(DpgVo bean,MultipartFile file,HttpServletRequest req) throws Exception;
  
- 	void dpgAll(Model model) throws Exception;
-	
+ 		
  	/*댓글 서비스*/
  	List<ReplyVo> replyCall( int fatherContentsNum, HttpServletResponse resp) throws Exception;
 
 	void dpgOne(Model model, int dpgNum) throws Exception;
+
+	void dpgMain(Model model) throws Exception;
+
+	void replyAdd(ReplyVo bean, MultipartFile file, HttpServletRequest req) throws Exception;
  	
 }

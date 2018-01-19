@@ -17,7 +17,6 @@
 var authKey;
 var param={};
 var resparam={};
-
 		$(function() {
 			//일반 로그인----------------------------
 			$('form').on('submit', function() {
@@ -30,12 +29,11 @@ var resparam={};
 					'type' : 'post',
 					'data' : param,
 					'success' : function(data) {
-						alert("통신성공" + data);						
+						alert("통신성공" + data);
 					},
 					'err' : function(data) {
 						alert("로그인에러");
 					}
-
 				});
 				return false;
 			});					
@@ -95,13 +93,12 @@ var resparam={};
 								logoutMsg();
 							}
 						});
-
 					});//로그인여부확인 end		  
-
 					
 					//로그아웃--------------------------
 			$('#logout').on('click', function() {
-				Kakao.Auth.logout(function() {					
+				Kakao.Auth.logout(function() {
+					alert("로그아웃");
 					$.ajax({
 					 	'url' : '/logout',
 						'type' : 'post',
@@ -114,11 +111,8 @@ var resparam={};
 						}						 
 				 });
 				});
-
 			});//로그아웃 비동기 통신 end
-
 		});// window ready end
-
 </script>
 
 </head>
@@ -137,9 +131,10 @@ var resparam={};
 		<div id="kakaoLogin">
 			<a id="kakao-login-btn"></a> <a
 				href="http://developers.kakao.com/logout"></a>
-		</div>		
-		
-		<div>			
+		</div>
+
+		<div>
+			
 			<button type="button" id="loginchk">로그인체크</button>
 			<button type="button" id="logout">로그아웃</button>
 			<button type="submit">확인</button>

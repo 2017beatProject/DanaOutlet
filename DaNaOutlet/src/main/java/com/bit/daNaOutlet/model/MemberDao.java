@@ -41,16 +41,26 @@ public interface MemberDao {
 
 	
 	/*DPG 관련 DAO */
-	List<DpgVo> dpgAll() throws Exception;
-	
-	int dpgNumOne() throws Exception;
+	  List<DpgVo> dpgBestList() throws Exception;
+	   
+	   List<DpgVo> dpgImgLinkList() throws Exception;
+	   
+	   List<DpgVo> dpgNoneLinkList() throws Exception;
+	   
+	   List<DpgVo> dpgAdminList() throws Exception;
+	   
+	   int dpgNumOne() throws Exception;
 
-	void dpgAdd(DpgVo bean) throws Exception;
+	   void dpgAdd(DpgVo bean) throws Exception;
 	
 	/*DPG댓글 관련 DAO*/
 	List<ReplyVo> replyCall(int fatherContentsNum) throws Exception;
 
-	Object dpgOne(int dpgNum) throws Exception;
+	DpgVo dpgOne(int dpgNum) throws Exception;
+
+	int replyNumOne() throws Exception;
+
+	void replyAdd(ReplyVo bean) throws Exception;
 	
 
 }

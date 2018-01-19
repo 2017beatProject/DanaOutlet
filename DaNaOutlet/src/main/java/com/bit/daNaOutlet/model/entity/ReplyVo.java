@@ -11,6 +11,8 @@ public class ReplyVo {
 	int replyDepth;
 	String replyConId;
 	int fatherContentsNum;
+	String replyImgsLink;
+	
 	
 	public ReplyVo() {
 		// TODO Auto-generated constructor stub
@@ -72,7 +74,13 @@ public class ReplyVo {
 		this.fatherContentsNum = fatherContentsNum;
 	}
 
+	public String getReplyImgsLink() {
+		return replyImgsLink;
+	}
 
+	public void setReplyImgsLink(String replyImgsLink) {
+		this.replyImgsLink = replyImgsLink;
+	}
 
 	@Override
 	public int hashCode() {
@@ -121,7 +129,7 @@ public class ReplyVo {
 	}
 
 	public ReplyVo(int replyLog, String replyId, String replyContent, Date replyDate, int replyDepth, String replyConId,
-			int fatherContentsNum) {
+			int fatherContentsNum, String replyImgslink) {
 		super();
 		this.replyLog = replyLog;
 		this.replyId = replyId;

@@ -1,6 +1,6 @@
 package com.bit.daNaOutlet.model.entity;
 
-
+import java.sql.Date;
 
 public class DpgVo {
 	private int dpgNum;
@@ -11,11 +11,19 @@ public class DpgVo {
 	private String dpgSubject;
 	private String dpgContent;
 	private String dpgImgLink;
+	private Date dpgNalja;
 	
 	public DpgVo() {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	public Date getDpgNalja() {
+		return dpgNalja;
+	}
+	public void setDpgNalja(Date dpgNalja) {
+		this.dpgNalja = dpgNalja;
+	}
 	public int getDpgNum() {
 		return dpgNum;
 	}
@@ -130,7 +138,7 @@ public class DpgVo {
 				+ ", dpgImgLink=" + dpgImgLink + "]";
 	}
 	public DpgVo(int dpgNum, int dpgCount, String dpgTitle, String dpgWriter, String dpgFrom, String dpgSubject,
-			String dpgContent, String dpgImgLink) {
+			String dpgContent, String dpgImgLink, Date dpgNalja) {
 		super();
 		this.dpgNum = dpgNum;
 		this.dpgCount = dpgCount;

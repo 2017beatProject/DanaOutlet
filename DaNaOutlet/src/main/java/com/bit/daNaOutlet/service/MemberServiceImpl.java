@@ -1,10 +1,13 @@
 package com.bit.daNaOutlet.service;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
@@ -20,6 +23,7 @@ import com.bit.daNaOutlet.model.entity.LoginVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
 import com.bit.daNaOutlet.model.entity.ReplyVo;
 import com.bit.daNaOutlet.util.Commons;
+import com.bit.daNaOutlet.util.Sessions;
 
 @Component
 public class MemberServiceImpl implements MemberService {
@@ -27,10 +31,11 @@ public class MemberServiceImpl implements MemberService {
 	Logger log;
 	@Autowired	
 	MemberDao dao;	
-	
+	Sessions sessions;
 	
 	public MemberServiceImpl() {
 		log=Logger.getLogger(MemberServiceImpl.class.getName());
+		sessions=new Sessions();
 	}
 			
 			
@@ -83,10 +88,15 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public String login(LoginVo bean) throws Exception {		
+	public String login(LoginVo bean, HttpServletRequest req) throws Exception {		
 				
 				System.out.println("조회값이 얼마인가?"+dao.login(bean));
-		if(dao.login(bean)>0) {
+				
+		if(dao.login(bean)>0) {			
+			
+			System.out.println(req);
+			sessions.setSession(bean, req);
+			
 		return "로그인확인";		
 		}else {
 			return "로그인실패";
@@ -105,20 +115,24 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String dpgAdd(DpgVo bean, MultipartFile file, HttpServletRequest req) throws Exception {
 
-		String rootPath="\\dpgimgs\\";
- 		Commons comUp = new Commons();
- 		bean.setDpgCount(0);
- 		bean.setDpgImgLink(comUp.commonsDpgUp(bean.getDpgWriter(),rootPath ,file,req));
- 		bean.setDpgNum(dao.dpgNumOne());
- 		dao.dpgAdd(bean);
- 		return "success";		 		 		
+		Commons comUp = new Commons();
+	      String rootPath="\\dpgimgs\\";
+	       String ImgLink=comUp.commonsDpgUp(bean.getDpgWriter(),rootPath ,file,req);
+//	       bean.setDpgCount(0);
+	       if(!(ImgLink==null))bean.setDpgImgLink(ImgLink);
+	       bean.setDpgNum(dao.dpgNumOne());
+	       dao.dpgAdd(bean);
+	       return "success";		 		
 	}
 
-	@Override
-	public void dpgAll(Model model) throws Exception {
-		model.addAttribute("list",dao.dpgAll());
-		
-	}
+
+	   @Override
+	   public void dpgMain(Model model) throws Exception {
+	      model.addAttribute("adminList",dao.dpgAdminList());
+	      model.addAttribute("bestList",dao.dpgBestList());
+	      model.addAttribute("imgList",dao.dpgImgLinkList());
+	      model.addAttribute("list",dao.dpgNoneLinkList());
+	   }
 	
 	@Override
 	public void dpgOne(Model model, int dpgNum) throws Exception {
@@ -164,6 +178,19 @@ public class MemberServiceImpl implements MemberService {
 					}
 					out.print("]}");		
 		return null;
+	}
+
+
+
+	@Override
+	public void replyAdd(ReplyVo bean, MultipartFile file, HttpServletRequest req) throws Exception {
+		String rootPath="\\replyImgs\\";
+ 		Commons comUp = new Commons(); 		
+ 		String imgLink=comUp.commonsReplyUp(bean.getReplyId(), rootPath, file, req);
+ 		if(!(imgLink==null))bean.setReplyImgsLink(imgLink);
+ 		bean.setReplyLog(dao.replyNumOne());
+ 		dao.replyAdd(bean); 	
+ 		
 	}
 
 	

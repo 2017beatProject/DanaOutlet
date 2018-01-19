@@ -13,13 +13,15 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-
+<link rel="stylesheet" href="../resources/css/bootstrap.css">
+<link rel="stylesheet" href="../resources/css/bootstrap-theme.css">
 <script src="../resources/js/address.js"></script>
 <script src="../resources/js/joinValidation.js"></script>
 <script src="../resources/js/IdDoubleCheck.js"></script>
 <script src="../resources/js/idValidation.js"></script>
 <script src="../resources/js/mailCheck.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="resources/js/bootstrap.js"></script>
 <script>
 	var errList = [ "pwInputReErr", "nameErr", "bDayErr",
 			"genErr", "phoErr", "emErr" ,"addErr" ];
@@ -85,7 +87,7 @@
 </script>
 </head>
 <body>
-	<jsp:include page="template/login_template.jsp"></jsp:include>
+	<jsp:include page="./template/navigation.jsp"/>
 
 	<div data-role="page">
 		<div data-role="header">
