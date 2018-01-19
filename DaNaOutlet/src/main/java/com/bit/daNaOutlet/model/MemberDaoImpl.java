@@ -10,6 +10,7 @@ import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
 import com.bit.daNaOutlet.model.entity.LoginVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
+import com.bit.daNaOutlet.model.entity.ReplyVo;
 
 public class MemberDaoImpl implements MemberDao {
 	SqlSession session;
@@ -100,9 +101,34 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	/* Dpg 관련 부분*/
 	@Override
-	public List<DpgVo> dpgAll() throws Exception {
-		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgAll");
+	public List<DpgVo> dpgBestList() throws Exception {
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgBestList");
 	}
+	@Override
+	public List<DpgVo> dpgImgLinkListDesc() throws Exception {
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgImgLinkListDesc");
+	}
+
+	@Override
+	public List<DpgVo> dpgNoneLinkListDesc() throws Exception {
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgNoneLinkListDesc");
+
+	}
+	@Override
+	public List<DpgVo> dpgImgLinkListAsc(int startNum) throws Exception {
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgImgLinkListAsc",startNum);
+	}
+
+	@Override
+	public List<DpgVo> dpgNoneLinkListAsc(int startNum) throws Exception {
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgNoneLinkListAsc",startNum);
+
+	}
+	@Override
+	public List<DpgVo> dpgAdminList() throws Exception {
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgAdminList");
+	}
+	/* ------여기까진 dpg 메인에서 쓸 dao-------  */
 	@Override
 	public int dpgNumOne() throws Exception {
 		
@@ -113,6 +139,25 @@ public class MemberDaoImpl implements MemberDao {
 		session.insert("com.bit.daNaOutlet.model.MemberDao.dpgAdd", bean);	
 	}
 	/* ......................................................... */
-	
 
+	@Override//Dpg 디테일
+	public DpgVo dpgOne(int dpgNum) throws Exception {
+		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.dpgOne", dpgNum);
+	}
+	
+	@Override
+	public List<ReplyVo> replyCall(int fatherContentsNum) throws Exception {
+		
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.replyCall", fatherContentsNum);
+	}
+
+	@Override
+	public int dpgDelete(DpgVo bean) throws Exception {
+		return session.delete("com.bit.daNaOutlet.model.MemberDao.dpgDelete", bean);
+	}
+
+	@Override
+	public int dpgUpdate(DpgVo bean) throws Exception {
+		return session.delete("com.bit.daNaOutlet.model.MemberDao.dpgUpdate", bean);
+	}		
 }

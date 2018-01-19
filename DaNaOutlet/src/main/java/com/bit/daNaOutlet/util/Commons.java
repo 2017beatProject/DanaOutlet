@@ -25,28 +25,35 @@ import org.springframework.web.multipart.MultipartFile;
  		return module(id, rootPath, file, req);
  	}
  	public String module(String id,String rootPath, MultipartFile file,HttpServletRequest req) throws IllegalStateException, IOException {
-		req.setCharacterEncoding("UTF-8");
+		if(file.isEmpty()) {
+			
+		}
+ 		req.setCharacterEncoding("UTF-8");
  		ServletContext context =req.getSession().getServletContext();
  		String realPath=context.getRealPath("/");				
  		String path=realPath+"\\resources\\imgs"+rootPath;
 		String srcPath="C:\\Users\\1027\\git\\DanaOutlet\\DaNaOutlet\\src\\main\\webapp\\resources\\imgs"+rootPath;
- 		String orginalName=file.getOriginalFilename();
- 		int pos = orginalName.lastIndexOf( "." );
- 		String ext = orginalName.substring( pos );		
- 		if(rootPath.equals("\\hotdealimgs\\")) {
- 			File realF=new File(path+id+ext);
- 	 		File srcF=new File(srcPath+id+ext);
- 	 		file.transferTo(realF);	
- 	 		file.transferTo(srcF);
- 	 		return id+ext;
- 		}else if(rootPath.equals("\\dpgimgs\\")) {
- 			File realF=new File(path+dTime()+id+ext);
- 	 		File srcF=new File(srcPath+dTime()+id+ext);
- 	 		file.transferTo(realF);	
- 	 		file.transferTo(srcF);
- 	 		return dTime()+id+ext;
- 		} 		
- 		return "½ÇÆÐ";
+ 	
+ 		if(!file.isEmpty()) {
+ 			String orginalName=file.getOriginalFilename();
+ 	 		int pos = orginalName.lastIndexOf( "." );
+ 	 		String ext = orginalName.substring( pos );
+	 		if(rootPath.equals("\\hotdealimgs\\")) {
+	 			File realF=new File(path+id+ext);
+	 	 		File srcF=new File(srcPath+id+ext);
+	 	 		file.transferTo(realF);	
+	 	 		file.transferTo(srcF);
+	 	 		return id+ext;
+	 		}else if(rootPath.equals("\\dpgimgs\\")) {
+	 			File realF=new File(path+dTime()+id+ext);
+	 	 		File srcF=new File(srcPath+dTime()+id+ext);
+	 	 		file.transferTo(realF);	
+	 	 		file.transferTo(srcF);
+	 	 		return dTime()+id+ext;
+	 		}
+	 		return null;
+ 		}
+ 		return null;
 	}
  	public String dTime() {
  		SimpleDateFormat formatter= new SimpleDateFormat("yyyyMMdd~HHmmss",Locale.KOREA);

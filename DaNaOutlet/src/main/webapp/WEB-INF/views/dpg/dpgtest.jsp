@@ -15,7 +15,10 @@
 	dpgFrom<input type="text" name="dpgFrom"/><br/> <!-- 카톡인지아닌지 체크 세션에서 자동입력 -->
 	dpgSubject<input type="text" name="dpgSubject"/><br/>
 	dpgContent<input type="text" name="dpgContent"/><br/>
+	dpgCount<input type="number" name="dpgCount"/><br/>
 	<button type="submit">전송</button>
 	</form>
+	<a href="/dpg/list/1">이미지 있는 게시판</a>
+	<a href="/dpg/list/2">이미지 없는 게시판</a>
 </body>
 </html>

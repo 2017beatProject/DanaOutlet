@@ -11,54 +11,92 @@ public class DpgVo {
 	private String dpgSubject;
 	private String dpgContent;
 	private String dpgImgLink;
+	
+	
+	public DpgVo() {
+	}
+
+
 	public int getDpgNum() {
 		return dpgNum;
 	}
+
+
 	public void setDpgNum(int dpgNum) {
 		this.dpgNum = dpgNum;
 	}
+
+
 	public int getDpgCount() {
 		return dpgCount;
 	}
+
+
 	public void setDpgCount(int dpgCount) {
 		this.dpgCount = dpgCount;
 	}
+
+
 	public String getDpgTitle() {
 		return dpgTitle;
 	}
+
+
 	public void setDpgTitle(String dpgTitle) {
 		this.dpgTitle = dpgTitle;
 	}
+
+
 	public String getDpgWriter() {
 		return dpgWriter;
 	}
+
+
 	public void setDpgWriter(String dpgWriter) {
 		this.dpgWriter = dpgWriter;
 	}
+
+
 	public String getDpgFrom() {
 		return dpgFrom;
 	}
+
+
 	public void setDpgFrom(String dpgFrom) {
 		this.dpgFrom = dpgFrom;
 	}
+
+
 	public String getDpgSubject() {
 		return dpgSubject;
 	}
+
+
 	public void setDpgSubject(String dpgSubject) {
 		this.dpgSubject = dpgSubject;
 	}
+
+
 	public String getDpgContent() {
 		return dpgContent;
 	}
+
+
 	public void setDpgContent(String dpgContent) {
 		this.dpgContent = dpgContent;
 	}
+
+
 	public String getDpgImgLink() {
 		return dpgImgLink;
 	}
+
+
 	public void setDpgImgLink(String dpgImgLink) {
 		this.dpgImgLink = dpgImgLink;
 	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -73,6 +111,8 @@ public class DpgVo {
 		result = prime * result + ((dpgWriter == null) ? 0 : dpgWriter.hashCode());
 		return result;
 	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -118,12 +158,16 @@ public class DpgVo {
 			return false;
 		return true;
 	}
+
+
 	@Override
 	public String toString() {
 		return "DpgVo [dpgNum=" + dpgNum + ", dpgCount=" + dpgCount + ", dpgTitle=" + dpgTitle + ", dpgWriter="
 				+ dpgWriter + ", dpgFrom=" + dpgFrom + ", dpgSubject=" + dpgSubject + ", dpgContent=" + dpgContent
 				+ ", dpgImgLink=" + dpgImgLink + "]";
 	}
+
+
 	public DpgVo(int dpgNum, int dpgCount, String dpgTitle, String dpgWriter, String dpgFrom, String dpgSubject,
 			String dpgContent, String dpgImgLink) {
 		super();
@@ -136,7 +180,6 @@ public class DpgVo {
 		this.dpgContent = dpgContent;
 		this.dpgImgLink = dpgImgLink;
 	}
-	
 	
 	
 	

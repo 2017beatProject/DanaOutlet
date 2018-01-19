@@ -7,6 +7,7 @@ import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
 import com.bit.daNaOutlet.model.entity.LoginVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
+import com.bit.daNaOutlet.model.entity.ReplyVo;
 
 public interface MemberDao {
 	/* -- 회원 관련 DAO -- */
@@ -39,10 +40,29 @@ public interface MemberDao {
 	int kakolognum() throws Exception;
 	
 	/*DPG 관련 DAO */
-	List<DpgVo> dpgAll() throws Exception;
+	List<DpgVo> dpgBestList() throws Exception;
+	
+	List<DpgVo> dpgImgLinkListDesc() throws Exception;
+	
+	List<DpgVo> dpgNoneLinkListDesc() throws Exception;
+	
+	List<DpgVo> dpgImgLinkListAsc(int startNum) throws Exception;
+	
+	List<DpgVo> dpgNoneLinkListAsc(int startNum) throws Exception;
+	
+	List<DpgVo> dpgAdminList() throws Exception;
 	
 	int dpgNumOne() throws Exception;
 
 	void dpgAdd(DpgVo bean) throws Exception;
+	
+	int dpgDelete(DpgVo bean) throws Exception;
+	
+	int dpgUpdate(DpgVo bean) throws Exception;
+	
+	/*DPG댓글 관련 DAO*/
+	List<ReplyVo> replyCall(int fatherContentsNum) throws Exception;
+	
+	DpgVo dpgOne(int dpgNum) throws Exception;
 
 }

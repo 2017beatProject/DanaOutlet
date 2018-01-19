@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,7 +20,6 @@
 	var psn;
 	$(document).ready(function() {
 		psn = $("#fixedbar").scrollTop();
-
 		$('.bxslider').bxSlider({
 			auto : true,
 			speed : 300,
@@ -41,7 +39,6 @@
 					"top" : psn,
 					"z-index" : "2"
 					
-
 				});
 			} else {
 				$("#fixedbar").css({
@@ -50,25 +47,21 @@
 				});
 			}
 		});
-
 	});
 </script>
 <style type="text/css">
 body {
-	align-content: center;
+	/* align-content: center; */
 	text-overflow: inherit; 
-	text-align: center;
+	/* text-align: center; */
 	text-decoration: none;
 	font-size: 12px;
 	padding-top: 70px;
 	overflow-x:hidden;  
 }
-
 #hotdeal>li>a{text-decoration : none; }
 .caption>a{text-decoration : none; } 
 .col-sm-3>a{text-decoration : none;}
-
-
 #footer {
 	top: 400px; 
 	right: 15px;
@@ -79,7 +72,6 @@ body {
 	margin: 0px;
 	text-decoration : none;
 }
-
 #topper {
 	top: 350px;
 	right: 15px;
@@ -96,11 +88,9 @@ text-decoration : none;
 #footer>a{
 text-decoration : none;
 }
-
 #hotdeal {
 	list-style-type: none;
 }
-
 #hotdeal>li {
 	display: inline;
 }
@@ -123,38 +113,8 @@ text-decoration : none;
 </style>
 </head> 
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top"> 
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<img src="resources/imgs/logo.png" alt="" height="50px">
-			</div>
+	<jsp:include page="template/navigation.jsp" flush="false" />
 
-			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="">메인</a></li>
-					<li><a href="#">가구 분류</a></li>
-					<li><a href="#">게시판</a></li>
-					<li><a href="#">이벤트</a></li>
-					<li><a class="btn btn-default" data-toggle="collapse"
-						href="#collapseExample" aria-expanded="false"
-						aria-controls="collapseExample" placeholder=".col-xs-4">검색</a></li>
-				</ul>
-				<div class="collapse" id="collapseExample">
-					<div class="well">
-						<input type="text" class="form-control" placeholder="Text input">
-					</div>
-				</div>
-			</div>
-		</div>
-	</nav>
-	<!-- bxslider start -->
 	<div>
 	
 		<ul class="bxslider">
