@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	
+	<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 
 <head>
@@ -55,9 +55,9 @@
 			<div class="col-sm-8">
 				<ol class="breadcrumb">
 					<li><h1>자유게시판</h1></li>
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Library</a></li>
-					<li class="active">Data</li>
+					<li><a href="/">Home</a></li>
+					<li><a href="/dpg?startNum=0">DPG</a></li>
+					<li class="active">게시판</li>
 				</ol>
 				<table class="table table-hover">
 					
@@ -69,7 +69,18 @@
 					</tr>
 					<c:forEach items="${list}" var="bean">
 					<tr>				
-						<td><a href="../dpg/board/${bean.dpgNum }">${bean.dpgTitle }</a></td>
+						<td><a href="../dpg/board/${bean.dpgNum }">
+						
+						<%-- ${bean.dpgTitle } --%>
+						<c:set var="text" value="${bean.dpgTitle}" /> 
+									<c:if test="${fn:length(text) lt 21}">
+											${text }
+									</c:if> 
+									<c:if test="${fn:length(text) ge 21}">
+										${fn:substring(text,0,21)}...
+									</c:if>
+						
+						</a></td>
 						<td class="hidden-xs"><a href="board?id=kdj">${bean.dpgWriter }</a></td>
 						<td class="hidden-xs hidden-sm">2018.1.16</td>
 						<td class="hidden-xs hidden-sm hidden-md">${bean.dpgCount }</td>
@@ -77,6 +88,7 @@
 					</c:forEach> 
 				</table>
 				<nav class="col-xs-12">
+				<a href="/dpg/board/input" class="btn btn-default pull-right">글쓰기</a>
 					<ul class="pagination" id="pageNum">
 						<li><a id="previousLi" href="#">Previous</a></li>
 						<li><a id="nextLi" href="#">Next</a></li>
