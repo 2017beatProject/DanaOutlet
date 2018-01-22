@@ -70,10 +70,10 @@
 			<div class="col-sm-8">
 				<div class="page-header">
 					<ol class="breadcrumb">
-						<li><h1>자유게시판</h1></li>
-						<li><a href="#">Home</a></li>
-						<li><a href="#">Library</a></li>
-						<li class="active">Data</li>
+						<li><h1>리뷰</h1></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="/dpg?startNum=0">DPG</a></li>
+					<li class="active">리뷰</li>
 					</ol>
 				</div>
 				<div class="panel panel-default">
