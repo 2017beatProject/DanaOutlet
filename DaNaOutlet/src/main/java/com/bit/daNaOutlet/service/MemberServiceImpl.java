@@ -127,11 +127,15 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public void dpgEx(Model model,int startNum) throws Exception {
-		model.addAttribute("imgList",dao.dpgImgLinkListAsc(startNum));	
+		model.addAttribute("imgList",dao.dpgImgLinkListAsc(startNum));
+		model.addAttribute("count",(dao.dpgImgCount()));
+		model.addAttribute("startNum",startNum);
 	}
 	@Override
 	public void dpgNone(Model model,int startNum) throws Exception {
-		model.addAttribute("list",dao.dpgNoneLinkListAsc(startNum));	
+		model.addAttribute("list",dao.dpgNoneLinkListAsc(startNum));
+		model.addAttribute("count",(dao.dpgNoneCount()));
+		model.addAttribute("startNum",startNum);
 	}
 	
 	@Override

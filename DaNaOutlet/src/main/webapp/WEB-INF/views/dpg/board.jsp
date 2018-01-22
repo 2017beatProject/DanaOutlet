@@ -27,6 +27,14 @@
 			autoHover : true,
 			controls : false
 		});
+		var count= ${count};
+		var cnt=count/10;
+		var startNum=${startNum};
+		for(var i=0; i<cnt; i++){
+			if(startNum>0)$('#previousLi').attr('href',"/dpg/board?startNum="+(startNum-10)+"");								
+			if((startNum+10)<count)$('#nextLi').attr('href',"/dpg/board?startNum="+(startNum+10)+"");
+			$('#pageNum').find('li').last().before("<li><a href='/dpg/board?startNum="+(i*10)+"'>"+(i+1)+"</a></li>");				
+		}
 	});
 	$(function() {
 		$('#content').keyup(function(e) {
@@ -36,6 +44,7 @@
 		});
 		$('#content').keyup();
 	});
+	
 </script>
 </head>
 
@@ -60,8 +69,8 @@
 					</tr>
 					<c:forEach items="${list}" var="bean">
 					<tr>
-					
-						<td><a href="dpg/board/33">${bean.dpgTitle }</a></td>
+				
+						<td><a href="../dpg/board/${bean.dpgNum }">${bean.dpgTitle }</a></td>
 						<td class="hidden-xs"><a href="board?id=kdj">${bean.dpgWriter }</a></td>
 						<td class="hidden-xs hidden-sm">2018.1.16</td>
 						<td class="hidden-xs hidden-sm hidden-md">${bean.dpgCount }</td>
@@ -69,14 +78,9 @@
 					</c:forEach> 
 				</table>
 				<nav class="col-xs-12">
-					<ul class="pagination">
-						<li><a href="#">Previous</a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">Next</a></li>
+					<ul class="pagination" id="pageNum">
+						<li><a id="previousLi" href="#">Previous</a></li>
+						<li><a id="nextLi" href="#">Next</a></li>
 					</ul>
 				</nav>
 				<form class="form-inline col-xs-12">
@@ -92,7 +96,6 @@
 						<button type="submit" class="btn btn-default">확인</button>
 					</div>
 				</form>
-
 			</div>
 			<div class="col-sm-4 hidden-xs">
 
@@ -102,5 +105,4 @@
 	</div>
 	<jsp:include page="../template/footer.jsp" flush="false" />
 </body>
-
 </html>

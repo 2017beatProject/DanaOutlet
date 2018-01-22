@@ -140,12 +140,12 @@ li {
 							<ul class="list-group">
 								<c:forEach items="${imgList }" var="bean">
 									<li class="list-group-item">
-										<div class="row">
+										<div class="row"> 
 											<div class="col-sm-6">
-												<img src="../resources/imgs/dpgimgs/${bean.dpgImgLink }"
-													alt="" class="img-thumbnail" />
+												<a href="../dpg/review/${bean.dpgNum}"><img src="../resources/imgs/dpgimgs/${bean.dpgImgLink }"
+													alt="" class="img-thumbnail" /></a>
 											</div>
-											<div class="col-sm-6">${bean.dpgTitle }</div>
+											<div class="col-sm-6"><a href="../dpg/review/${bean.dpgNum}">${bean.dpgTitle }</a></div>
 										</div>
 									</li>
 								</c:forEach>
@@ -167,8 +167,8 @@ li {
 								</tr>
 								<c:forEach items="${list }" var="bean">
 									<tr>
-										<td>${bean.dpgTitle }</td>
-										<td class="hidden-xs">${bean.dpgWriter }</td>
+									<td><a href="../dpg/board/${bean.dpgNum}">${bean.dpgTitle }</a></td>
+									<td class="hidden-xs">${bean.dpgWriter }</td>
 									</tr>
 								</c:forEach>
 							</table>
@@ -190,10 +190,11 @@ li {
 									<li class="list-group-item">
 										<div class="row">
 											<div class="col-sm-3">
+											<a href="../dpg/review/${bean.dpgNum}">
 												<img src="../resources/imgs/dpgimgs/${bean.dpgImgLink}"
 													alt="" class="img-thumbnail" />
 											</div>
-											<div class="col-sm-9">${bean.dpgTitle }</div>
+											<div class="col-sm-9"><a href="../dpg/review/${bean.dpgNum}">${bean.dpgTitle }</a></div>
 										</div>
 									</li>
 								</c:forEach>

@@ -26,6 +26,14 @@
 			autoHover : true,
 			controls : false
 		});
+		var count= ${count};
+		var cnt=count/10;
+		var startNum=${startNum};
+		for(var i=0; i<cnt; i++){
+			if(startNum>0)$('#previousLi').attr('href',"/dpg/review?startNum="+(startNum-10)+"");								
+			if((startNum+10)<count)$('#nextLi').attr('href',"/dpg/review?startNum="+(startNum+10)+"");
+			$('#pageNum').find('li').last().before("<li><a href='/dpg/review?startNum="+(i*10)+"'>"+(i+1)+"</a></li>");				
+		}
 	});
 	$(function() {
 		$('#content').keyup(function(e) {
@@ -63,8 +71,8 @@
 							<a href=""><img src="../resources/imgs/dpgimgs/${bean.dpgImgLink}" alt=""
 								class="img-thumbnail reviewImg" /></a>
 						</div>
-						<div class="col-sm-8">
-							<strong class="col-sm-12"><a href="#">${bean.dpgNum }:${bean.dpgTitle }</a></strong>
+						<div class="col-sm-8"> 
+							<strong class="col-sm-12"><a href="../dpg/review/${bean.dpgNum }">${bean.dpgTitle }</a></strong>
 							<div class="col-sm-12">&nbsp;</div>
 							<div class="col-sm-12">
 								<span><a href="#">${bean.dpgWriter }</a></span> <span>2018.01.18</span>
@@ -80,14 +88,9 @@
 					<!-- 반복 끝 --> </c:forEach> 
 				</ul>
 				<nav class="col-xs-12">
-					<ul class="pagination">
-						<li><a href="#">Previous</a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">Next</a></li>
+					<ul class="pagination" id="pageNum">
+						<li><a id="previousLi" href="#">Previous</a></li>
+						<li><a id="nextLi" href="#">Next</a></li>
 					</ul>
 				</nav>
 				<form class="form-inline col-xs-12">

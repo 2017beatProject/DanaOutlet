@@ -49,15 +49,15 @@ public class DpgController {
 	  return "dpg/review";
    }   
    
-//   @RequestMapping(value = "/dpg/review/{num}", method = RequestMethod.GET)
-//   public String reviewDetail(@PathVariable("num") int idx) throws Exception {
-//	  
-//	  return "dpg/selectOneReview";
-//   }
+   @RequestMapping(value = "/dpg/review/{dpgNum}", method = RequestMethod.GET)
+   public String reviewDetail(Model model,@PathVariable int dpgNum) throws Exception {
+	   memberService.dpgOne(model, dpgNum);
+	  return "dpg/selectOneReview";
+   }
    
    @RequestMapping(value = "/test", method = RequestMethod.GET)
    public String test() throws Exception {
-      return "dpg/dpglist";
+      return "dpg/edit";
    }
    
    @RequestMapping(value="/dpg/test",method=RequestMethod.POST)

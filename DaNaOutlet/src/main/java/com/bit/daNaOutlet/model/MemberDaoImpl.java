@@ -135,6 +135,19 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.dpgNumOne");
 	}
 	@Override
+	public int dpgImgCount() throws Exception {		
+		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.dpgImgCount");
+	}
+
+	@Override
+	public int dpgNoneCount() throws Exception {
+		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.dpgNoneCount");
+	}		
+	
+	
+	
+	
+	@Override
 	public void dpgAdd(DpgVo bean) throws Exception {
 		session.insert("com.bit.daNaOutlet.model.MemberDao.dpgAdd", bean);	
 	}
@@ -159,5 +172,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int dpgUpdate(DpgVo bean) throws Exception {
 		return session.delete("com.bit.daNaOutlet.model.MemberDao.dpgUpdate", bean);
-	}		
+	}
+
+	
 }

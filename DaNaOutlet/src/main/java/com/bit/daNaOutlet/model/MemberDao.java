@@ -53,11 +53,11 @@ public interface MemberDao {
 	List<DpgVo> dpgAdminList() throws Exception;
 	
 	int dpgNumOne() throws Exception;
+	int dpgImgCount() throws Exception;
+	int dpgNoneCount() throws Exception;
 
 	void dpgAdd(DpgVo bean) throws Exception;
-	
 	int dpgDelete(DpgVo bean) throws Exception;
-	
 	int dpgUpdate(DpgVo bean) throws Exception;
 	
 	/*DPG´ñ±Û °ü·Ã DAO*/

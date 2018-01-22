@@ -79,6 +79,12 @@
 	<select id="dpgNumOne" resultType="int">
 		SELECT MAX(DPGNUM+1) FROM DANADPG
 	</select>
+	<select id="dpgImgCount" resultType="int">
+		SELECT COUNT(DPGNUM) FROM DANADPG WHERE DPGIMGLINK IS NOT NULL
+	</select>
+	<select id="dpgNoneCount" resultType="int">
+		SELECT COUNT(DPGNUM) FROM DANADPG WHERE DPGIMGLINK IS NULL
+	</select>
 	<insert id="dpgAdd" parameterType="com.bit.daNaOutlet.model.entity.DpgVo">
 		INSERT INTO DANADPG(DPGNUM,DPGTITLE,DPGWRITER,DPGFROM,DPGSUBJECT,DPGCONTENT,DPGCOUNT,DPGIMGLINK) VALUES(#{dpgNum},#{dpgTitle},#{dpgWriter},#{dpgFrom},#{dpgSubject},#{dpgContent},#{dpgCount},#{dpgImgLink})
 	</insert>
