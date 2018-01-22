@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <html>
 
 <head>
@@ -15,26 +17,47 @@
 <script src="../resources/js/jquery.bxslider.js"></script>
 <script src="../resources/js/bootstrap.js"></script>
 <script>
-	$(document).ready(function() {
-		$('.bxslider').bxSlider({
-			auto : true,
-			speed : 300,
-			pause : 2000,
-			mode : 'horizontal',
-			autoControlls : true,
-			pager : false,
-			autoHover : true,
-			controls : false
-		});
-		var count= ${count};
-		var cnt=count/10;
-		var startNum=${startNum};
-		for(var i=0; i<cnt; i++){
-			if(startNum>0)$('#previousLi').attr('href',"/dpg/review?startNum="+(startNum-10)+"");								
-			if((startNum+10)<count)$('#nextLi').attr('href',"/dpg/review?startNum="+(startNum+10)+"");
-			$('#pageNum').find('li').last().before("<li><a href='/dpg/review?startNum="+(i*10)+"'>"+(i+1)+"</a></li>");				
-		}
-	});
+	$(document)
+			.ready(
+					function() {
+						$('.bxslider').bxSlider({
+							auto : true,
+							speed : 300,
+							pause : 2000,
+							mode : 'horizontal',
+							autoControlls : true,
+							pager : false,
+							autoHover : true,
+							controls : false
+						});
+						var count = $
+						{
+							count
+						}
+						;
+						var cnt = count / 10;
+						var startNum = $
+						{
+							startNum
+						}
+						;
+						for (var i = 0; i < cnt; i++) {
+							if (startNum > 0)
+								$('#previousLi').attr(
+										'href',
+										"/dpg/review?startNum="
+												+ (startNum - 10) + "");
+							if ((startNum + 10) < count)
+								$('#nextLi').attr(
+										'href',
+										"/dpg/review?startNum="
+												+ (startNum + 10) + "");
+							$('#pageNum').find('li').last().before(
+									"<li><a href='/dpg/review?startNum="
+											+ (i * 10) + "'>" + (i + 1)
+											+ "</a></li>");
+						}
+					});
 	$(function() {
 		$('#content').keyup(function(e) {
 			var content = $(this).val();
@@ -59,35 +82,50 @@
 		<div class="row">
 			<div class="col-sm-8">
 				<ol class="breadcrumb">
-					<li><h1>리뷰게시판</h1></li>
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Library</a></li>
-					<li class="active">Data</li>
+					<li><h1>리뷰</h1></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="/dpg?startNum=0">DPG</a></li>
+					<li class="active">리뷰</li>
 				</ol>
 				<ul style="list-style: none;">
-					<!-- 반복시작 --><c:forEach items="${imgList}" var="bean">
-					<li>
-						<div class="col-sm-2">
-							<a href=""><img src="../resources/imgs/dpgimgs/${bean.dpgImgLink}" alt=""
-								class="img-thumbnail reviewImg" /></a>
-						</div>
-						<div class="col-sm-8"> 
-							<strong class="col-sm-12"><a href="../dpg/review/${bean.dpgNum }">${bean.dpgTitle }</a></strong>
-							<div class="col-sm-12">&nbsp;</div>
-							<div class="col-sm-12">
-								<span><a href="#">${bean.dpgWriter }</a></span> <span>2018.01.18</span>
-								<div style="color: purple;">
-									<span class="glyphicon glyphicon-thumbs-up">추천수</span> <span
-										class="glyphicon glyphicon-comment">조회수</span> <span
-										class="glyphicon glyphicon-tasks">댓글수</span>
+					<!-- 반복시작 -->
+					<c:forEach items="${imgList}" var="bean">
+						<li>
+							<div class="col-sm-4">
+								<a href="../dpg/review/${bean.dpgNum }"><img
+									src="../resources/imgs/dpgimgs/${bean.dpgImgLink}" alt=""
+									class="img-thumbnail reviewImg" /></a>
+							</div>
+							<div class="col-sm-8">
+								<strong class="col-sm-12"> <a
+									href="../dpg/review/${bean.dpgNum }"> <c:set var="text"
+											value="${bean.dpgTitle}" /> <c:if
+											test="${fn:length(text) lt 14}">
+											${text }
+									</c:if> <c:if test="${fn:length(text) ge 14}">
+										${fn:substring(text,0,14)}...
+									</c:if>
+								</a>
+								</strong>
+								<div class="col-sm-12">&nbsp;</div>
+								<div class="col-sm-12">
+									<span><a href="#">${bean.dpgWriter }</a></span> <span>2018.01.18</span>
+									<div style="color: purple;">
+										<span class="glyphicon glyphicon-thumbs-up">추천수</span> <span
+											class="glyphicon glyphicon-comment">조회수</span> <span
+											class="glyphicon glyphicon-tasks">댓글수</span>
+									</div>
 								</div>
 							</div>
-						</div>
-					</li>
-					<li><div class="col-sm-12"><hr /></div></li>
-					<!-- 반복 끝 --> </c:forEach> 
+						</li>
+						<li><div class="col-sm-12">
+								<hr />
+							</div></li>
+						<!-- 반복 끝 -->
+					</c:forEach>
 				</ul>
 				<nav class="col-xs-12">
+					<a href="/dpg/review/input" class="btn btn-default pull-right">글쓰기</a>
 					<ul class="pagination" id="pageNum">
 						<li><a id="previousLi" href="#">Previous</a></li>
 						<li><a id="nextLi" href="#">Next</a></li>
