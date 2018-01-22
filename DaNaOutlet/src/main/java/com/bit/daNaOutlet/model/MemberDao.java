@@ -62,7 +62,13 @@ public interface MemberDao {
 	
 	/*DPG´ñ±Û °ü·Ã DAO*/
 	List<ReplyVo> replyCall(int fatherContentsNum) throws Exception;
-	
+
 	DpgVo dpgOne(int dpgNum) throws Exception;
+
+	int replyNumOne() throws Exception;
+
+	void replyAdd(ReplyVo bean) throws Exception;
+
+	int idDoubleChk(String chkId) throws Exception;
 
 }

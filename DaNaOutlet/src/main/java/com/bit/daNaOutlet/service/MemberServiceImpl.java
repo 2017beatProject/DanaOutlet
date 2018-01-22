@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
@@ -20,14 +21,16 @@ import com.bit.daNaOutlet.model.entity.LoginVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
 import com.bit.daNaOutlet.model.entity.ReplyVo;
 import com.bit.daNaOutlet.util.Commons;
+import com.bit.daNaOutlet.util.Sessions;
 
 @Component
 public class MemberServiceImpl implements MemberService {
-	@Autowired
-	MemberDao dao;
-	
 	Logger log;
-
+	@Autowired	
+	MemberDao dao;	
+	Sessions sessions;
+	HttpSession session;
+	PrintWriter out;
 	public MemberServiceImpl() {
 		log=Logger.getLogger(MemberServiceImpl.class.getName());
 	}
@@ -79,10 +82,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public String login(LoginVo bean) throws Exception {		
+	public String login(LoginVo bean, HttpServletRequest req) throws Exception {		
 				
-				System.out.println("조회값이 얼마인가?"+dao.login(bean));
-		if(dao.login(bean)>0) {
+		if(dao.login(bean)>0) {			
+			
+			sessions.setSession(bean, req);
+			
 		return "로그인확인";		
 		}else {
 			return "로그인실패";
@@ -90,10 +95,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public String loginKakao(LoginVo bean) throws Exception {
+	public String loginKakao(LoginVo bean, HttpServletRequest req) throws Exception {
 		bean.setIdKakaoLog(dao.kakolognum());
-		if(dao.loginKakao(bean)>0) {return "로그인확인";}
-		
+		sessions.setSession(bean, req);
+		if(dao.loginKakao(bean)>0) return "로그인확인";		
 		return "로그인실패";
 	}
 
@@ -147,9 +152,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<ReplyVo> replyCall(int fatherContentsNum, HttpServletResponse resp) throws Exception {
 				
-		log.debug(dao.replyCall(fatherContentsNum).toString());	
 		
-		List<ReplyVo> list=dao.replyCall(fatherContentsNum);
+	log.debug(dao.replyCall(fatherContentsNum).toString());	
+	
+	List<ReplyVo> list=dao.replyCall(fatherContentsNum);
 		/*	
 		 * json 확인용 logger
 		 * 		System.out.print("{\"list\":[");
@@ -167,7 +173,7 @@ public class MemberServiceImpl implements MemberService {
 					System.out.print("]}");*/
 					resp.setContentType("text/json");
 					resp.setCharacterEncoding("UTF-8");
-					PrintWriter out=resp.getWriter();
+					out=resp.getWriter();
 					out.print("{\"list\":[");
 					for(int i=0;i<list.size();i++) {
 					out.print("{\"log\":\""+list.get(i).getFatherContentsNum()+"\","
@@ -193,9 +199,46 @@ public class MemberServiceImpl implements MemberService {
 		Commons comUp = new Commons();
 		String rootPath="\\dpgimgs\\";
  		String ImgLink=comUp.commonsDpgUp(bean.getDpgWriter(),rootPath ,file,req);
-// 		bean.setDpgCount(0);
  		if(!(ImgLink==null))bean.setDpgImgLink(ImgLink);
  		bean.setDpgNum(dao.dpgNumOne());
  		dao.dpgUpdate(bean);
+	}
+
+	@Override
+	public void replyAdd(ReplyVo bean, MultipartFile file, HttpServletRequest req) throws Exception {
+		String rootPath="\\replyImgs\\";
+ 		Commons comUp = new Commons(); 		
+ 		String imgLink=comUp.commonsReplyUp(bean.getReplyId(), rootPath, file, req);
+ 		if(!(imgLink==null))bean.setReplyImgsLink(imgLink);
+ 		bean.setReplyLog(dao.replyNumOne());
+ 		dao.replyAdd(bean); 	
+	}
+
+	@Override
+	public String logout(HttpServletRequest req) throws Exception {
+		if(sessions.cancleSession(req))return "로그아웃성공";
+		return "로그아웃실패";
+	}
+
+	@Override
+	public String loginChk(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		if(sessions.sessionChk(req))return "로그인하고 있음";
+		resp.setCharacterEncoding("UTF-8");	
+		out=resp.getWriter();
+		out.print(sessions.sessionChk(req));
+		return "로그인안하고있음";
+	}
+
+	@Override
+	public boolean idDoubleChk(String chkId, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		out=resp.getWriter();
+		
+		if(dao.idDoubleChk(chkId)>0) {
+			out.print("true");
+			return true;
+		}//if
+		
+		out.print("false");
+		return false;
 	}
 }

@@ -4,13 +4,15 @@ import java.sql.Date;
 
 public class ReplyVo {
 
-	int replyLog;
-	String replyId;
-	String replyContent;
-	Date replyDate;
-	int replyDepth;
-	String replyConId;
-	int fatherContentsNum;
+	private int replyLog;
+	private String replyId;
+	private String replyContent;
+	private Date replyDate;
+	private int replyDepth;
+	private String replyConId;
+	private int fatherContentsNum;
+	private String replyImgsLink;
+	
 	
 	public ReplyVo() {
 		// TODO Auto-generated constructor stub
@@ -72,7 +74,13 @@ public class ReplyVo {
 		this.fatherContentsNum = fatherContentsNum;
 	}
 
+	public String getReplyImgsLink() {
+		return replyImgsLink;
+	}
 
+	public void setReplyImgsLink(String replyImgsLink) {
+		this.replyImgsLink = replyImgsLink;
+	}
 
 	@Override
 	public int hashCode() {
@@ -121,7 +129,7 @@ public class ReplyVo {
 	}
 
 	public ReplyVo(int replyLog, String replyId, String replyContent, Date replyDate, int replyDepth, String replyConId,
-			int fatherContentsNum) {
+			int fatherContentsNum, String replyImgslink) {
 		super();
 		this.replyLog = replyLog;
 		this.replyId = replyId;

@@ -68,8 +68,7 @@
 						<th class="hidden-xs hidden-sm hidden-md">조회</th>
 					</tr>
 					<c:forEach items="${list}" var="bean">
-					<tr>
-				
+					<tr>				
 						<td><a href="../dpg/board/${bean.dpgNum }">${bean.dpgTitle }</a></td>
 						<td class="hidden-xs"><a href="board?id=kdj">${bean.dpgWriter }</a></td>
 						<td class="hidden-xs hidden-sm">2018.1.16</td>

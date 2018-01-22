@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bit.daNaOutlet.model.entity.DpgVo;
+import com.bit.daNaOutlet.model.entity.ReplyVo;
 import com.bit.daNaOutlet.service.MemberService;
 
 @Controller
@@ -40,6 +41,15 @@ public class DpgController {
       memberService.dpgOne(model, dpgNum);
       return "dpg/selectOne";
    }
+   @RequestMapping(value = "/dpg/board/input", method = RequestMethod.GET)
+   public String boardInput(Model model) throws Exception {
+      return "dpg/boardInput";
+   }
+   @RequestMapping(value = "/dpg/board/update/{dpgNum}", method = RequestMethod.GET)
+   public String boardUpdate(Model model, @PathVariable int dpgNum) throws Exception {
+      memberService.dpgOne(model, dpgNum);
+      return "dpg/boardInput";
+   }
 	
 	
    //리뷰 - 사진 있는 게시판
@@ -54,31 +64,27 @@ public class DpgController {
 	   memberService.dpgOne(model, dpgNum);
 	  return "dpg/selectOneReview";
    }
-   
-   @RequestMapping(value = "/test", method = RequestMethod.GET)
-   public String test() throws Exception {
-      return "dpg/edit";
+   @RequestMapping(value = "/dpg/review/input", method = RequestMethod.GET)
+   public String reviewInput(Model model) throws Exception {
+	  return "dpg/reviewInput";
+   }
+   @RequestMapping(value = "/dpg/review/update/{dpgNum}", method = RequestMethod.POST)
+   public String reviewUpdate(Model model) throws Exception {
+	  return "dpg/reviewInput";
    }
    
-   @RequestMapping(value="/dpg/test",method=RequestMethod.POST)
-	public String dpgUp(@ModelAttribute DpgVo bean,@RequestParam("file") MultipartFile file,HttpServletRequest req) throws Exception {
-		memberService.dpgAdd(bean,file,req);
-		return "dpg/success";
+	
+// ajax로 댓글 정보 불러오기
+	@RequestMapping(value = "/replyCall", method = RequestMethod.GET)
+	public void dpgReply(HttpServletResponse resp, Model model, @RequestParam("num") int fatherContentsNum)
+			throws Exception {
+		memberService.replyCall(fatherContentsNum, resp);		
 	}
-   // 댓글test
-   @RequestMapping(value = "/replyCall", method = RequestMethod.GET)
-   public void dpgReplyTest(HttpServletResponse resp, Model model, @RequestParam("num") int fatherContentsNum)
-         throws Exception {
-      memberService.replyCall(fatherContentsNum, resp);
-   }
-   
-   
-   // 임시 확인 디테일
-	@RequestMapping(value = "/con-detail", method = RequestMethod.GET)
-	public String conDetail(Model model) throws Exception {
-
-		memberService.selectAll(model);
-		return "con-detail";
+	// ajax로 댓글 쓰기
+	@RequestMapping(value="/replyAdd", method=RequestMethod.POST)
+	public void dpgReplyAdd(HttpServletRequest req, @ModelAttribute ReplyVo bean, MultipartFile file)
+			throws Exception {
+		memberService.replyAdd(bean, file, req);
 	}
 }
 

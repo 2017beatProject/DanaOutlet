@@ -158,11 +158,7 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.dpgOne", dpgNum);
 	}
 	
-	@Override
-	public List<ReplyVo> replyCall(int fatherContentsNum) throws Exception {
-		
-		return session.selectList("com.bit.daNaOutlet.model.MemberDao.replyCall", fatherContentsNum);
-	}
+	
 
 	@Override
 	public int dpgDelete(DpgVo bean) throws Exception {
@@ -172,6 +168,29 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int dpgUpdate(DpgVo bean) throws Exception {
 		return session.delete("com.bit.daNaOutlet.model.MemberDao.dpgUpdate", bean);
+	}
+	
+	
+	// ´ñ±Û Dao
+	@Override
+	public List<ReplyVo> replyCall(int fatherContentsNum) throws Exception {
+		
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.replyCall", fatherContentsNum);
+	}
+	@Override
+	public int replyNumOne() throws Exception {
+		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.replyNumOne");
+	}
+
+	@Override
+	public void replyAdd(ReplyVo bean) throws Exception {
+		session.insert("com.bit.daNaOutlet.model.MemberDao.replyAdd", bean);		
+		
+	}
+
+	@Override
+	public int idDoubleChk(String chkId) throws Exception {
+		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.idDoubleChk", chkId);		
 	}
 
 	

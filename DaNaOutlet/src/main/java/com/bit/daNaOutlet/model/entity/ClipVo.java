@@ -6,19 +6,19 @@ import java.util.List;
 public class ClipVo {
 
 	
-	int danaClipLog;//클립 로그
-	int clipSort;//클립 종류
-	String clipName;//클립 이름
-	String clipInfo;//클립 설명
-	Date writeNalja;//클립 작성일
-	String productUrl1;
-	String productUrl2;
-	String productUrl3;
-	String productUrl4;
-	String productUrl5;
-	String productUrl6;
-	String productUrl7;
-	String productUrl8;
+	private int danaClipLog;//클립 로그
+	private int clipSort;//클립 종류
+	private String clipName;//클립 이름
+	private String clipInfo;//클립 설명
+	private Date writeNalja;//클립 작성일
+	private String productUrl1;
+	private String productUrl2;
+	private String productUrl3;
+	private String productUrl4;
+	private String productUrl5;
+	private String productUrl6;
+	private String productUrl7;
+	private String productUrl8;
 	
 	
 	public ClipVo() {

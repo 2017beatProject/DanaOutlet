@@ -47,15 +47,13 @@ function joinFunc() {
 		
 		result = false;
 		idValidation();// id validation 검사
-		pwValidation();// pw validation 검사
 		submitCheck();// id를 제외한 나머지 text부분 null값 검사
-
 		if (returnTfCount == 0 && idchk && mailchk) {
 			result = true;
 		} else {
 			result = false;
 		}
 		alert("경고");
-		return result;
+		return false;
 	});
 }

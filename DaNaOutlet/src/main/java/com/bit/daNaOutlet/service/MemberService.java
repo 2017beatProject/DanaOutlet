@@ -35,9 +35,9 @@ public interface MemberService {
 	/* 클립관련 서비스 */
 	void clipList(Model model) throws Exception;
 	
-	String login(LoginVo bean) throws Exception;
+	String login(LoginVo bean, HttpServletRequest req) throws Exception;
 
-	String loginKakao(LoginVo bean) throws Exception;
+	String loginKakao(LoginVo bean, HttpServletRequest req) throws Exception;
 	
 	/* DPG 관련 서비스*/
 	String dpgAdd(DpgVo bean,MultipartFile file,HttpServletRequest req) throws Exception;
@@ -51,4 +51,12 @@ public interface MemberService {
  	List<ReplyVo> replyCall( int fatherContentsNum, HttpServletResponse resp) throws Exception;
 
 	void dpgOne(Model model, int dpgNum) throws Exception;
+
+	void replyAdd(ReplyVo bean, MultipartFile file, HttpServletRequest req) throws Exception;
+
+	String logout(HttpServletRequest req) throws Exception;
+
+	String loginChk(HttpServletRequest req, HttpServletResponse resp) throws Exception;
+
+	boolean idDoubleChk(String chkId, HttpServletRequest req, HttpServletResponse resp) throws Exception;
 }

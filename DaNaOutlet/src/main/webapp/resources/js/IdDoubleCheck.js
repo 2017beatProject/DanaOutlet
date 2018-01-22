@@ -3,7 +3,7 @@ function IddoubleCheck() {
 			'click',
 			function() {
 				$('#doubleMsg').remove();
-
+				$('#idErr').remove();
 				alert("중복확인클릭");
 				mid = $('#id').find('input').eq(0).val();
 				$.ajax({

@@ -14,6 +14,9 @@
 	<select id="mnumOne" resultType="int">
 		SELECT MAX(MNUM+1) FROM DANAMEMBER
 	</select>
+	<select id="idDoubleChk" resultType="int" parameterType="String">
+		SELECT COUNT(ID) FROM DANAMEMBER WHERE ID LIKE #{value}
+	</select>
 	<insert id="memberAdd" parameterType="com.bit.daNaOutlet.model.entity.MemberVo">
 		INSERT INTO DANAMEMBER(MNUM,NAME,PHONE,MBIRTH,ID,MAIL,ADDR,ADDRN,PASSWORD,SEX) VALUES(#{mnum},#{name},#{phone},#{mbirth},#{id},#{mail},#{addr},#{addrn},#{password},#{sex})
 	</insert>
@@ -94,9 +97,15 @@
 	<update id="dpgUpdate" parameterType="com.bit.daNaOutlet.model.entity.DpgVo">
 		UPDATE DANADPG SET DPGTITLE=#{dpgTitle}, DPGCONTENT=#{dpgContent}, DPGIMGLINK=#{dpgImgLink} where DPGWRITER=#{dpgWriter} AND DPGFROM=#{dpgFrom}
 	</update>
-	<!--댓글내용 호출  -->
 	
+	<!--댓글내용 호출 및 입력-->
 	<select id="replyCall" resultType="com.bit.daNaOutlet.model.entity.ReplyVo" parameterType="int">
 		SELECT * FROM REPLYASSEMBLE WHERE FATHERCONTENTSNUM=#{VALUE}
-	</select>
+	</select>	
+	<select id="replyNumOne" resultType="int">
+      SELECT MAX(REPLYLOG+1) FROM REPLYASSEMBLE
+    </select>
+    <insert id="replyAdd" parameterType="com.bit.daNaOutlet.model.entity.ReplyVo">   
+   	  INSERT INTO REPLYASSEMBLE VALUES(#{replyLog}, #{replyId}, #{replyContent}, #{replyDate},#{replyDepth},#{replyConId},#{fatherContentsNum},#{replyImgsLink})
+    </insert>
 </mapper>

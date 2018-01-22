@@ -70,7 +70,7 @@ li {
 </head>
 
 <body>
-	<jsp:include page="../template/navigation.jsp" flush="false" />
+	<jsp:include page="../template/navigation.jsp"/> 
 	<div class="container-fluid">
 		<div class="row">&nbsp;</div>
 	</div>

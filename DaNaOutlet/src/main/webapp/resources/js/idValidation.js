@@ -1,15 +1,16 @@
 
 
 function idValidation() {	
-	$('#id> span').remove();
+	$('#idErr').remove();
+	$('#doubleMsg').remove();
 
 	if (getTextLength($('#id input').eq(0).val()) == 0) {
 		$("<span id='idErr'> 아이디를 입력해주세요</span>").appendTo("#id");	
 		returnTfCount++;
 	}
 
-	else if (getTextLength($('#id input').eq(0).val()) < 8) {
-		$("<span id='idErr'> 아이디는 8자 이상입니다</span>").appendTo("#id");
+	else if (getTextLength($('#id input').eq(0).val()) < 2) {
+		$("<span id='idErr'> 아이디는 2자 이상입니다</span>").appendTo("#id");
 		returnTfCount++;
 
 	}
@@ -47,8 +48,8 @@ function pwValidation() {
 		returnTfCount++;
 	}
 
-	else if (getTextLength($('#pw input').eq(0).val()) < 8) {
-		$("<span id='pwErr'> 비밀번호는 8자 이상입니다</span>").appendTo("#pw");
+	else if (getTextLength($('#pw input').eq(0).val()) < 2) {
+		$("<span id='pwErr'> 비밀번호는 2자 이상입니다</span>").appendTo("#pw");
 		returnTfCount++;
 
 	}
@@ -64,10 +65,10 @@ function pwValidation() {
 	
 
 	}else if (!EngRegx.test($('#pw input').eq(0).val())) {
-		$("<span id='pwErr'>비밀번호에 영문 글자 1개 이상 포함되어 있어야 합니다</span>").appendTo("#pw");
+		$("<span id='pwErr'>비밀번호에 대소문 글자 1개 이상 포함되어 있어야 합니다</span>").appendTo("#pw");
 
 		returnTfCount++;
-}
+	}
 	$('#pwErr').css({			
 		'position': 'relative',
 	   'top': '10px',
