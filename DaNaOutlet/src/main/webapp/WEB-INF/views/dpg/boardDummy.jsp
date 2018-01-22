@@ -31,17 +31,14 @@
 ul {
 	list-style: none;
 }
-
 li {
 	margin-top: 5px;
 }
-
 @media ( max-width : 800px) {
 	.img-thumbnail {
 		width: 150px;
 	}
 }
-
 #footer {
 	top: 450px;
 	right: 15px;
@@ -52,7 +49,6 @@ li {
 	margin: 0px;
 	text-decoration: none;
 }
-
 #topper {
 	top: 400px;
 	right: 15px;
@@ -63,11 +59,9 @@ li {
 	margin: 0px;
 	text-decoration: none;
 }
-
 #topper>a {
 	text-decoration: none;
 }
-
 #footer>a {
 	text-decoration: none;
 }

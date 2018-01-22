@@ -14,12 +14,9 @@
 <script src="resources/js/jquery.bxslider.js"></script>
 <script src="resources/js/bootstrap.js"></script>
 <script type="text/javascript">
-
 	$(function(){
 		$('#gheader').css({
-
 		});
-
 	});
 	
 </script>
@@ -69,7 +66,6 @@
 		<dl><dd><em>tag</em><span>등록된태그</span></dd></dl>
 		<a href="#"><span>싸이렌모양</span>신고</a>
 	</div>
-
 	<div><!-- 다른글보기, 인기글 -->
 		<div><!--다른글보기 -->
 			<div>

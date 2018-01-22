@@ -8,15 +8,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="../template/navigation.jsp"/> 
+
 <h1>hotdeal page</h1>
  	<c:forEach items="${list}" var="bean">
  		<ul>
- 			<li>${bean.price }</li> 
- 			<li>${bean.hotDealNum }</li> 
- 			<li>${bean.link }</li> 
+ 			<li>${bean.price }</li>
+ 			<li>${bean.hotDealNum }</li>
+ 			<li>${bean.link }</li>
  			<li><img src="../resources/imgs/hotdealimgs/${bean.productName }"></li>
- 			<li>${bean.productName }</li> 
- 			<li>${bean.productIntro }</li> 
+ 			<li>${bean.productIntro }</li>
  		</ul>
  	</c:forEach> 
 </body>

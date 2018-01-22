@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <html>
 
 <head>
@@ -25,6 +26,14 @@
 			autoHover : true,
 			controls : false
 		});
+		var count= ${count};
+		var cnt=count/10;
+		var startNum=${startNum};
+		for(var i=0; i<cnt; i++){
+			if(startNum>0)$('#previousLi').attr('href',"/dpg/review?startNum="+(startNum-10)+"");								
+			if((startNum+10)<count)$('#nextLi').attr('href',"/dpg/review?startNum="+(startNum+10)+"");
+			$('#pageNum').find('li').last().before("<li><a href='/dpg/review?startNum="+(i*10)+"'>"+(i+1)+"</a></li>");				
+		}
 	});
 	$(function() {
 		$('#content').keyup(function(e) {
@@ -56,18 +65,17 @@
 					<li class="active">Data</li>
 				</ol>
 				<ul style="list-style: none;">
-					<!-- 반복시작 -->
+					<!-- 반복시작 --><c:forEach items="${imgList}" var="bean">
 					<li>
 						<div class="col-sm-2">
-							<a href=""><img src="../resources/imgs/bxImgs/iu3.jpg" alt=""
+							<a href=""><img src="../resources/imgs/dpgimgs/${bean.dpgImgLink}" alt=""
 								class="img-thumbnail reviewImg" /></a>
 						</div>
-						<div class="col-sm-8">
-							<strong class="col-sm-12"><a href="#">그들은 밥을 있는 품고
-									시들어 사랑의 밝은 위하여</a></strong>
+						<div class="col-sm-8"> 
+							<strong class="col-sm-12"><a href="../dpg/review/${bean.dpgNum }">${bean.dpgTitle }</a></strong>
 							<div class="col-sm-12">&nbsp;</div>
 							<div class="col-sm-12">
-								<span><a href="#">김도진</a></span> <span>2018.01.18</span>
+								<span><a href="#">${bean.dpgWriter }</a></span> <span>2018.01.18</span>
 								<div style="color: purple;">
 									<span class="glyphicon glyphicon-thumbs-up">추천수</span> <span
 										class="glyphicon glyphicon-comment">조회수</span> <span
@@ -77,17 +85,12 @@
 						</div>
 					</li>
 					<li><div class="col-sm-12"><hr /></div></li>
-					<!-- 반복 끝 -->
+					<!-- 반복 끝 --> </c:forEach> 
 				</ul>
 				<nav class="col-xs-12">
-					<ul class="pagination">
-						<li><a href="#">Previous</a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">Next</a></li>
+					<ul class="pagination" id="pageNum">
+						<li><a id="previousLi" href="#">Previous</a></li>
+						<li><a id="nextLi" href="#">Next</a></li>
 					</ul>
 				</nav>
 				<form class="form-inline col-xs-12">

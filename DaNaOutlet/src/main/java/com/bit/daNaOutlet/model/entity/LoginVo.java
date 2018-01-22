@@ -2,10 +2,10 @@ package com.bit.daNaOutlet.model.entity;
 
 public class LoginVo {
 	
-	int idKakaoLog;
-	String loginId;
-	String loginPw;
-	String nickName;
+	private int idKakaoLog;
+	private String loginId;
+	private String loginPw;
+	private String nickName;
 	
 	public LoginVo() {
 		// TODO Auto-generated constructor stub

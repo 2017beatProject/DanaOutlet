@@ -13,6 +13,7 @@ import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
 import com.bit.daNaOutlet.model.entity.LoginVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
+import com.bit.daNaOutlet.model.entity.ReplyVo;
 
 public interface MemberService {
 
@@ -34,12 +35,28 @@ public interface MemberService {
 	/* 클립관련 서비스 */
 	void clipList(Model model) throws Exception;
 	
-	String login(LoginVo bean) throws Exception;
+	String login(LoginVo bean, HttpServletRequest req) throws Exception;
 
-	String loginKakao(LoginVo bean) throws Exception;
+	String loginKakao(LoginVo bean, HttpServletRequest req) throws Exception;
 	
 	/* DPG 관련 서비스*/
-	/* 핫딜관련서비스 */
 	String dpgAdd(DpgVo bean,MultipartFile file,HttpServletRequest req) throws Exception;
- 	void dpgMain(Model model) throws Exception;
+	void dpgDelete(DpgVo bean)throws Exception;
+	void dpgUpdate(DpgVo bean,MultipartFile file,HttpServletRequest req)throws Exception;
+	void dpgShow(Model model,String viewType,int startNum) throws Exception;
+	void dpgMain(Model model) throws Exception;
+ 	void dpgEx(Model model,int startNum) throws Exception;
+ 	void dpgNone(Model model,int startNum) throws Exception;
+ 	/*댓글 서비스*/
+ 	List<ReplyVo> replyCall( int fatherContentsNum, HttpServletResponse resp) throws Exception;
+
+	void dpgOne(Model model, int dpgNum) throws Exception;
+
+	void replyAdd(ReplyVo bean, MultipartFile file, HttpServletRequest req) throws Exception;
+
+	String logout(HttpServletRequest req) throws Exception;
+
+	String loginChk(HttpServletRequest req, HttpServletResponse resp) throws Exception;
+
+	boolean idDoubleChk(String chkId, HttpServletRequest req, HttpServletResponse resp) throws Exception;
 }

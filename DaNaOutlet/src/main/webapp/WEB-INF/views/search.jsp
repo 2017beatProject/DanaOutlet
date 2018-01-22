@@ -23,7 +23,6 @@
 	var loadPage = 1;
 	var loaded = true;
 	var loadedNum;
-
 	// 4c3dab31-521e-368c-86db-a60223eb7e22 요한
 	// 831b2c9b-12a4-3b28-a338-a5832c3ef3dd 민건
 	var loadList = function(num) {
@@ -101,7 +100,6 @@
 		search();
 	});
 	$(window).scroll(function() {
-
 		if (loaded && $(window).scrollTop() + 1000 >= $(document).height()) { // 스크롤이 끝까지 왔으면
 			loaded = false; // 아직 로딩 전인 것이고
 			setTimeout(function() { // 0.5초 이후에 실행하는데
@@ -120,11 +118,9 @@
 ul {
 	list-style: none;
 }
-
 li {
 	margin-top: 5px;
 }
-
 #pageNumber {
 	display: inline;
 }

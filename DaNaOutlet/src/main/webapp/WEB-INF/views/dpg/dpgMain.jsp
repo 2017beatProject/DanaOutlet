@@ -32,17 +32,14 @@
 ul {
 	list-style: none;
 }
-
 li {
 	margin-top: 5px;
 }
-
 @media ( max-width : 800px) {
 	.img-thumbnail {
 		height: 100px;
 	}
 }
-
 #footer {
 	top: 450px;
 	right: 15px;
@@ -53,7 +50,6 @@ li {
 	margin: 0px;
 	text-decoration: none;
 }
-
 #topper {
 	top: 400px;
 	right: 15px;
@@ -64,11 +60,9 @@ li {
 	margin: 0px;
 	text-decoration: none;
 }
-
 #topper>a {
 	text-decoration: none;
 }
-
 #footer>a {
 	text-decoration: none;
 }
@@ -76,7 +70,7 @@ li {
 </head>
 
 <body>
-	<jsp:include page="../template/navigation.jsp" flush="false" />
+	<jsp:include page="../template/navigation.jsp"/> 
 	<div class="container-fluid">
 		<div class="row">&nbsp;</div>
 	</div>
@@ -139,18 +133,19 @@ li {
 				<div class="col-sm-4">
 					<div class="panel panel-warning">
 						<div class="panel-heading">
-							<h3 class="panel-title">이미지 있는 게시판</h3>
+							<h3 class="panel-title">이미지 있는 게시판<span style="float: right;"><a href="/dpg/review?startNum=0"> +더보기</a></span></h3>
+							
 						</div>
 						<div class="panel-body">
 							<ul class="list-group">
 								<c:forEach items="${imgList }" var="bean">
 									<li class="list-group-item">
-										<div class="row">
+										<div class="row"> 
 											<div class="col-sm-6">
-												<img src="../resources/imgs/dpgimgs/${bean.dpgImgLink }"
-													alt="" class="img-thumbnail" />
+												<a href="../dpg/review/${bean.dpgNum}"><img src="../resources/imgs/dpgimgs/${bean.dpgImgLink }"
+													alt="" class="img-thumbnail" /></a>
 											</div>
-											<div class="col-sm-6">${bean.dpgTitle }</div>
+											<div class="col-sm-6"><a href="../dpg/review/${bean.dpgNum}">${bean.dpgTitle }</a></div>
 										</div>
 									</li>
 								</c:forEach>
@@ -162,7 +157,7 @@ li {
 				<div class="col-sm-4">
 					<div class="panel panel-success">
 						<div class="panel-heading">
-							<h3 class="panel-title">게시판</h3>
+							<h3 class="panel-title">게시판<span style="float: right;"><a href="/dpg/board?startNum=0"> +더보기</a></span></h3>
 						</div>
 						<div class="panel-body">
 							<table class="table table-hover">
@@ -172,8 +167,8 @@ li {
 								</tr>
 								<c:forEach items="${list }" var="bean">
 									<tr>
-										<td>${bean.dpgTitle }</td>
-										<td class="hidden-xs">${bean.dpgWriter }</td>
+									<td><a href="../dpg/board/${bean.dpgNum}">${bean.dpgTitle }</a></td>
+									<td class="hidden-xs">${bean.dpgWriter }</td>
 									</tr>
 								</c:forEach>
 							</table>
@@ -195,10 +190,11 @@ li {
 									<li class="list-group-item">
 										<div class="row">
 											<div class="col-sm-3">
+											<a href="../dpg/review/${bean.dpgNum}">
 												<img src="../resources/imgs/dpgimgs/${bean.dpgImgLink}"
 													alt="" class="img-thumbnail" />
 											</div>
-											<div class="col-sm-9">${bean.dpgTitle }</div>
+											<div class="col-sm-9"><a href="../dpg/review/${bean.dpgNum}">${bean.dpgTitle }</a></div>
 										</div>
 									</li>
 								</c:forEach>
