@@ -17,13 +17,11 @@
     		}
     		
     		
-    		
-    		
-    		
     	}
     	function resetText() {
     		for (var i = 0; i < errList.length; i++) {
     			document.getElementById(errList[i]).style.opacity = "0";
+    			returnTfCount = 0;
     			//document.getElementById(inputList[i]).style.backgroundColor = "white";
     		}
     	}
