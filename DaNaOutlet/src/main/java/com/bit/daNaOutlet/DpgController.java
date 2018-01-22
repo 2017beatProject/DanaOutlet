@@ -66,7 +66,7 @@ public class DpgController {
 	
 	//리뷰 - 사진 있는 게시판
 	@RequestMapping(value = "/dpg/review", method = RequestMethod.GET)
-	public String review(@PathVariable("num") int idx) throws Exception {
+	public String review() throws Exception {
 		return "dpg/review";
 	}	
 	

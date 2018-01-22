@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="../template/navigation.jsp"/> 
+
 <h1>hotdeal page</h1>
  	<c:forEach items="${list}" var="bean">
  		<ul>

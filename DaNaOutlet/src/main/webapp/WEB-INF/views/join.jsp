@@ -81,7 +81,7 @@
 			}
 			alert("경고");
 			return result;
-		});
+	
 
 	});
 </script>

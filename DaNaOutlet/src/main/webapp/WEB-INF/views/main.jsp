@@ -112,7 +112,7 @@ h5{
 	<nav class="navbar navbar-default navbar-fixed-top"> 
 		<div class="container">
 		
-	<%-- 	<jsp:include page="./template/navigation.jsp"/> --%>
+ 	<jsp:include page="./template/navigation.jsp"/> 
 		
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"

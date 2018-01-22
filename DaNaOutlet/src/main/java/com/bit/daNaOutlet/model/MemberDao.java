@@ -2,6 +2,8 @@ package com.bit.daNaOutlet.model;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.bit.daNaOutlet.model.entity.ClipVo;
 import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
@@ -61,6 +63,8 @@ public interface MemberDao {
 	int replyNumOne() throws Exception;
 
 	void replyAdd(ReplyVo bean) throws Exception;
+
+	int idDoubleChk(String chkId) throws Exception;
 	
 
 }

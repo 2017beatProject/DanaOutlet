@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,16 +33,17 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired	
 	MemberDao dao;	
 	Sessions sessions;
-	
+	HttpSession session;
+	PrintWriter out;
 	public MemberServiceImpl() {
 		log=Logger.getLogger(MemberServiceImpl.class.getName());
 		sessions=new Sessions();
 	}
-			
-			
+				
 	
 	@Override
-	public void selectAll(Model model) throws Exception {		
+	public void selectAll(Model model) throws Exception {
+		
 		model.addAttribute("list",dao.selectAll());
 		
 	}
@@ -87,14 +89,13 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
+	
+	//로그인 서비스
 	@Override
 	public String login(LoginVo bean, HttpServletRequest req) throws Exception {		
-				
-				System.out.println("조회값이 얼마인가?"+dao.login(bean));
-				
+						
 		if(dao.login(bean)>0) {			
 			
-			System.out.println(req);
 			sessions.setSession(bean, req);
 			
 		return "로그인확인";		
@@ -104,12 +105,46 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public String loginKakao(LoginVo bean) throws Exception {
+	public String loginKakao(LoginVo bean, HttpServletRequest req) throws Exception {
 		bean.setIdKakaoLog(dao.kakolognum());
-		if(dao.loginKakao(bean)>0) {return "로그인확인";}
-		
+		sessions.setSession(bean, req);
+		if(dao.loginKakao(bean)>0) return "로그인확인";		
 		return "로그인실패";
 	}
+
+	//아이디 중복검사 서비스
+	@Override
+	public boolean idDoubleChk(String chkId, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		out=resp.getWriter();
+		
+		if(dao.idDoubleChk(chkId)>0) {
+			out.print("true");
+			return true;
+		}//if
+		
+		out.print("false");
+		return false;
+	}
+
+	
+	
+	@Override
+	public String logout(HttpServletRequest req) throws Exception {		
+		if(sessions.cancleSession(req))return "로그아웃성공";
+		return "로그아웃실패";
+	}
+	
+
+	@Override
+	public String loginChk(HttpServletRequest req, HttpServletResponse resp) throws Exception {		
+		if(sessions.sessionChk(req))return "로그인하고 있음";
+		resp.setCharacterEncoding("UTF-8");	
+		out=resp.getWriter();
+		out.print(sessions.sessionChk(req));
+		return "로그인안하고있음";
+	}
+	
+	
 	
 	/* DPG 관련 */
 	@Override
@@ -163,7 +198,7 @@ public class MemberServiceImpl implements MemberService {
 					System.out.print("]}");*/
 					resp.setContentType("text/json");
 					resp.setCharacterEncoding("UTF-8");
-					PrintWriter out=resp.getWriter();
+					out=resp.getWriter();
 					out.print("{\"list\":[");
 					for(int i=0;i<list.size();i++) {
 					out.print("{\"log\":\""+list.get(i).getFatherContentsNum()+"\","
@@ -192,6 +227,14 @@ public class MemberServiceImpl implements MemberService {
  		dao.replyAdd(bean); 	
  		
 	}
+
+
+
+
+
+
+
+	
 
 	
 }

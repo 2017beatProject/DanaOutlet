@@ -53,6 +53,12 @@ public class MemberDaoImpl implements MemberDao {
 		session.insert("com.bit.daNaOutlet.model.MemberDao.memberAdd", bean);
 	}
 
+	@Override
+	public int idDoubleChk(String chkId) throws Exception {
+		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.idDoubleChk", chkId);		
+	}
+	
+	
 	// HOTDEAL table 의 primary key max 값 조회 ,회원 번호 프라이머리키 시퀀스 기능 대신 해주는 Dao
 	@Override
 	public int hotDealNumOne() throws Exception {
@@ -160,6 +166,7 @@ public class MemberDaoImpl implements MemberDao {
 	public void replyAdd(ReplyVo bean) throws Exception {
 		session.insert("com.bit.daNaOutlet.model.MemberDao.replyAdd", bean);		
 	}
+
 	
 
 }

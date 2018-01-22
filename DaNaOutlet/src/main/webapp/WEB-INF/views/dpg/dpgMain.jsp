@@ -28,6 +28,7 @@ li {
 </head>
 
 <body>
+<jsp:include page="../template/navigation.jsp"/> 
 	<h1>공용 게시판 - 차후 수정합시다</h1>
 	<div class="container">
 		<table class="table table-hover">
@@ -64,7 +65,7 @@ li {
 					<option>내용</option>
 					<option>닉네임</option>
 					<option>아이디</option>
-				</select> <input type="text" class="form-control" id="exampleInputName2"
+				</select> <input type="text" class="form-control exampleInputName2"
 					placeholder="검색어를 입력하세요">
 				<button type="submit" class="btn btn-default">확인</button>
 			</div>
@@ -120,7 +121,7 @@ li {
 					<option>내용</option>
 					<option>닉네임</option>
 					<option>아이디</option>
-				</select> <input type="text" class="form-control" id="exampleInputName2"
+				</select> <input type="text" class="form-control exampleInputName2"
 					placeholder="검색어를 입력하세요">
 				<button type="submit" class="btn btn-default">확인</button>
 			</div>
@@ -200,7 +201,7 @@ li {
 					<option>내용</option>
 					<option>닉네임</option>
 					<option>아이디</option>
-				</select> <input type="text" class="form-control" id="exampleInputName2"
+				</select> <input type="text" class="form-control exampleInputName2"
 					placeholder="검색어를 입력하세요">
 				<button type="submit" class="btn btn-default">확인</button>
 			</div>

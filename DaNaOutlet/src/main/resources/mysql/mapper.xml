@@ -17,6 +17,9 @@
 	<insert id="memberAdd" parameterType="com.bit.daNaOutlet.model.entity.MemberVo">
 		INSERT INTO DANAMEMBER(MNUM,NAME,PHONE,MBIRTH,ID,MAIL,ADDR,ADDRN,PASSWORD,SEX) VALUES(#{mnum},#{name},#{phone},#{mbirth},#{id},#{mail},#{addr},#{addrn},#{password},#{sex})
 	</insert>
+	<select id="idDoubleChk" resultType="int" parameterType="String">
+		SELECT COUNT(ID) FROM DANAMEMBER WHERE ID LIKE #{value}
+	</select>
 	
 	<!-- 일반로그인  -->
 	<select id="loginChk" resultType="int" parameterType="com.bit.daNaOutlet.model.entity.LoginVo">	

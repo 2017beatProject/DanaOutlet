@@ -15,17 +15,21 @@ public class Sessions {
 	 
 	 public boolean setSession(LoginVo bean, HttpServletRequest req) {		
 		 session=req.getSession();
-		 session.setAttribute("loginChk", bean);		
+		 if(bean.getNickName()!=null)session.setAttribute("loginInfo", bean.getNickName());
+		 else session.setAttribute("loginInfo", bean.getLoginId());
+		 session.setAttribute("loginChk", "true");
 		 return true;
 	 }
 	 
-	 public boolean cancleSession() {		
+	 public boolean cancleSession(HttpServletRequest req) {	
+		 session=req.getSession();		
 		 session.removeAttribute("loginChk");		 
+		 session.removeAttribute("logInfo");
 		 return true;
 	 }
 	 
-	 public boolean seesionChk() {	
-		 if(session.getAttribute("loginChk").equals(null)) {
+	 public boolean sessionChk(HttpServletRequest req) {		 
+		 if(session.getAttribute("loginChk")==null) {
 			 return false;
 		 };
 		 return true;		 
