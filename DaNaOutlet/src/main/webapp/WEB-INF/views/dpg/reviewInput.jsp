@@ -9,12 +9,12 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>입력</title>
-<link rel="stylesheet" href="../../resources/css/bootstrap.css">
-<link rel="stylesheet" href="../../resources/css/bootstrap-theme.css">
-<script src="../../resources/js/jquery.min.js"></script>
-<script src="../../resources/js/jquery-1.12.4.js"></script>
-<script src="../../resources/js/jquery.bxslider.js"></script>
-<script src="../../resources/js/bootstrap.js"></script>
+<link rel="stylesheet" href="../../../resources/css/bootstrap.css">
+<link rel="stylesheet" href="../../../resources/css/bootstrap-theme.css">
+<script src="../../../resources/js/jquery.min.js"></script>
+<script src="../../../resources/js/jquery-1.12.4.js"></script>
+<script src="../../../resources/js/jquery.bxslider.js"></script>
+<script src="../../../resources/js/bootstrap.js"></script>
 <script>
 	$(document).ready(function() {
 		$('.bxslider').bxSlider({
@@ -131,19 +131,22 @@
 
 
 					<div class="panel-body">
-						<form class="form-horizontal" id="form" action="" method="post"
+						<form class="form-horizontal" id="form" method="post"
 							enctype="multipart/form-data" autocomplete="off">
+							<input type="hidden" name="dpgFrom" value="${loginInfo.loginFrom }"/>
+							<input type="hidden" name="dpgWriter" value="${loginInfo.nickName }"/>
+							<input type="hidden" name="dpgSubject" value="이미지게시판"/>
 							<div class="form-group">
 								<label for="" class="col-sm-2">제목</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id=""
-										placeholder="제목을 입력해 주세요" required="required">
+									<input type="text" class="form-control" id="" name="dpgTitle"
+										placeholder="제목을 입력해 주세요" required="required" value="${bean.dpgTitle }">
 								</div>
 							</div>
 							<hr>
 							<div class="form-group filebox">
 								<label for="" class="col-sm-2">사진</label> <input type="file"
-									class="col-sm-10" name="cma_file" id="cma_file"
+									class="col-sm-10" name="cma_file" id="file"
 									accept="image/*" capture="camera"
 									onchange="getThumbnailPrivew(this,$('#cma_image'))"
 									required="required" />
@@ -158,9 +161,9 @@
 
 							<div class="form-group">
 								<div class="col-sm-12">
-									<textarea class="form-control" id="content" maxlength="1000"
+									<textarea class="form-control" id="content" maxlength="1000" name="dpgContent"
 										style="resize: vertical" placeholder="내용을 입력해 주세요"
-										required="required"></textarea>
+										required="required">${bean.dpgContent }</textarea>
 								</div>
 
 							</div>

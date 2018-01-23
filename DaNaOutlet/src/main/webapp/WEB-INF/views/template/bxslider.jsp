@@ -2,9 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <style>
-	#bxImg{
-		width: 50px;
-	}
+	
 </style>
 <script>
 	$(document).ready(function() {

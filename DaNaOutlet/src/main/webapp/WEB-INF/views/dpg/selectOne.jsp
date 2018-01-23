@@ -77,7 +77,8 @@
 					</ol>
 				</div>
 				<div class="panel panel-default">
-					<div class="panel-heading">${bean.dpgTitle }</div>
+					<div class="panel-heading">${bean.dpgTitle } <a id="AtagEdit" type="button" 
+									class="btn btn-default" href="/dpg/board/${bean.dpgNum }/input?idx=1">수정</a></div>
 					<ul class="list-group">
 						<li class="list-group-item"><span>${bean.dpgWriter}</span> <span>2018.01.18</span>
 							<span class="glyphicon glyphicon-thumbs-up">추천수</span> <span
@@ -134,6 +135,7 @@
 									class="btn btn-default glyphicon glyphicon-camera">이미지첨부</button>
 								<button type="submit"
 									class="glyphicon glyphicon-edit btn btn-default">등록</button>
+								
 								<button type="button" class="btn btn-default"
 									disabled="disabled" id="counter" style="float: right;">###</button>
 							</div>

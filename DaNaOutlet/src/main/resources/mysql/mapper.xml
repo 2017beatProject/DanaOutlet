@@ -93,19 +93,19 @@
 		SELECT MAX(DPGNUM+1) FROM DANADPG
 	</select>
 	<select id="dpgImgCount" resultType="int">
-		SELECT COUNT(DPGNUM) FROM DANADPG WHERE DPGIMGLINK IS NOT NULL
+		SELECT COUNT(DPGNUM) FROM DANADPG WHERE DPGIMGLINK IS NOT NULL AND DPGSUBJECT='이미지게시판' 
 	</select>
 	<select id="dpgNoneCount" resultType="int">
-		SELECT COUNT(DPGNUM) FROM DANADPG WHERE DPGIMGLINK IS NULL
+		SELECT COUNT(DPGNUM) FROM DANADPG WHERE DPGIMGLINK IS NULL AND DPGSUBJECT='자유게시판'
 	</select>
 	<insert id="dpgAdd" parameterType="com.bit.daNaOutlet.model.entity.DpgVo">
-		INSERT INTO DANADPG(DPGNUM,DPGTITLE,DPGWRITER,DPGFROM,DPGSUBJECT,DPGCONTENT,DPGCOUNT,DPGIMGLINK) VALUES(#{dpgNum},#{dpgTitle},#{dpgWriter},#{dpgFrom},#{dpgSubject},#{dpgContent},#{dpgCount},#{dpgImgLink})
+		INSERT INTO DANADPG(DPGNUM,DPGTITLE,DPGWRITER,DPGFROM,DPGSUBJECT,DPGCONTENT,DPGCOUNT,DPGIMGLINK,DPGNALJA) VALUES(#{dpgNum},#{dpgTitle},#{dpgWriter},#{dpgFrom},#{dpgSubject},#{dpgContent},#{dpgCount},#{dpgImgLink},now())
 	</insert>
 	<delete id="dpgDelete" parameterType="com.bit.daNaOutlet.model.entity.DpgVo" >
 		DELETE FROM DANADPG WHERE DPGWRITER=#{dpgWriter} AND DPGFROM=#{dpgFrom}
 	</delete>
 	<update id="dpgUpdate" parameterType="com.bit.daNaOutlet.model.entity.DpgVo">
-		UPDATE DANADPG SET DPGTITLE=#{dpgTitle}, DPGCONTENT=#{dpgContent}, DPGIMGLINK=#{dpgImgLink} where DPGWRITER=#{dpgWriter} AND DPGFROM=#{dpgFrom}
+		UPDATE DANADPG SET DPGTITLE=#{dpgTitle}, DPGCONTENT=#{dpgContent}, DPGIMGLINK=#{dpgImgLink} where DPGNUM=#{dpgNum}
 	</update>
    
    <!--댓글내용 호출 및 입력-->

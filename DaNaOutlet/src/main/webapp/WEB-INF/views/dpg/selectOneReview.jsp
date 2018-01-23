@@ -77,7 +77,8 @@
 					</ol>
 				</div>
 				<div class="panel panel-default">
-					<div class="panel-heading">${bean.dpgTitle }</div>
+					<div class="panel-heading">${bean.dpgTitle } <a type="button" 
+									class="btn btn-default" href="/dpg/review/${bean.dpgNum }/input?idx=1">수정</a></div>
 					<ul class="list-group">
 						<li class="list-group-item"><span>${bean.dpgWriter }</span> <span>2018.01.18</span>
 							<span class="glyphicon glyphicon-thumbs-up">추천수</span> <span

@@ -110,8 +110,15 @@ public class MemberServiceImpl implements MemberService {
 		Commons comUp = new Commons();
 		String rootPath="\\dpgimgs\\";
  		String ImgLink=comUp.commonsDpgUp(bean.getDpgWriter(),rootPath ,file,req);
-// 		bean.setDpgCount(0);
+ 		bean.setDpgCount(0);
  		if(!(ImgLink==null))bean.setDpgImgLink(ImgLink);
+ 		bean.setDpgNum(dao.dpgNumOne());
+ 		dao.dpgAdd(bean);
+ 		return "success";		 		 		
+	}
+	@Override
+	public String dpgAdd(DpgVo bean) throws Exception {		
+ 		bean.setDpgCount(0);
  		bean.setDpgNum(dao.dpgNumOne());
  		dao.dpgAdd(bean);
  		return "success";		 		 		
@@ -149,6 +156,57 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void dpgOne(Model model, int dpgNum) throws Exception {
 		model.addAttribute("bean", dao.dpgOne(dpgNum));
+	}
+	@Override
+	public void dpgNoneInputEditOne(Model model, Object dpgNum,int idx) throws Exception {
+		if(idx==0){
+			return;
+		}else if(idx==1) {    
+			model.addAttribute("bean", dao.dpgOne(Integer.parseInt((String)dpgNum)));     
+		}	
+	}
+	@Override
+	public void dpgNoneUpdateInsert(DpgVo bean,Model model, Object dpgNum,int idx) throws Exception {
+		if(idx==0){
+			bean.setDpgCount(0);
+	 		bean.setDpgNum(dao.dpgNumOne());
+	 		dao.dpgAdd(bean);
+		}else if(idx==1) {
+			bean.setDpgNum(Integer.parseInt((String)dpgNum));
+			dao.dpgUpdate(bean);               
+			model.addAttribute("bean", dao.dpgOne(Integer.parseInt((String)dpgNum)));     
+		}	
+	}
+	@Override
+	public void dpgExInputEditOne(Model model, Object dpgNum, int idx) throws Exception {		
+		if(idx==0){
+			return;
+		}else if(idx==1) { 
+			
+			model.addAttribute("bean", dao.dpgOne(Integer.parseInt((String)dpgNum)));     
+		}
+	}
+
+	@Override
+	public void dpgExUpdateInsert(DpgVo bean, Model model, Object dpgNum, int idx,MultipartFile file,HttpServletRequest req) throws Exception {		
+		if(idx==0){
+			System.out.println("¾÷µ« 0ÀÏ¶§");
+			Commons comUp = new Commons();
+			String rootPath="\\dpgimgs\\";
+	 		String ImgLink=comUp.commonsDpgUp(bean.getDpgWriter(),rootPath ,file,req);
+	 		bean.setDpgCount(0);
+	 		if(!(ImgLink==null))bean.setDpgImgLink(ImgLink);
+	 		bean.setDpgNum(dao.dpgNumOne());
+	 		dao.dpgAdd(bean);
+		}else if(idx==1) {
+			System.out.println("¾÷µ« 1ÀÏ¶§");
+			Commons comUp = new Commons();
+			String rootPath="\\dpgimgs\\";
+	 		String ImgLink=comUp.commonsDpgUp(bean.getDpgWriter(),rootPath ,file,req);
+	 		if(!(ImgLink==null))bean.setDpgImgLink(ImgLink);
+			bean.setDpgNum(Integer.parseInt((String)dpgNum));
+			dao.dpgUpdate(bean);                 
+		}	
 	}
 
 	/* ´ñ±Û ¼­ºñ½º*/	

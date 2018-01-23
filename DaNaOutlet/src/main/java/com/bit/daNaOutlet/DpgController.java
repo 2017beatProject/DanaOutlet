@@ -35,23 +35,26 @@ public class DpgController {
 	  memberService.dpgShow(model, new String("none") , startNum);
 	  return "dpg/board";
    }
-
    @RequestMapping(value = "/dpg/board/{dpgNum}", method = RequestMethod.GET)
    public String boardDetail(Model model, @PathVariable int dpgNum) throws Exception {
       memberService.dpgOne(model, dpgNum);
       return "dpg/selectOne";
    }
-   @RequestMapping(value = "/dpg/board/input", method = RequestMethod.GET)
-   public String boardInput(Model model) throws Exception {
-      return "dpg/boardInput";
-   }
-   @RequestMapping(value = "/dpg/board/update/{dpgNum}", method = RequestMethod.GET)
-   public String boardUpdate(Model model, @PathVariable int dpgNum) throws Exception {
-      memberService.dpgOne(model, dpgNum);
-      return "dpg/boardInput";
+   
+   @RequestMapping(value = "/dpg/board/{dpgNum}/input", method = RequestMethod.GET)
+   public String boardInputEditOne(Model model,@PathVariable Object dpgNum,@RequestParam("idx") int idx) throws Exception {
+	   memberService.dpgNoneInputEditOne(model, dpgNum, idx);
+	   return "dpg/boardInput"; 
+   } 
+   @RequestMapping(value = "/dpg/board/{num}/input", method = RequestMethod.POST)
+   public String boardUpdateInsert(Model model,@PathVariable Object num,@ModelAttribute DpgVo bean,@RequestParam("idx") int idx) throws Exception {
+	   memberService.dpgNoneUpdateInsert(bean, model, num, idx);
+	   return "redirect:/dpg/board?startNum=0"; 
    }
 	
-	
+   
+   
+   
    //리뷰 - 사진 있는 게시판
    @RequestMapping(value = "/dpg/review", method = RequestMethod.GET)
    public String review(Model model,@RequestParam int startNum) throws Exception {
@@ -64,15 +67,18 @@ public class DpgController {
 	   memberService.dpgOne(model, dpgNum);
 	  return "dpg/selectOneReview";
    }
-   @RequestMapping(value = "/dpg/review/input", method = RequestMethod.GET)
-   public String reviewInput(Model model) throws Exception {
-	  return "dpg/reviewInput";
-   }
-   @RequestMapping(value = "/dpg/review/update/{dpgNum}", method = RequestMethod.POST)
-   public String reviewUpdate(Model model) throws Exception {
-	  return "dpg/reviewInput";
-   }
    
+   @RequestMapping(value = "/dpg/review/{dpgNum}/input", method = RequestMethod.GET)
+   public String reviewInputView(Model model,@PathVariable Object dpgNum,@RequestParam("idx") int idx) throws Exception {
+	  memberService.dpgExInputEditOne(model, dpgNum, idx);
+	  return "dpg/reviewInput";
+   }
+   @RequestMapping(value = "/dpg/review/{num}/input", method = RequestMethod.POST)
+   public String reviewInput(Model model,@PathVariable Object num,@ModelAttribute DpgVo bean,@RequestParam("idx") int idx, @RequestParam("cma_file") MultipartFile file,HttpServletRequest req) throws Exception {
+	   memberService.dpgExUpdateInsert(bean, model, num, idx,file,req);
+	   return "redirect:/dpg/review?startNum=0"; 
+   }
+    
 	
 // ajax로 댓글 정보 불러오기
 	@RequestMapping(value = "/replyCall", method = RequestMethod.GET)
