@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 
 <head>
@@ -16,26 +16,41 @@
 <script src="../resources/js/jquery.bxslider.js"></script>
 <script src="../resources/js/bootstrap.js"></script>
 <script>
-	$(document).ready(function() {
-		$('.bxslider').bxSlider({
-			auto : true,
-			speed : 300,
-			pause : 2000,
-			mode : 'horizontal',
-			autoControlls : true,
-			pager : false,
-			autoHover : true,
-			controls : false
-		});
-		var count= ${count};
-		var cnt=count/10;
-		var startNum=${startNum};
-		for(var i=0; i<cnt; i++){
-			if(startNum>0)$('#previousLi').attr('href',"/dpg/board?startNum="+(startNum-10)+"");								
-			if((startNum+10)<count)$('#nextLi').attr('href',"/dpg/board?startNum="+(startNum+10)+"");
-			$('#pageNum').find('li').last().before("<li><a href='/dpg/board?startNum="+(i*10)+"'>"+(i+1)+"</a></li>");				
-		}
-	});
+	$(document).ready(
+			function() {
+				$('.bxslider').bxSlider({
+					auto : true,
+					speed : 300,
+					pause : 2000,
+					mode : 'horizontal',
+					autoControlls : true,
+					pager : false,
+					autoHover : true,
+					controls : false
+				});
+				var count = $
+				{
+					count
+				}
+				;
+				var cnt = count / 10;
+				var startNum = $
+				{
+					startNum
+				}
+				;
+				for (var i = 0; i < cnt; i++) {
+					if (startNum > 0)
+						$('#previousLi').attr('href',
+								"/dpg/board?startNum=" + (startNum - 10) + "");
+					if ((startNum + 10) < count)
+						$('#nextLi').attr('href',
+								"/dpg/board?startNum=" + (startNum + 10) + "");
+					$('#pageNum').find('li').last().before(
+							"<li><a href='/dpg/board?startNum=" + (i * 10)
+									+ "'>" + (i + 1) + "</a></li>");
+				}
+			});
 	$(function() {
 		$('#content').keyup(function(e) {
 			var content = $(this).val();
@@ -44,7 +59,6 @@
 		});
 		$('#content').keyup();
 	});
-	
 </script>
 </head>
 
@@ -59,8 +73,8 @@
 					<li><a href="/dpg?startNum=0">DPG</a></li>
 					<li class="active">게시판</li>
 				</ol>
-				<table class="table table-hover">
-					
+				<table class="table table-hover ">
+
 					<tr>
 						<th>제목</th>
 						<th class="hidden-xs">작성자</th>
@@ -68,27 +82,32 @@
 						<th class="hidden-xs hidden-sm hidden-md">조회</th>
 					</tr>
 					<c:forEach items="${list}" var="bean">
-					<tr>				
-						<td><a href="../dpg/board/${bean.dpgNum }">
-						
-						<%-- ${bean.dpgTitle } --%>
-						<c:set var="text" value="${bean.dpgTitle}" /> 
-									<c:if test="${fn:length(text) lt 21}">
+						<tr>
+							<td><a href="../dpg/board/${bean.dpgNum }"> 
+									<c:set var="text" value="${bean.dpgTitle}" /> <c:if
+										test="${fn:length(text) lt 21}">
 											${text }
-									</c:if> 
-									<c:if test="${fn:length(text) ge 21}">
+									</c:if> <c:if test="${fn:length(text) ge 21}">
 										${fn:substring(text,0,21)}...
 									</c:if>
-						
-						</a></td>
-						<td class="hidden-xs"><a href="board?id=kdj">${bean.dpgWriter }</a></td>
-						<td class="hidden-xs hidden-sm">2018.1.16</td>
-						<td class="hidden-xs hidden-sm hidden-md">${bean.dpgCount }</td>
-					</tr>
-					</c:forEach> 
+
+							</a></td>
+							<td class="hidden-xs"><a href="board?id=kdj">${bean.dpgWriter }</a></td>
+							<td class="hidden-xs hidden-sm">2018.1.16</td>
+							<td class="hidden-xs hidden-sm hidden-md">${bean.dpgCount }</td>
+							
+						</tr>
+					</c:forEach>
+						<!-- <tr>
+							<td></td>
+							<td class="hidden-xs"></td>
+							<td class="hidden-xs hidden-sm"></td>
+							<td class="hidden-xs hidden-sm hidden-md"></td>
+						</tr> -->
 				</table>
+				
 				<nav class="col-xs-12">
-				<a href="/dpg/board/input" class="btn btn-default pull-right">글쓰기</a>
+					<a href="/dpg/board/input" class="btn btn-default pull-right">글쓰기</a>
 					<ul class="pagination" id="pageNum">
 						<li><a id="previousLi" href="#">Previous</a></li>
 						<li><a id="nextLi" href="#">Next</a></li>
@@ -109,7 +128,6 @@
 				</form>
 			</div>
 			<div class="col-sm-4 hidden-xs">
-
 				<jsp:include page="../template/bxslider.jsp" flush="false" />
 			</div>
 		</div>

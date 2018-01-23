@@ -87,6 +87,7 @@
 					<li><a href="/dpg?startNum=0">DPG</a></li>
 					<li class="active">리뷰</li>
 				</ol>
+				<hr style="border: 0; height: 1px; background: #ccc;" />
 				<ul style="list-style: none;">
 					<!-- 반복시작 -->
 					<c:forEach items="${imgList}" var="bean">
@@ -97,7 +98,7 @@
 									class="img-thumbnail reviewImg" /></a>
 							</div>
 							<div class="col-sm-8">
-								<strong class="col-sm-12"> <a
+								<strong class="col-sm-9"> <a
 									href="../dpg/review/${bean.dpgNum }"> <c:set var="text"
 											value="${bean.dpgTitle}" /> <c:if
 											test="${fn:length(text) lt 14}">
@@ -107,21 +108,21 @@
 									</c:if>
 								</a>
 								</strong>
-								<div class="col-sm-12">&nbsp;</div>
-								<div class="col-sm-12">
-									<span><a href="#">${bean.dpgWriter }</a></span> <span>2018.01.18</span>
+								<!-- <div class="col-sm-12">&nbsp;</div> -->
+								<div class="col-sm-3">
+									<span><a href="#">${bean.dpgWriter }</a></span>  <span>${bean.dpgNalja }</span>
 									<div style="color: purple;">
-										<span class="glyphicon glyphicon-thumbs-up">추천수</span> <span
-											class="glyphicon glyphicon-comment">조회수</span> <span
+										<span class="glyphicon glyphicon-comment">${bean.dpgCount }</span> <span
 											class="glyphicon glyphicon-tasks">댓글수</span>
 									</div>
 								</div>
 							</div>
 						</li>
 						<li><div class="col-sm-12">
-								<hr />
+								<hr style="border: 0; height: 1px; background: #ccc;" />
 							</div></li>
 						<!-- 반복 끝 -->
+
 					</c:forEach>
 				</ul>
 				<nav class="col-xs-12">

@@ -128,7 +128,8 @@ public class MemberServiceImpl implements MemberService {
 			model.addAttribute("imgList",dao.dpgImgLinkListDesc());
 			model.addAttribute("list",dao.dpgNoneLinkListDesc());
 			model.addAttribute("adminList",dao.dpgAdminList());
-			model.addAttribute("bestList",dao.dpgBestList());		
+			model.addAttribute("bestList",dao.dpgBestList());
+			model.addAttribute("bestNoneList",dao.dpgBestNoneList());
 	}
 	@Override
 	public void dpgEx(Model model,int startNum) throws Exception {

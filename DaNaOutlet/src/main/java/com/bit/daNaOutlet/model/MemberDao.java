@@ -46,6 +46,8 @@ public interface MemberDao {
 	
 	List<DpgVo> dpgNoneLinkListDesc() throws Exception;
 	
+	List<DpgVo> dpgBestNoneList() throws Exception;
+	
 	List<DpgVo> dpgImgLinkListAsc(int startNum) throws Exception;
 	
 	List<DpgVo> dpgNoneLinkListAsc(int startNum) throws Exception;

@@ -58,26 +58,31 @@
 	<select id="dpgOne" resultType="com.bit.daNaOutlet.model.entity.DpgVo" parameterType="int">
 		SELECT * FROM DANADPG WHERE DPGNUM=#{VALUE}
 	</select>
+	
 	<select id="dpgBestList"  resultType="com.bit.daNaOutlet.model.entity.DpgVo">
 		SELECT DPGNUM,DPGTITLE,DPGIMGLINK FROM (SELECT * FROM(SELECT * FROM DANADPG WHERE DPGCOUNT>=10 and DPGIMGLINK IS NOT NULL)AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS A ORDER BY DPGNUM DESC LIMIT 2;
+	</select>
+	
+	<select id="dpgBestNoneList"  resultType="com.bit.daNaOutlet.model.entity.DpgVo">
+		SELECT DPGNUM,DPGTITLE,DPGWRITER FROM (SELECT * FROM(SELECT * FROM DANADPG WHERE DPGCOUNT>=10 and DPGIMGLINK IS NULL)AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS A ORDER BY DPGNUM DESC LIMIT 3;
 	</select>
 	
 	<select id="dpgImgLinkListDesc" parameterType="com.bit.daNaOutlet.model.entity.DpgVo" resultType="com.bit.daNaOutlet.model.entity.DpgVo">	
 		SELECT DPGNUM,DPGTITLE,DPGIMGLINK  FROM(SELECT * FROM(SELECT * FROM DANADPG WHERE DPGIMGLINK IS NOT NULL)AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS A ORDER BY DPGNUM DESC LIMIT 3;
 	</select>
 	<select id="dpgNoneLinkListDesc" parameterType="com.bit.daNaOutlet.model.entity.DpgVo" resultType="com.bit.daNaOutlet.model.entity.DpgVo">
-		SELECT DPGNUM,DPGTITLE,DPGWRITER  FROM(SELECT * FROM (SELECT * FROM DANADPG WHERE DPGIMGLINK IS NULL) AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS B ORDER BY DPGNUM DESC LIMIT 8;	
+		SELECT DPGNUM,DPGTITLE,DPGWRITER  FROM(SELECT * FROM (SELECT * FROM DANADPG WHERE DPGIMGLINK IS NULL) AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS B ORDER BY DPGNUM DESC LIMIT 9;	
 	</select>
 	
 	<select id="dpgImgLinkListAsc" parameterType="int" resultType="com.bit.daNaOutlet.model.entity.DpgVo">	
-		SELECT DPGNUM,DPGTITLE,DPGIMGLINK,DPGWRITER  FROM(SELECT * FROM(SELECT * FROM DANADPG WHERE DPGIMGLINK IS NOT NULL)AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS A ORDER BY DPGNUM DESC LIMIT #{value},10;
+		SELECT DPGNUM,DPGTITLE,DPGIMGLINK,DPGWRITER,DPGNALJA,DPGCOUNT  FROM(SELECT * FROM(SELECT * FROM DANADPG WHERE DPGIMGLINK IS NOT NULL)AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS A ORDER BY DPGNUM DESC LIMIT #{value},10;
 	</select>
 	<select id="dpgNoneLinkListAsc" parameterType="int" resultType="com.bit.daNaOutlet.model.entity.DpgVo">
 		SELECT DPGNUM,DPGTITLE,DPGWRITER,DPGWRITER,DPGCOUNT  FROM(SELECT * FROM (SELECT * FROM DANADPG WHERE DPGIMGLINK IS NULL) AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS B ORDER BY DPGNUM DESC LIMIT #{value},10;	
 	</select>
 	
 	<select id="dpgAdminList" resultType="com.bit.daNaOutlet.model.entity.DpgVo">
-		SELECT DPGNUM,DPGTITLE,DPGWRITER  FROM(SELECT * FROM DANADPG WHERE DPGFROM='운영자') AS B ORDER BY DPGNUM DESC LIMIT 1;	
+		SELECT DPGNUM,DPGTITLE,DPGWRITER,DPGCONTENT,DPGIMGLINK  FROM(SELECT * FROM DANADPG WHERE DPGFROM='운영자') AS B ORDER BY DPGNUM DESC LIMIT 3;	
 	</select>
 	<select id="dpgNumOne" resultType="int">
 		SELECT MAX(DPGNUM+1) FROM DANADPG

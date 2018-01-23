@@ -104,6 +104,12 @@ public class MemberDaoImpl implements MemberDao {
 	public List<DpgVo> dpgBestList() throws Exception {
 		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgBestList");
 	}
+	
+	@Override
+	public List<DpgVo> dpgBestNoneList() throws Exception {
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgBestNoneList");
+	}
+	
 	@Override
 	public List<DpgVo> dpgImgLinkListDesc() throws Exception {
 		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgImgLinkListDesc");
@@ -192,6 +198,8 @@ public class MemberDaoImpl implements MemberDao {
 	public int idDoubleChk(String chkId) throws Exception {
 		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.idDoubleChk", chkId);		
 	}
+
+	
 
 	
 }
