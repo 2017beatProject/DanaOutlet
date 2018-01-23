@@ -6,9 +6,11 @@
 <html>
 
 <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시판</title>
 <link rel="stylesheet" href="../resources/css/bootstrap.css">
 <link rel="stylesheet" href="../resources/css/bootstrap-theme.css">
@@ -68,11 +70,11 @@
 	});
 </script>
 <style>
-@media ( max-width : 768px) {
+/* @media ( max-width : 768px) {
 	.reviewImg {
 		width: 80px;
 	}
-}
+} */
 </style>
 </head>
 
@@ -88,17 +90,17 @@
 					<li class="active">리뷰</li>
 				</ol>
 				<hr style="border: 0; height: 1px; background: #ccc;" />
-				<ul style="list-style: none;">
+				<ul class="list-unstyled">
 					<!-- 반복시작 -->
 					<c:forEach items="${imgList}" var="bean">
-						<li>
-							<div class="col-sm-4">
+						<li class="col-xs-12" style="padding: 0px 3px 0px 3px;">
+							<div class="col-sm-4 col-xs-2" style="padding: 0px 0px 0px 0px;">
 								<a href="../dpg/review/${bean.dpgNum }"><img
 									src="../resources/imgs/dpgimgs/${bean.dpgImgLink}" alt=""
-									class="img-thumbnail reviewImg" /></a>
+									class="img-responsive reviewImg" /></a>
 							</div>
-							<div class="col-sm-8">
-								<strong class="col-sm-9"> <a
+							<div class="col-sm-8 col-xs-10" style="padding: 0px 3px 0px 3px;">
+								<strong class="col-sm-8 col-md-8 col-xs-7"> <a
 									href="../dpg/review/${bean.dpgNum }"> <c:set var="text"
 											value="${bean.dpgTitle}" /> <c:if
 											test="${fn:length(text) lt 14}">
@@ -109,19 +111,20 @@
 								</a>
 								</strong>
 								<!-- <div class="col-sm-12">&nbsp;</div> -->
-								<div class="col-sm-3">
-									<span><a href="#">${bean.dpgWriter }</a></span>  <span>${bean.dpgNalja }</span>
+								<div class="col-sm-4 col-md-4 col-xs-5" style="padding: 0px 3px 0px 3px;">
+									<p><a href="#">${bean.dpgWriter }</a></p> <p>${bean.dpgNalja }</p>
 									<div style="color: purple;">
-										<span class="glyphicon glyphicon-comment">${bean.dpgCount }</span> <span
-											class="glyphicon glyphicon-tasks">댓글수</span>
+										<span class="glyphicon glyphicon-comment">${bean.dpgCount }</span>
+										<!-- <span class="glyphicon glyphicon-tasks">댓글수</span> -->
 									</div>
 								</div>
 							</div>
 						</li>
-						<li><div class="col-sm-12">
-								<hr style="border: 0; height: 1px; background: #ccc;" />
-							</div></li>
+						<li class="col-xs-12">
+							<hr style="border: 0; height: 1px; background: #ccc;" />
+						</li>
 						<!-- 반복 끝 -->
+
 
 					</c:forEach>
 				</ul>

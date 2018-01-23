@@ -5,16 +5,18 @@
 <html>
 
 <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>입력</title>
-<link rel="stylesheet" href="../../resources/css/bootstrap.css">
-<link rel="stylesheet" href="../../resources/css/bootstrap-theme.css">
-<script src="../../resources/js/jquery.min.js"></script>
-<script src="../../resources/js/jquery-1.12.4.js"></script>
-<script src="../../resources/js/jquery.bxslider.js"></script>
-<script src="../../resources/js/bootstrap.js"></script>
+<title>게시판</title>
+<link rel="stylesheet" href="../resources/css/bootstrap.css">
+<link rel="stylesheet" href="../resources/css/bootstrap-theme.css">
+<script src="../resources/js/jquery.min.js"></script>
+<script src="../resources/js/jquery-1.12.4.js"></script>
+<script src="../resources/js/jquery.bxslider.js"></script>
+<script src="../resources/js/bootstrap.js"></script>
 <script>
 	$(document).ready(function() {
 		$('.bxslider').bxSlider({
