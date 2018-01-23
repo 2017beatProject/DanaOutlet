@@ -64,7 +64,7 @@
 	</select>
 	
 	<select id="dpgBestNoneList"  resultType="com.bit.daNaOutlet.model.entity.DpgVo">
-		SELECT DPGNUM,DPGTITLE,DPGWRITER FROM (SELECT * FROM(SELECT * FROM DANADPG WHERE DPGCOUNT>=10 and DPGIMGLINK IS NULL)AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS A ORDER BY DPGNUM DESC LIMIT 3;
+		SELECT DPGNUM,DPGTITLE,DPGWRITER FROM (SELECT * FROM(SELECT * FROM DANADPG WHERE DPGCOUNT>=10 and DPGIMGLINK IS NULL)AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS A ORDER BY DPGNUM DESC LIMIT 7;
 	</select>
 	
 	<select id="dpgImgLinkListDesc" parameterType="com.bit.daNaOutlet.model.entity.DpgVo" resultType="com.bit.daNaOutlet.model.entity.DpgVo">	
