@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
-import com.bit.daNaOutlet.model.entity.LoginVo;
+import com.bit.daNaOutlet.model.entity.KaKaoMemberVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
 import com.bit.daNaOutlet.model.entity.ReplyVo;
 
@@ -24,7 +24,6 @@ public interface MemberService {
 	void selectOne(Model model, int mnum) throws Exception;
 	
 	void memberAdd(MemberVo bean) throws Exception;
-	
 
 	/* 핫딜관련서비스 */
 	String hotDealAdd(HotDealVo bean,MultipartFile file,HttpServletRequest req) throws Exception;
@@ -35,9 +34,9 @@ public interface MemberService {
 	/* 클립관련 서비스 */
 	void clipList(Model model) throws Exception;
 	
-	String login(LoginVo bean, HttpServletRequest req) throws Exception;
+	String login(MemberVo bean, HttpServletRequest req) throws Exception;
 
-	String loginKakao(LoginVo bean, HttpServletRequest req) throws Exception;
+	String loginKakao(KaKaoMemberVo bean, HttpServletRequest req) throws Exception;
 	
 	/* DPG 관련 서비스*/
 	String dpgAdd(DpgVo bean,MultipartFile file,HttpServletRequest req) throws Exception;

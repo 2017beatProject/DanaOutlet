@@ -4,80 +4,90 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bit.daNaOutlet.model.MemberDao">
-	<!--회원관리부분 -->
-	<select id="selectAll" resultType="com.bit.daNaOutlet.model.entity.MemberVo">
-		SELECT * FROM DANAMEMBER
-	</select>
-	<select id="selectOne" parameterType="int" resultType="com.bit.daNaOutlet.model.entity.MemberVo">
-		SELECT * FROM DANAMEMBER WHERE MNUM=#{value}
-	</select>
-	<select id="mnumOne" resultType="int">
-		SELECT MAX(MNUM+1) FROM DANAMEMBER
-	</select>
-	<select id="idDoubleChk" resultType="int" parameterType="String">
-		SELECT COUNT(ID) FROM DANAMEMBER WHERE ID LIKE #{value}
-	</select>
-	<insert id="memberAdd" parameterType="com.bit.daNaOutlet.model.entity.MemberVo">
-		INSERT INTO DANAMEMBER(MNUM,NAME,PHONE,MBIRTH,ID,MAIL,ADDR,ADDRN,PASSWORD,SEX) VALUES(#{mnum},#{name},#{phone},#{mbirth},#{id},#{mail},#{addr},#{addrn},#{password},#{sex})
-	</insert>
-	
-	<!-- 일반로그인  -->
-	<select id="loginChk" resultType="int" parameterType="com.bit.daNaOutlet.model.entity.LoginVo">	
-		SELECT COUNT(*) FROM DANAMEMBER where id like #{loginId} and password like #{loginPw}
-	</select>
-	
-	<!-- 카카오로그인 -->
-	<select id="idKakoaLogCount" resultType="int">
-		SELECT MAX(idKakaoLog+1) FROM KAKAOLOGIN
-	</select>	
-	<select id="loginKakao" parameterType="com.bit.daNaOutlet.model.entity.LoginVo">	
-		INSERT INTO KAKAOLOGIN VALUES(#{idKakaoLog}, #{loginId}, #{nickName}, now())
-	</select>
-	
-	
-	<!-- 핫딜 부분 -->
- 	<select id="hotDealNumOne" resultType="int">
- 	SELECT MAX(hotDealNum+1) FROM HOTDEAL
- 	</select>
- 	<select id="hotDealCount" resultType="int">
- 		SELECT COUNT(*) FROM HOTDEAL
- 	</select>
- 	<select id="hotDealAll" resultType="com.bit.daNaOutlet.model.entity.HotDealVo">
- 		SELECT * FROM HOTDEAL
- 	</select>
- 	<insert id="hotDealAdd" parameterType="com.bit.daNaOutlet.model.entity.HotDealVo">
- 		INSERT INTO HOTDEAL(PRICE,HOTDEALNUM,LINK,PRODUCTNAME,PRODUCTINTRO) VALUES(#{price},#{hotDealNum},#{link},#{productName},#{productIntro})
- 	</insert>
- 		
-	<!--클립부분  -->
-	<select id="clipList" resultType="com.bit.daNaOutlet.model.entity.ClipVo">
-		SELECT * FROM DANACLIP 
-	</select>
-	
-	<!-- DPG 부분 -->	
+   <!--회원관리부분 -->
+   <select id="selectAll" resultType="com.bit.daNaOutlet.model.entity.MemberVo">
+      SELECT * FROM DANAMEMBER
+   </select>
+   <select id="selectOneInt" parameterType="int" resultType="com.bit.daNaOutlet.model.entity.MemberVo">
+      SELECT * FROM DANAMEMBER WHERE MNUM=#{value}
+   </select>
+   <select id="selectOneVo" parameterType="com.bit.daNaOutlet.model.entity.MemberVo" resultType="com.bit.daNaOutlet.model.entity.MemberVo">
+      SELECT * FROM DANAMEMBER WHERE LOGINID=#{loginId} AND LOGINPW=#{loginPw}
+   </select>
+   <select id="mnumOne" resultType="int">
+      SELECT MAX(MNUM+1) FROM DANAMEMBER
+   </select>
+   <select id="idDoubleChk" resultType="int" parameterType="String">
+      SELECT COUNT(LOGINID) FROM DANAMEMBER WHERE LOGINID LIKE #{value}
+   </select>
+   <insert id="memberAdd" parameterType="com.bit.daNaOutlet.model.entity.MemberVo">
+      INSERT INTO DANAMEMBER(MNUM,NICKNAME,PHONE,MBIRTH,LOGINID,MAIL,ADDR,ADDRN,LOGINPW,SEX) VALUES(#{mnum},#{nickName},#{phone},#{mbirth},#{loginId},#{mail},#{addr},#{addrn},#{loginPw},#{sex})
+   </insert>
+   
+   <!-- 일반로그인  -->
+   <select id="loginChk" resultType="int" parameterType="com.bit.daNaOutlet.model.entity.MemberVo">   
+      SELECT COUNT(*) FROM DANAMEMBER where loginId like #{loginId} and loginPw like #{loginPw}
+   </select>
+   
+   <!-- 카카오로그인 -->
+   <select id="idKakoaLogCount" resultType="int">
+      SELECT MAX(idKakaoLog+1) FROM KAKAOLOGIN
+   </select>      
+   <select id="KakaoUserCount" resultType="int">
+   		SELECT COUNT(*) FROM KAKAOLOGIN WHERE KAKAOID LIKE #{loginId} AND NICKNAME LIKE #{nickName}
+   </select>
+   <insert id="KakaoUserAdd" parameterType="com.bit.daNaOutlet.model.entity.KaKaoMemberVo">
+      INSERT INTO KAKAOLOGIN VALUES(#{idKakaoLog}, #{loginId}, #{nickName}, now())
+   </insert>
+   
+   <!-- 핫딜 부분 -->
+    <select id="hotDealNumOne" resultType="int">
+    SELECT MAX(hotDealNum+1) FROM HOTDEAL
+    </select>
+    <select id="hotDealCount" resultType="int">
+       SELECT COUNT(*) FROM HOTDEAL
+    </select>
+    <select id="hotDealAll" resultType="com.bit.daNaOutlet.model.entity.HotDealVo">
+       SELECT * FROM HOTDEAL
+    </select>
+    <insert id="hotDealAdd" parameterType="com.bit.daNaOutlet.model.entity.HotDealVo">
+       INSERT INTO HOTDEAL(PRICE,HOTDEALNUM,LINK,PRODUCTNAME,PRODUCTINTRO) VALUES(#{price},#{hotDealNum},#{link},#{productName},#{productIntro})
+    </insert>
+       
+   <!--클립부분  -->
+   <select id="clipList" resultType="com.bit.daNaOutlet.model.entity.ClipVo">
+      SELECT * FROM DANACLIP 
+   </select>
+   
+   <!-- DPG 부분 -->	
 	<select id="dpgOne" resultType="com.bit.daNaOutlet.model.entity.DpgVo" parameterType="int">
 		SELECT * FROM DANADPG WHERE DPGNUM=#{VALUE}
 	</select>
+	
 	<select id="dpgBestList"  resultType="com.bit.daNaOutlet.model.entity.DpgVo">
 		SELECT DPGNUM,DPGTITLE,DPGIMGLINK FROM (SELECT * FROM(SELECT * FROM DANADPG WHERE DPGCOUNT>=10 and DPGIMGLINK IS NOT NULL)AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS A ORDER BY DPGNUM DESC LIMIT 2;
+	</select>
+	
+	<select id="dpgBestNoneList"  resultType="com.bit.daNaOutlet.model.entity.DpgVo">
+		SELECT DPGNUM,DPGTITLE,DPGWRITER FROM (SELECT * FROM(SELECT * FROM DANADPG WHERE DPGCOUNT>=10 and DPGIMGLINK IS NULL)AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS A ORDER BY DPGNUM DESC LIMIT 7;
 	</select>
 	
 	<select id="dpgImgLinkListDesc" parameterType="com.bit.daNaOutlet.model.entity.DpgVo" resultType="com.bit.daNaOutlet.model.entity.DpgVo">	
 		SELECT DPGNUM,DPGTITLE,DPGIMGLINK  FROM(SELECT * FROM(SELECT * FROM DANADPG WHERE DPGIMGLINK IS NOT NULL)AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS A ORDER BY DPGNUM DESC LIMIT 3;
 	</select>
 	<select id="dpgNoneLinkListDesc" parameterType="com.bit.daNaOutlet.model.entity.DpgVo" resultType="com.bit.daNaOutlet.model.entity.DpgVo">
-		SELECT DPGNUM,DPGTITLE,DPGWRITER  FROM(SELECT * FROM (SELECT * FROM DANADPG WHERE DPGIMGLINK IS NULL) AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS B ORDER BY DPGNUM DESC LIMIT 8;	
+		SELECT DPGNUM,DPGTITLE,DPGWRITER  FROM(SELECT * FROM (SELECT * FROM DANADPG WHERE DPGIMGLINK IS NULL) AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS B ORDER BY DPGNUM DESC LIMIT 9;	
 	</select>
 	
 	<select id="dpgImgLinkListAsc" parameterType="int" resultType="com.bit.daNaOutlet.model.entity.DpgVo">	
-		SELECT DPGNUM,DPGTITLE,DPGIMGLINK,DPGWRITER  FROM(SELECT * FROM(SELECT * FROM DANADPG WHERE DPGIMGLINK IS NOT NULL)AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS A ORDER BY DPGNUM DESC LIMIT #{value},10;
+		SELECT DPGNUM,DPGTITLE,DPGIMGLINK,DPGWRITER,DPGNALJA,DPGCOUNT  FROM(SELECT * FROM(SELECT * FROM DANADPG WHERE DPGIMGLINK IS NOT NULL)AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS A ORDER BY DPGNUM DESC LIMIT #{value},10;
 	</select>
 	<select id="dpgNoneLinkListAsc" parameterType="int" resultType="com.bit.daNaOutlet.model.entity.DpgVo">
 		SELECT DPGNUM,DPGTITLE,DPGWRITER,DPGWRITER,DPGCOUNT  FROM(SELECT * FROM (SELECT * FROM DANADPG WHERE DPGIMGLINK IS NULL) AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오') AS B ORDER BY DPGNUM DESC LIMIT #{value},10;	
 	</select>
 	
 	<select id="dpgAdminList" resultType="com.bit.daNaOutlet.model.entity.DpgVo">
-		SELECT DPGNUM,DPGTITLE,DPGWRITER  FROM(SELECT * FROM DANADPG WHERE DPGFROM='운영자') AS B ORDER BY DPGNUM DESC LIMIT 1;	
+		SELECT DPGNUM,DPGTITLE,DPGWRITER,DPGCONTENT,DPGIMGLINK  FROM(SELECT * FROM DANADPG WHERE DPGFROM='운영자') AS B ORDER BY DPGNUM DESC LIMIT 3;	
 	</select>
 	<select id="dpgNumOne" resultType="int">
 		SELECT MAX(DPGNUM+1) FROM DANADPG
@@ -97,15 +107,15 @@
 	<update id="dpgUpdate" parameterType="com.bit.daNaOutlet.model.entity.DpgVo">
 		UPDATE DANADPG SET DPGTITLE=#{dpgTitle}, DPGCONTENT=#{dpgContent}, DPGIMGLINK=#{dpgImgLink} where DPGWRITER=#{dpgWriter} AND DPGFROM=#{dpgFrom}
 	</update>
-	
-	<!--댓글내용 호출 및 입력-->
-	<select id="replyCall" resultType="com.bit.daNaOutlet.model.entity.ReplyVo" parameterType="int">
-		SELECT * FROM REPLYASSEMBLE WHERE FATHERCONTENTSNUM=#{VALUE}
-	</select>	
-	<select id="replyNumOne" resultType="int">
+   
+   <!--댓글내용 호출 및 입력-->
+   <select id="replyCall" resultType="com.bit.daNaOutlet.model.entity.ReplyVo" parameterType="int">
+      SELECT * FROM REPLYASSEMBLE WHERE FATHERCONTENTSNUM=#{VALUE}
+   </select>   
+   <select id="replyNumOne" resultType="int">
       SELECT MAX(REPLYLOG+1) FROM REPLYASSEMBLE
     </select>
     <insert id="replyAdd" parameterType="com.bit.daNaOutlet.model.entity.ReplyVo">   
-   	  INSERT INTO REPLYASSEMBLE VALUES(#{replyLog}, #{replyId}, #{replyContent}, #{replyDate},#{replyDepth},#{replyConId},#{fatherContentsNum},#{replyImgsLink})
+        INSERT INTO REPLYASSEMBLE VALUES(#{replyLog}, #{replyId}, #{replyContent}, #{replyDate},#{replyDepth},#{replyConId},#{fatherContentsNum},#{replyImgsLink})
     </insert>
 </mapper>

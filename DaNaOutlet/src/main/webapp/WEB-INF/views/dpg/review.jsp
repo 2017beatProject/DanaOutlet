@@ -26,7 +26,7 @@
 			autoHover : true,
 			controls : false
 		});
-		var count= ${count};
+		var count=${count};
 		var cnt=count/10;
 		var startNum=${startNum};
 		for(var i=0; i<cnt; i++){

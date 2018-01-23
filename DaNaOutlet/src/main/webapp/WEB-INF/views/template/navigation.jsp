@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="/resources/js/kakaoLogin.js"></script>
 <script src="/resources/js/join.js"></script>
@@ -102,9 +104,9 @@ body {
 				<button type="button" class="btn btn-primary navbar-btn"
 					data-toggle="modal" data-target="#login">로그인</button>
 			</div>
-			<div class="nav navbar-nav navbar-right" id="logoutFunc">
-				<span id="loginChkMsg">${loginChk}</span> <span id="loginId">${loginInfo}님
-					접속중</span>
+			<div class="nav navbar-nav navbar-right" id="logoutFunc" >
+				<span id="loginChkMsg">${loginChk}</span> 			 	
+					<span id="inFologinId" >${loginInfo.nickName}님 접속중</span>								
 				<button type="button" class="btn btn-primary navbar-btn" id="logout">로그아웃</button>
 
 			</div>
@@ -178,7 +180,7 @@ body {
 								<div class="form-group" >
 									<label for="id" class="col-sm-2 control-label">아이디</label>
 									<div class="col-sm-7" id="id">
-										<input type="text" class="form-control" placeholder="ID" id="idInput" name="id">
+										<input type="text" class="form-control" placeholder="ID" id="idInput" name="loginId">
 									</div>
 									<div class="col-sm-2">
 										<button class="btn btn-default" type="button" id="idDoubleCheck">중복확인</button>
@@ -187,7 +189,7 @@ body {
 								<div class="form-group" >
 									<label for="password" class="col-sm-2 control-label">암호</label>
 									<div class="col-sm-7" id="pw">
-										<input type="password" class="form-control" id="pwInput" name="password" placeholder="Password">
+										<input type="password" class="form-control" id="pwInput" name="loginPw" placeholder="Password">
 									</div>
 								</div>
 								<div class="form-group" id="pw2">
@@ -204,7 +206,7 @@ body {
 								<div class="form-group" id="name">
 									<label for="name" class="col-sm-2 control-label">이름</label>
 									<div class="col-sm-7">
-										<input type="text" class="form-control" placeholder="Name" id="userName" name="name">
+										<input type="text" class="form-control" placeholder="Name" id="userName" name="nickName">
 										<span id="nameErr">이름을 입력해주세요.</span>
 									</div>
 									

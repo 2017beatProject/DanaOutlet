@@ -11,9 +11,11 @@ public class DpgVo {
 	private String dpgSubject;
 	private String dpgContent;
 	private String dpgImgLink;
+	private String dpgNalja;
 	
-	
+
 	public DpgVo() {
+		// TODO Auto-generated constructor stub
 	}
 
 
@@ -97,79 +99,18 @@ public class DpgVo {
 	}
 
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((dpgContent == null) ? 0 : dpgContent.hashCode());
-		result = prime * result + dpgCount;
-		result = prime * result + ((dpgFrom == null) ? 0 : dpgFrom.hashCode());
-		result = prime * result + ((dpgImgLink == null) ? 0 : dpgImgLink.hashCode());
-		result = prime * result + dpgNum;
-		result = prime * result + ((dpgSubject == null) ? 0 : dpgSubject.hashCode());
-		result = prime * result + ((dpgTitle == null) ? 0 : dpgTitle.hashCode());
-		result = prime * result + ((dpgWriter == null) ? 0 : dpgWriter.hashCode());
-		return result;
+	public String getDpgNalja() {
+		return dpgNalja;
 	}
 
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		DpgVo other = (DpgVo) obj;
-		if (dpgContent == null) {
-			if (other.dpgContent != null)
-				return false;
-		} else if (!dpgContent.equals(other.dpgContent))
-			return false;
-		if (dpgCount != other.dpgCount)
-			return false;
-		if (dpgFrom == null) {
-			if (other.dpgFrom != null)
-				return false;
-		} else if (!dpgFrom.equals(other.dpgFrom))
-			return false;
-		if (dpgImgLink == null) {
-			if (other.dpgImgLink != null)
-				return false;
-		} else if (!dpgImgLink.equals(other.dpgImgLink))
-			return false;
-		if (dpgNum != other.dpgNum)
-			return false;
-		if (dpgSubject == null) {
-			if (other.dpgSubject != null)
-				return false;
-		} else if (!dpgSubject.equals(other.dpgSubject))
-			return false;
-		if (dpgTitle == null) {
-			if (other.dpgTitle != null)
-				return false;
-		} else if (!dpgTitle.equals(other.dpgTitle))
-			return false;
-		if (dpgWriter == null) {
-			if (other.dpgWriter != null)
-				return false;
-		} else if (!dpgWriter.equals(other.dpgWriter))
-			return false;
-		return true;
-	}
-
-
-	@Override
-	public String toString() {
-		return "DpgVo [dpgNum=" + dpgNum + ", dpgCount=" + dpgCount + ", dpgTitle=" + dpgTitle + ", dpgWriter="
-				+ dpgWriter + ", dpgFrom=" + dpgFrom + ", dpgSubject=" + dpgSubject + ", dpgContent=" + dpgContent
-				+ ", dpgImgLink=" + dpgImgLink + "]";
+	public void setDpgNalja(String dpgNalja) {
+		this.dpgNalja = dpgNalja;
 	}
 
 
 	public DpgVo(int dpgNum, int dpgCount, String dpgTitle, String dpgWriter, String dpgFrom, String dpgSubject,
-			String dpgContent, String dpgImgLink) {
+			String dpgContent, String dpgImgLink, String dpgNalja) {
 		super();
 		this.dpgNum = dpgNum;
 		this.dpgCount = dpgCount;
@@ -179,6 +120,7 @@ public class DpgVo {
 		this.dpgSubject = dpgSubject;
 		this.dpgContent = dpgContent;
 		this.dpgImgLink = dpgImgLink;
+		this.dpgNalja = dpgNalja;
 	}
 	
 	

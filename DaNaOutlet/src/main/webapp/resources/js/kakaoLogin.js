@@ -11,7 +11,8 @@ function loginTool() {
 			'url' : '/login',
 			'type' : 'post',
 			'data' : param,
-			'success' : function(data) {				
+			'success' : function(data) {	
+				alert("로그인성공 : "+data);				
 				window.location.reload("#");
 			},
 			'err' : function(data) {

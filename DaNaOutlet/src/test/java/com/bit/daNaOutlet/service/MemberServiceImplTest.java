@@ -8,17 +8,17 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.bit.daNaOutlet.model.MemberDao;
-import com.bit.daNaOutlet.model.entity.LoginVo;
+import com.bit.daNaOutlet.model.entity.KaKaoMemberVo;
 
 public class MemberServiceImplTest {
 
 	MemberDao dao;
-	LoginVo bean;
+	KaKaoMemberVo bean;
 	@Before
 	public void setUp() throws Exception {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("/config-context.xml");
 		dao=(MemberDao) ac.getBean("memberDao");
-		bean=new LoginVo();
+		bean=new KaKaoMemberVo();
 		bean.setIdKakaoLog(2017);
 		bean.setLoginId("test1");		
 		bean.setNickName("test2");
@@ -30,7 +30,7 @@ public class MemberServiceImplTest {
 		
 		
 		
-		dao.loginKakao(bean);
+//		dao.loginKakao(bean);
 		
 	}
 

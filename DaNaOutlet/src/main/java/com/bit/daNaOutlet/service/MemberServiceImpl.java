@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.bit.daNaOutlet.model.MemberDao;
 import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
-import com.bit.daNaOutlet.model.entity.LoginVo;
+import com.bit.daNaOutlet.model.entity.KaKaoMemberVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
 import com.bit.daNaOutlet.model.entity.ReplyVo;
 import com.bit.daNaOutlet.util.Commons;
@@ -32,6 +32,7 @@ public class MemberServiceImpl implements MemberService {
 	HttpSession session;
 	PrintWriter out;
 	public MemberServiceImpl() {
+		sessions= new Sessions();
 		log=Logger.getLogger(MemberServiceImpl.class.getName());
 	}
 	
@@ -48,6 +49,9 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public void memberAdd(MemberVo bean) throws Exception {
+//		bean.setLoginId(loginId);
+//		bean.setLoginPw(loginPw);
+//		bean.setNickName(nickName);
 		bean.setMnum(dao.mNumOne()); // 번호는 bean 담아있지않아서 dao에서 맥스값+1한 값을 set함 
 		dao.memberAdd(bean);	
 	}
@@ -82,24 +86,22 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public String login(LoginVo bean, HttpServletRequest req) throws Exception {		
-				
-		if(dao.login(bean)>0) {			
-			
+	public String login(MemberVo bean, HttpServletRequest req) throws Exception {		
+		if(dao.login(bean)>0) {
+			bean=dao.selectOne(bean);
 			sessions.setSession(bean, req);
-			
 		return "로그인확인";		
 		}else {
 			return "로그인실패";
 		}
 	}
-
 	@Override
-	public String loginKakao(LoginVo bean, HttpServletRequest req) throws Exception {
+	public String loginKakao(KaKaoMemberVo bean, HttpServletRequest req) throws Exception {
 		bean.setIdKakaoLog(dao.kakolognum());
 		sessions.setSession(bean, req);
-		if(dao.loginKakao(bean)>0) return "로그인확인";		
-		return "로그인실패";
+		if(dao.KakaoUserCount(bean)>0) return "로그인확인";
+		else dao.KakaoUserAdd(bean);
+		return "로그인확인";
 	}
 
 	/* DPG 관련 */
@@ -128,7 +130,8 @@ public class MemberServiceImpl implements MemberService {
 			model.addAttribute("imgList",dao.dpgImgLinkListDesc());
 			model.addAttribute("list",dao.dpgNoneLinkListDesc());
 			model.addAttribute("adminList",dao.dpgAdminList());
-			model.addAttribute("bestList",dao.dpgBestList());		
+			model.addAttribute("bestList",dao.dpgBestList());
+			model.addAttribute("bestNoneList",dao.dpgBestNoneList());
 	}
 	@Override
 	public void dpgEx(Model model,int startNum) throws Exception {
