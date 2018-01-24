@@ -9,8 +9,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <link rel="stylesheet" href="resources/css/bootstrap.css">
 <link rel="stylesheet" href="resources/css/bootstrap-theme.css">
 <script src="resources/js/jquery.min.js"></script>
@@ -18,39 +16,65 @@
 <script src="resources/js/jquery.bxslider.js"></script>
 <script src="resources/js/bootstrap.js"></script>
 <script>
-	$(document).ready(function() {
-		$('.bxslider').bxSlider({
-			auto : true,
-			speed : 300,
-			pause : 2000,
-			mode : 'horizontal',
-			autoControlls : true,
-			pager : false,
-			autoHover : true,
-			controls : false
+	$(document)
+			.ready(
+					function() {
+						$('.bxslider').bxSlider({
+							auto : true,
+							speed : 300,
+							pause : 2000,
+							mode : 'horizontal',
+							autoControlls : true,
+							pager : false,
+							autoHover : true,
+							controls : false
+						})
+						$('#content').empty();
+						$
+								.ajax({
+									'url' : 'http://apis.skplanetx.com/11st/v2/common/products',
+									'data' : {
+										'version' : '1',
+										'searchKeyword' : "가구", // 가구에 대한 것들을 불러온다
+										'option' : 'Categories',
+										'page' : '1', // 1페이지에서만
+										'appKey' : '4c3dab31-521e-368c-86db-a60223eb7e22' // 이게 개발자 키
+									},
+									'success' : function(data) {
+										console.log(data);
+										datas = data;
+										products = data.childNodes[0].childNodes[1];
+										for (var i = 1; i < 25; i++) {
+											var pruductTitle = products.childNodes[i].childNodes[1].firstChild.wholeText;
+											$('#content')
+													.append(
+															'<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2" '
+															+ 'style="padding: 0px 0px 0px 0px"><img src="'
+															+ products.childNodes[i].childNodes[14].firstChild.wholeText
+															+ '" class="img-responsive hotDealImg" /><label class="text-center">'
+															+ products.childNodes[i].childNodes[1].firstChild.wholeText.substring(0,15)
+															+ '</label></div>'
 
-		});
-		/* $.ajax({
-			'url' : 'http://apis.skplanetx.com/11st/v2/common/products',
-			'data' : {
-				'version' : '1',
-				'searchKeyword' : $('#productSearch').val() + ",가구",
-				'option' : 'Categories',
-				'page' : loadPage,
-				'appKey' : '4c3dab31-521e-368c-86db-a60223eb7e22'
-			},'success' : function(data) {
-				datas = data;
-				products = data.childNodes[0].childNodes[1];
-			}
-			
-		}); */
-	});
+													);
+										}
+										;
+									},
+									'error' : function(data) {
+										console.log("에러");
+									}
+								});
+
+					});
 </script>
 
 <style type="text/css">
 .navbar-default {
 	margin-bottom: 0px;
 	padding-bottom: 0px;
+}
+
+.hotDealImg {
+	min-width: 100%;
 }
 </style>
 </head>
@@ -116,6 +140,8 @@
 			</a>
 		</div>
 	</div>
+
+	<!-- 버튼 8개 -->
 	<div class="container well">
 		<div class="row">
 			<div class="col-lg-1 col-md-2 col-sm-3 col-xs-4 text-center">
@@ -182,44 +208,38 @@
 
 		</div>
 	</div>
+
+
 	<div class="container-fluid">
+		<!-- bxSlider - 차후에 6개로 구현 -->
 		<div class="row">
 			<div class="col-sm-12">오늘의 추천</div>
-			<!-- 전면광고 bxSlider -->
-			<div class="col-sm-12" id="bxFirst" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px; border: 0px 0px 0px 0px;">
+			<div class="col-sm-12" id="bxFirst"
+				style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px; border: 0px 0px 0px 0px;">
 				<ul class="bxslider">
 					<li><img src="../resources/imgs/main/bx1.jpg" alt=""
-						class="img-responsive bxImg" />
+						class="img-responsive bxImg" /></li>
 					<li><img src="../resources/imgs/main/bx2.jpg" alt=""
 						class="img-responsive bxImg" /></li>
 					<li><img src="../resources/imgs/main/bx3.jpg" alt=""
 						class="img-responsive bxImg" /></li>
 				</ul>
 			</div>
-			<!-- 전면광고 끝 -->
 		</div>
+
 		<div class="row">
 			<div class="col-sm-12">테마쇼핑</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"
-				style="padding: 0px 0px 0px 0px">
-				<img src="../resources/imgs/main/cube1.jpg" alt=""
-					class="img-responsive bxImg" />
+
+			<!-- 여기에 이미지를 불러옵니다 -->
+			<div class="col-xs-12" id="content">
+				<!-- <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2"
+					style="padding: 0px 0px 0px 0px">
+					<img src="../resources/imgs/main/cube1.jpg" alt=""
+						class="img-responsive bxImg" />
+				</div> -->
 			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"
-				style="padding: 0px 0px 0px 0px">
-				<img src="../resources/imgs/main/cube2.jpg" alt=""
-					class="img-responsive bxImg" />
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"
-				style="padding: 0px 0px 0px 0px">
-				<img src="../resources/imgs/main/cube3.jpg" alt=""
-					class="img-responsive bxImg" />
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"
-				style="padding: 0px 0px 0px 0px">
-				<img src="../resources/imgs/main/cube4.jpg" alt=""
-					class="img-responsive bxImg" />
-			</div>
+
+
 		</div>
 		<div class="row">
 			<div class="col-sm-12">뜨는 상품</div>
