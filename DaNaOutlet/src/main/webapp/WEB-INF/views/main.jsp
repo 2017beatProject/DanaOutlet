@@ -32,7 +32,7 @@
 	var load = function(keyword) {
 		$("html,body").animate({
 			scrollTop : $("#content").offset().top - 60
-		}, 500);
+		}, 1000);
 		loadList(keyword);
 	}
 	var loadList = function(keyword) {
