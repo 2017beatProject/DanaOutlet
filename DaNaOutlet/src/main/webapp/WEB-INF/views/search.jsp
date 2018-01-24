@@ -4,7 +4,8 @@
 <%@ page session="false"%>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>검색</title>
 <link rel="stylesheet" href="../resources/css/bootstrap.css">
@@ -23,22 +24,26 @@
 	// 4c3dab31-521e-368c-86db-a60223eb7e22 요한
 	// 831b2c9b-12a4-3b28-a338-a5832c3ef3dd 민건
 	var lists = [];
-  $("input[name='confirm']:checked").each(function(i){   //jQuery로 for문 돌면서 check 된값 배열에 담는다
-   lists.push($(this).val());
-  
-  });
-  
-  $.ajax({
-	  'url':'http://localhost:8080/search',
-	  type:"GET", 
-	  data:{'confirm':lists},
-	  contentType:"application/x-www-form-urlencoded;charset=utf-8", //한글 깨짐 방지
-	  cache: false, 
-	  success:function(data){ }
-  });
-	
+	$("input[name='confirm']:checked").each(function(i) { //jQuery로 for문 돌면서 check 된값 배열에 담는다
+		lists.push($(this).val());
+
+	});
+
+	$.ajax({
+		'url' : 'http://localhost:8080/search',
+		type : "GET",
+		data : {
+			'confirm' : lists
+		},
+		contentType : "application/x-www-form-urlencoded;charset=utf-8", //한글 깨짐 방지
+		cache : false,
+		success : function(data) {
+		}
+	});
+
 	var loadList = function(num) {
-		$.ajax({
+		$
+				.ajax({
 					'url' : 'http://apis.skplanetx.com/11st/v2/common/products',
 					'data' : {
 						'version' : '1',
@@ -81,13 +86,13 @@
 													+ '<b>상품평가점수 : </b>'
 													+ products.childNodes[i].childNodes[20].firstChild.wholeText
 													+ '<br/>'
-													+'<b>할인:</b>' 
-													+ products.childNodes[i].childNodes[26].childNodes[0].wholeText 
+													+ '<b>할인:</b>'
+													+ products.childNodes[i].childNodes[26].childNodes[0].wholeText
 													+ '<br/>'
 													+ '<b>배송비 : </b>'
 													+ products.childNodes[i].childNodes[23].firstChild.wholeText
 													+ '<br/>'
-													+ '<b>리뷰수 : </b>' 
+													+ '<b>리뷰수 : </b>'
 													+ products.childNodes[i].childNodes[24].firstChild.wholeText
 													+ '</div><div class="col-sm-3"><label for="">'
 													+ '<br/><dd><br/><br/><br/><br/>'
@@ -95,20 +100,21 @@
 													+ '</dd></label><label for="">원</label><br/><br/><br/><br/><br/><br/><br/><br/><br/></li>'
 													+ '<br/>'
 													+ '<div style="border-bottom: thick;"></div>'
-													+ '<br/>' + '<br/>' 
-													// 상품가격
-													/*'구매만족도:' + products.childNodes[i].childNodes[25].firstChild.wholeText + '' +
-													'미성년자판매여부:' + products.childNodes[i].childNodes[26].firstChild.wholeText + '' +
-													*/
-									); 
-						}; 
+													+ '<br/>' + '<br/>'
+									// 상품가격
+									/*'구매만족도:' + products.childNodes[i].childNodes[25].firstChild.wholeText + '' +
+									'미성년자판매여부:' + products.childNodes[i].childNodes[26].firstChild.wholeText + '' +
+									 */
+									);
+						}
+						;
 					},
 					'error' : function(data) {
-						alert("에러");
-					} 
+						console.log("에러");
+					}
 				});
 	};
-	var search = function() { 
+	var search = function() {
 		$('#content').empty(); //remove();
 		loadList(num);
 	};
@@ -133,7 +139,7 @@
 		}
 	});
 </script>
-<style> 
+<style>
 ul {
 	list-style: none;
 }
@@ -171,8 +177,8 @@ dd {
 strong {
 	color: green;
 }
-  
-#productList { 
+
+#productList {
 	padding: 5px 0px 5px 5px;
 	margin-bottom: 5px;
 	border-bottom: 1px solid #cccc;
@@ -183,22 +189,23 @@ strong {
 <body>
 	<jsp:include page="template/navigation.jsp" flush="false" />
 
-	<h1> 검 색 페 이 지 </h1><br/>
-		<!-- <a href="join">회원가입</a> -->
-		<div class="container">
-	거실<input type="checkbox" name="confirm" value="거실"> &nbsp;
-	공부방<input type="checkbox" name="confirm" value="공부방">&nbsp;
-	침실<input type="checkbox" name="confirm" value="침실">&nbsp;
-	주방<input type="checkbox" name="confirm" value="주방" > &nbsp;
-	유아가구<input type="checkbox" name="confirm" value="유아가구">&nbsp;
-	소품<input type="checkbox" name="confirm" value="소품">&nbsp;
-	패브릭<input type="checkbox" name="confirm" value="패브릭" > &nbsp;
-	인테리어<input type="checkbox" name="confirm" value="인테리어">&nbsp;
-	화장실<input type="checkbox" name="confirm" value="화장실">&nbsp;
-	사무실<input type="checkbox" name="confirm" value="사무실" > &nbsp;
-	천장<input type="checkbox" name="confirm" value="천장">&nbsp;
-	공구<input type="checkbox" name="confirm" value="공구">
-		</div>
+	<h1>검 색 페 이 지</h1>
+	<br />
+	<!-- <a href="join">회원가입</a> -->
+	<div class="container">
+		거실<input type="checkbox" name="confirm" value="거실"> &nbsp; 공부방<input
+			type="checkbox" name="confirm" value="공부방">&nbsp; 침실<input
+			type="checkbox" name="confirm" value="침실">&nbsp; 주방<input
+			type="checkbox" name="confirm" value="주방"> &nbsp; 유아가구<input
+			type="checkbox" name="confirm" value="유아가구">&nbsp; 소품<input
+			type="checkbox" name="confirm" value="소품">&nbsp; 패브릭<input
+			type="checkbox" name="confirm" value="패브릭"> &nbsp; 인테리어<input
+			type="checkbox" name="confirm" value="인테리어">&nbsp; 화장실<input
+			type="checkbox" name="confirm" value="화장실">&nbsp; 사무실<input
+			type="checkbox" name="confirm" value="사무실"> &nbsp; 천장<input
+			type="checkbox" name="confirm" value="천장">&nbsp; 공구<input
+			type="checkbox" name="confirm" value="공구">
+	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
