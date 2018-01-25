@@ -189,7 +189,7 @@
 		</div>
 	</div>
 
-	<!-- 버튼 8개 -->
+	<!-- 버튼 12개 -->
 	<div class="container well">
 		<div class="row">
 			<div class="col-lg-1 col-md-2 col-sm-3 col-xs-4 text-center">
