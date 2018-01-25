@@ -23,6 +23,7 @@
 	var loadPage = 1;
 	var loaded = true;
 	var loadedNum;
+
 	// 4c3dab31-521e-368c-86db-a60223eb7e22 요한
 	// 831b2c9b-12a4-3b28-a338-a5832c3ef3dd 민건
 
@@ -32,7 +33,7 @@
 					'url' : 'http://apis.skplanetx.com/11st/v2/common/products',
 					'data' : {
 						'version' : '1',
-						'searchKeyword' : $('#productSearch').val() + ",가구",
+						'searchKeyword' : $('#productSearch').val() + " 가구",
 						'option' : 'Categories',
 						'page' : loadPage,
 						'appKey' : '831b2c9b-12a4-3b28-a338-a5832c3ef3dd'
@@ -104,8 +105,12 @@
 				});
 	};
 	var search = function() {
+		$('#btn').button('loading');
+
 		$('#content').empty(); //remove();
 		loadList(num);
+
+		setTimeout("$('#btn').button('reset')", 500);
 	};
 	$(function() {
 		$('#btn').on('click', search);
@@ -132,7 +137,12 @@
 			}, 500)
 		}
 	});
-	
+	var searchBtn = function (word) {
+		// alert(word);
+		$('#productSearch').val(word);
+		search();
+		
+	}
 </script>
 
 </head>
@@ -156,21 +166,38 @@
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<input type="text" id="productSearch" name="productSearch" />
-					<button id="btn" class="btn btn-default">검색</button>
+					<button type="button" id="btn" data-loading-text="검색중..."
+						class="btn btn-default" autocomplete="off">검색</button>
 				</div>
 
 			</div>
 		</div>
 	</div>
-
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-9">
+			<!-- 거실 공부방 침실 주방 유아가구 소품 패브릭 인테리어 화장실 사무실 천장 공구 -->
+			<div class="col-sm-9 col-xs-12">
+				<div class="btn btn-default col-xs-6 col-sm-4 col-md-3 col-lg-2" onclick="searchBtn('거실')">거실</div>
+				<div class="btn btn-default col-xs-6 col-sm-4 col-md-3 col-lg-2" onclick="searchBtn('공부방')">공부방</div>
+				<div class="btn btn-default col-xs-6 col-sm-4 col-md-3 col-lg-2" onclick="searchBtn('침실')">침실</div>
+				<div class="btn btn-default col-xs-6 col-sm-4 col-md-3 col-lg-2" onclick="searchBtn('주방')">주방</div>
+				<div class="btn btn-default col-xs-6 col-sm-4 col-md-3 col-lg-2" onclick="searchBtn('유아가구')">유아가구</div>
+				<div class="btn btn-default col-xs-6 col-sm-4 col-md-3 col-lg-2" onclick="searchBtn('소품')">소품</div>
+				<div class="btn btn-default col-xs-6 col-sm-4 col-md-3 col-lg-2" onclick="searchBtn('패브릭')">패브릭</div>
+				<div class="btn btn-default col-xs-6 col-sm-4 col-md-3 col-lg-2" onclick="searchBtn('인테리어')">인테리어</div>
+				<div class="btn btn-default col-xs-6 col-sm-4 col-md-3 col-lg-2" onclick="searchBtn('화장실')">화장실</div>
+				<div class="btn btn-default col-xs-6 col-sm-4 col-md-3 col-lg-2" onclick="searchBtn('사무실')">사무실</div>
+				<div class="btn btn-default col-xs-6 col-sm-4 col-md-3 col-lg-2" onclick="searchBtn('천장')">천장</div>
+				<div class="btn btn-default col-xs-6 col-sm-4 col-md-3 col-lg-2" onclick="searchBtn('공구')">공구</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-9 col-xs-12">
 				<div id="content">
 					<!-- 여기에 검색결과를 불러옵니다 -->
 				</div>
 			</div>
-			<div class="col-sm-3">
+			<div class="col-sm-3 hidden-xs">
 				<jsp:include page="template/bxslider.jsp" flush="false" />
 			</div>
 		</div>
