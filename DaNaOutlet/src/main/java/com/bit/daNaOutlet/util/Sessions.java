@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpRequest;
 
+import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.KaKaoMemberVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
 
@@ -29,16 +30,23 @@ public class Sessions {
 	 public boolean cancleSession(HttpServletRequest req) {	
 		 session=req.getSession();		
 		 session.removeAttribute("loginChk");		 
-		 session.removeAttribute("logInfo");
+		 session.removeAttribute("loginInfo");
+		 session.invalidate();
 		 return true;
-	 }
-	 
-	 public boolean sessionChk(HttpServletRequest req) {		 
+	 }	 
+	 public boolean sessionChk(HttpServletRequest req) {		
+		 session=req.getSession();	
 		 if(session.getAttribute("loginChk")==null) {
 			 return false;
 		 };
 		 return true;		 
 	 }
-	 
-	
+//	 public boolean sessionUserChk(HttpServletRequest req,DpgVo dpgBean) {		
+//		 session=req.getSession();	
+//		 MemberVo memberBean = (MemberVo) session.getAttribute("loginInfo");
+//		 if(!(memberBean.getLoginId().equals(dpgBean.getDpgLoginId()))) {
+//			 return false;
+//		 }; 
+//		 return true;		  
+//	 }	
 }

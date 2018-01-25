@@ -16,19 +16,24 @@ import org.springframework.web.multipart.MultipartFile;
 import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.ReplyVo;
 import com.bit.daNaOutlet.service.MemberService;
+import com.bit.daNaOutlet.util.Sessions;
 
 @Controller
 public class DpgController {
 	@Autowired
-	MemberService memberService;
+	MemberService memberService;	
+	
 	
 //  여기서부터 dpg ../게시판 메인
    @RequestMapping(value = "/dpg", method = RequestMethod.GET)
-   public String dpgMain(Model model,@RequestParam int startNum) throws Exception {
+   public String dpgMain(Model model,@RequestParam int startNum) throws Exception { 
 	  memberService.dpgShow(model,new String("main") ,startNum );
       return "dpg/dpgMain";
    }
-	
+   @RequestMapping(value = "/dpg/delete/{dpgNum}", method = RequestMethod.DELETE)
+   public void dpgDelete(@PathVariable int dpgNum, HttpServletResponse resp) throws Exception {
+	  memberService.dpgDelete(dpgNum,resp);	   
+   }
    //보드 - 사진이 없는게시판
    @RequestMapping(value = "/dpg/board", method = RequestMethod.GET)
    public String board(Model model,@RequestParam int startNum) throws Exception {            
@@ -42,39 +47,42 @@ public class DpgController {
    }
    
    @RequestMapping(value = "/dpg/board/{dpgNum}/input", method = RequestMethod.GET)
-   public String boardInputEditOne(Model model,@PathVariable Object dpgNum,@RequestParam("idx") int idx) throws Exception {
+   public String boardInputEditOne(HttpServletRequest req,Model model,@PathVariable Object dpgNum,@RequestParam("idx") int idx) throws Exception {
+	   if(!(memberService.dpgUserChk(req))) return "redirect:/dpg?startNum=0";
 	   memberService.dpgNoneInputEditOne(model, dpgNum, idx);
 	   return "dpg/boardInput"; 
    } 
    @RequestMapping(value = "/dpg/board/{num}/input", method = RequestMethod.POST)
-   public String boardUpdateInsert(Model model,@PathVariable Object num,@ModelAttribute DpgVo bean,@RequestParam("idx") int idx) throws Exception {
+   public String boardUpdateInsert(HttpServletRequest req,Model model,@PathVariable Object num,@ModelAttribute DpgVo bean,@RequestParam("idx") int idx) throws Exception {	   
+	 
 	   memberService.dpgNoneUpdateInsert(bean, model, num, idx);
-	   return "redirect:/dpg/board?startNum=0"; 
-   }
-	
-   
-   
+	   return "redirect:/dpg/board?startNum=0";   
+   }	   
+
    
    //리뷰 - 사진 있는 게시판
    @RequestMapping(value = "/dpg/review", method = RequestMethod.GET)
    public String review(Model model,@RequestParam int startNum) throws Exception {
+	  
 	  memberService.dpgShow(model, new String("ex") , startNum);
 	  return "dpg/review";
    }   
    
    @RequestMapping(value = "/dpg/review/{dpgNum}", method = RequestMethod.GET)
-   public String reviewDetail(Model model,@PathVariable int dpgNum) throws Exception {
-	   memberService.dpgOne(model, dpgNum);
+   public String reviewDetail(Model model,@PathVariable int dpgNum) throws Exception {	  
+	  memberService.dpgOne(model, dpgNum);
 	  return "dpg/selectOneReview";
    }
    
    @RequestMapping(value = "/dpg/review/{dpgNum}/input", method = RequestMethod.GET)
-   public String reviewInputView(Model model,@PathVariable Object dpgNum,@RequestParam("idx") int idx) throws Exception {
+   public String reviewInputView(HttpServletRequest req,Model model,@PathVariable Object dpgNum,@RequestParam("idx") int idx) throws Exception {
+	  if(!(memberService.dpgUserChk(req))) return "redirect:/dpg?startNum=0";
 	  memberService.dpgExInputEditOne(model, dpgNum, idx);
 	  return "dpg/reviewInput";
    }
    @RequestMapping(value = "/dpg/review/{num}/input", method = RequestMethod.POST)
-   public String reviewInput(Model model,@PathVariable Object num,@ModelAttribute DpgVo bean,@RequestParam("idx") int idx, @RequestParam("cma_file") MultipartFile file,HttpServletRequest req) throws Exception {
+   public String reviewInput(Model model,@PathVariable Object num,@ModelAttribute DpgVo bean,@RequestParam("idx") int idx, @RequestParam("cma_file") MultipartFile file,HttpServletRequest req) throws Exception {	   
+	 
 	   memberService.dpgExUpdateInsert(bean, model, num, idx,file,req);
 	   return "redirect:/dpg/review?startNum=0"; 
    }

@@ -109,7 +109,7 @@ public class MemberServiceImpl implements MemberService {
 	public String dpgAdd(DpgVo bean, MultipartFile file, HttpServletRequest req) throws Exception {
 		Commons comUp = new Commons();
 		String rootPath="\\dpgimgs\\";
- 		String ImgLink=comUp.commonsDpgUp(bean.getDpgWriter(),rootPath ,file,req);
+ 		String ImgLink=comUp.commonsDpgUp(bean.getDpgLoginId(),rootPath ,file,req);
  		bean.setDpgCount(0);
  		if(!(ImgLink==null))bean.setDpgImgLink(ImgLink);
  		bean.setDpgNum(dao.dpgNumOne());
@@ -190,19 +190,17 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void dpgExUpdateInsert(DpgVo bean, Model model, Object dpgNum, int idx,MultipartFile file,HttpServletRequest req) throws Exception {		
 		if(idx==0){
-			System.out.println("诀但 0老锭");
 			Commons comUp = new Commons();
 			String rootPath="\\dpgimgs\\";
-	 		String ImgLink=comUp.commonsDpgUp(bean.getDpgWriter(),rootPath ,file,req);
+	 		String ImgLink=comUp.commonsDpgUp(bean.getDpgLoginId(),rootPath ,file,req);
 	 		bean.setDpgCount(0);
 	 		if(!(ImgLink==null))bean.setDpgImgLink(ImgLink);
 	 		bean.setDpgNum(dao.dpgNumOne());
 	 		dao.dpgAdd(bean);
 		}else if(idx==1) {
-			System.out.println("诀但 1老锭");
 			Commons comUp = new Commons();
 			String rootPath="\\dpgimgs\\";
-	 		String ImgLink=comUp.commonsDpgUp(bean.getDpgWriter(),rootPath ,file,req);
+	 		String ImgLink=comUp.commonsDpgUp(bean.getDpgLoginId(),rootPath ,file,req);
 	 		if(!(ImgLink==null))bean.setDpgImgLink(ImgLink);
 			bean.setDpgNum(Integer.parseInt((String)dpgNum));
 			dao.dpgUpdate(bean);                 
@@ -251,20 +249,32 @@ public class MemberServiceImpl implements MemberService {
 		return null;
 	}
 	@Override
-	public void dpgDelete(DpgVo bean) throws Exception {
-		dao.dpgDelete(bean);
-		
+	public void dpgDelete(int dpgNum, HttpServletResponse resp) throws Exception {		
+		out=resp.getWriter();		
+		dao.dpgDelete(dpgNum);
+		out.print("default");
 	}
 	@Override
 	public void dpgUpdate(DpgVo bean, MultipartFile file, HttpServletRequest req) throws Exception {
 		Commons comUp = new Commons();
 		String rootPath="\\dpgimgs\\";
- 		String ImgLink=comUp.commonsDpgUp(bean.getDpgWriter(),rootPath ,file,req);
+ 		String ImgLink=comUp.commonsDpgUp(bean.getDpgLoginId(),rootPath ,file,req);
  		if(!(ImgLink==null))bean.setDpgImgLink(ImgLink);
  		bean.setDpgNum(dao.dpgNumOne());
  		dao.dpgUpdate(bean);
 	}
-
+//	@Override
+//	public boolean dpgUserChk(HttpServletRequest req, Object dpgNum) throws Exception {	
+//		if(sessions.sessionChk(req)) {
+//			return sessions.sessionUserChk(req, dao.dpgOne(Integer.parseInt((String)dpgNum)));	
+//		}
+//		return false;
+//	}
+	
+	@Override
+	public boolean dpgUserChk(HttpServletRequest req) throws Exception {	
+		return sessions.sessionChk(req);
+	}
 	@Override
 	public void replyAdd(ReplyVo bean, MultipartFile file, HttpServletRequest req) throws Exception {
 		String rootPath="\\replyImgs\\";
@@ -301,5 +311,6 @@ public class MemberServiceImpl implements MemberService {
 		
 		out.print("false");
 		return false;
-	}
+	}	
+	
 }

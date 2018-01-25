@@ -61,7 +61,7 @@ public interface MemberDao {
 	int dpgNoneCount() throws Exception;
 
 	void dpgAdd(DpgVo bean) throws Exception;
-	int dpgDelete(DpgVo bean) throws Exception;
+	int dpgDelete(int dpgNum) throws Exception;
 	int dpgUpdate(DpgVo bean) throws Exception;
 	
 	/*DPG´ñ±Û °ü·Ã DAO*/

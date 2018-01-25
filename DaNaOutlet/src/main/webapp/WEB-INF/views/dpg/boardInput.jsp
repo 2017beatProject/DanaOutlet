@@ -89,6 +89,7 @@
 						<form class="form-horizontal" method="post">
 							<input type="hidden" name="dpgFrom" value="${loginInfo.loginFrom }"/>
 							<input type="hidden" name="dpgWriter" value="${loginInfo.nickName }"/>
+							<input type="hidden" name="dpgLoginId" value="${loginInfo.loginId }"/>
 							<input type="hidden" name="dpgSubject" value="자유게시판"/>
 							<div class="form-group">
 								<label for="" class="col-sm-1 control-label">제목</label>

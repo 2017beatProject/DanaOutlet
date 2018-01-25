@@ -16,6 +16,7 @@
 <script src="../resources/js/jquery.bxslider.js"></script>
 <script src="../resources/js/bootstrap.js"></script>
 <script>
+var loginInfoNickName="${loginInfo.nickName}";
 
 	$(document).ready(
 			function() {
@@ -29,6 +30,7 @@
 					autoHover : true,
 					controls : false
 				});
+				 
 				var count= ${count};
 				var cnt=count/10;
 				var startNum=${startNum};
@@ -36,7 +38,13 @@
 					if(startNum>0)$('#previousLi').attr('href',"/dpg/board?startNum="+(startNum-10)+"");								
 					if((startNum+10)<count)$('#nextLi').attr('href',"/dpg/board?startNum="+(startNum+10)+"");
 					$('#pageNum').find('li').last().before("<li><a href='/dpg/board?startNum="+(i*10)+"'>"+(i+1)+"</a></li>");				
-				}
+				};
+			
+				if(loginInfoNickName!=""){
+					$('#writingAtag').attr('href',"/dpg/board/${loginInfo.nickName }/input?idx=0");
+					$('#writingAtag').attr('data-toggle',"");
+					$('#writingAtag').attr('data-target',"");
+				}						
 			});
 	$(function() {
 		$('#content').keyup(function(e) {
@@ -80,7 +88,7 @@
 
 							</a></td>
 							<td class="hidden-xs"><a href="board?id=kdj">${bean.dpgWriter }</a></td>
-							<td class="hidden-xs hidden-sm">2018.1.16</td>
+							<td class="hidden-xs hidden-sm">${bean.dpgNalja }</td>
 							<td class="hidden-xs hidden-sm hidden-md">${bean.dpgCount }</td>
 							
 						</tr>
@@ -93,8 +101,8 @@
 						</tr> -->
 				</table>
 				
-				<nav class="col-xs-12">
-					<a href="/dpg/board/${loginInfo.nickName }/input?idx=0" class="btn btn-default pull-right">글쓰기</a>
+				<nav class="col-xs-12"> 
+					<a id="writingAtag" href="#" class="btn btn-default pull-right" data-toggle="modal" data-target="#login">글쓰기</a>
 					
 					<ul class="pagination" id="pageNum">
 						<li><a id="previousLi" href="#">Previous</a></li>

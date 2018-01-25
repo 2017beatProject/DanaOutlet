@@ -172,8 +172,8 @@ public class MemberDaoImpl implements MemberDao {
 	
 
 	@Override
-	public int dpgDelete(DpgVo bean) throws Exception {
-		return session.delete("com.bit.daNaOutlet.model.MemberDao.dpgDelete", bean);
+	public int dpgDelete(int dpgNum) throws Exception {
+		return session.delete("com.bit.daNaOutlet.model.MemberDao.dpgDelete", dpgNum);
 	}
 
 	@Override

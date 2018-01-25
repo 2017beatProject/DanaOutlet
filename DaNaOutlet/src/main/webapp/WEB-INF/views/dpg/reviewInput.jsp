@@ -135,6 +135,7 @@
 							enctype="multipart/form-data" autocomplete="off">
 							<input type="hidden" name="dpgFrom" value="${loginInfo.loginFrom }"/>
 							<input type="hidden" name="dpgWriter" value="${loginInfo.nickName }"/>
+							<input type="hidden" name="dpgLoginId" value="${loginInfo.loginId }"/>
 							<input type="hidden" name="dpgSubject" value="이미지게시판"/>
 							<div class="form-group">
 								<label for="" class="col-sm-2">제목</label>

@@ -19,7 +19,7 @@
 <script src="../resources/js/jquery.bxslider.js"></script>
 <script src="../resources/js/bootstrap.js"></script>
 <script>
-var count;
+var loginInfoNickName="${loginInfo.nickName}";
    $(document)
          .ready(
                function() {
@@ -33,7 +33,7 @@ var count;
                      autoHover : true,
                      controls : false
                   });
-                count=${count};
+                var count=${count};
           		var cnt=count/10;
           		var startNum=${startNum};
           		for(var i=0; i<cnt; i++){
@@ -41,6 +41,11 @@ var count;
           			if((startNum+10)<count)$('#nextLi').attr('href',"/dpg/review?startNum="+(startNum+10)+"");
           			$('#pageNum').find('li').last().before("<li><a href='/dpg/review?startNum="+(i*10)+"'>"+(i+1)+"</a></li>");				
           		}
+          		if(loginInfoNickName!=""){
+					$('#writingAtag').attr('href',"/dpg/review/${loginInfo.nickName }/input?idx=0");
+					$('#writingAtag').attr('data-toggle',"");
+					$('#writingAtag').attr('data-target',"");
+				}	
                });
    $(function() {
       $('#content').keyup(function(e) {
@@ -111,7 +116,7 @@ var count;
                </c:forEach>
             </ul>
             <nav class="col-xs-12">
-               <a href="/dpg/review/${loginInfo.nickName }/input?idx=0" class="btn btn-default pull-right">글쓰기</a>
+               <a id="writingAtag" href="#" class="btn btn-default pull-right" data-toggle="modal" data-target="#login">글쓰기</a>
                <ul class="pagination" id="pageNum">
                   <li><a id="previousLi" href="#">Previous</a></li>
                   <li><a id="nextLi" href="#">Next</a></li>

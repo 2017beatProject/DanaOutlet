@@ -24,7 +24,7 @@ function loginTool() {
 	});
 
 	// 카카오 로그인--------------------------------
-	Kakao.init('1ed0a4ca651380fc768bf01eb21201e5');
+	Kakao.init('b3f2db2221e0c7bfa2a895430e4df2a8');
 	// 카카오 로그인 버튼을 생성.
 
 	Kakao.Auth.createLoginButton({
@@ -81,21 +81,22 @@ function loginChkTool(){
 }
 
 function logoutTool(){
+	      	
 	$('#logout').on('click', function() {
-		Kakao.Auth.logout(function() {					
+//		Kakao.init('b3f2db2221e0c7bfa2a895430e4df2a8'); //카카오에서 제공 myceo.co.kr 수정	
+		Kakao.Auth.logout(function() {
 			$.ajax({
 			 	'url' : '/logout',
 				'type' : 'post',
 				'data' : param,
 				'success' : function(data) {					
-					window.location.reload("#");
+					alert(data);
+					window.location.reload("location.href='http://203.236.209.202:8080/");
 				},
 				'err' : function(data) {
-					alert("로그아웃에러");
+					alert(data);
 				}						 
 		 });
 		});
-
 	});//로그아웃 비동기 통신 end
-	
 }
