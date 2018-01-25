@@ -111,7 +111,52 @@ body {
 
 			</div>
 
+			<!-- 권한이 없습니다 -->
+			
+			<div class="modal fade" id="noRight" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">권한이 없습니다</h4>
+						</div>
+						<div class="modal-body">
+							<button type="button" class="btn btn-default"
+										data-dismiss="modal">확인</button>
+						</div>
+					</div>
 
+				</div>
+			</div>
+			<!-- 삭제 하시겠습니까? -->
+			
+			<div class="modal fade" id="DeleteConfim" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">삭제 하시겠습니까</h4>
+						</div>
+						<div class="modal-body">
+							 <a id="AtagDelete"
+							type="button" class="btn btn-default" href="#"
+							data-toggle="modal" data-target="#DeleteConfim">삭제</a>
+							<button type="button" class="btn btn-default"
+										data-dismiss="modal">취소</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			
 			<!-- 로그인 시작 -->
 
 			<div class="modal fade" id="login" tabindex="-1" role="dialog"

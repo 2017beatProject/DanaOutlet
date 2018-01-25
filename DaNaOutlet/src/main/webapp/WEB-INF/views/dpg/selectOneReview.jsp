@@ -52,11 +52,17 @@
 									"/dpg/review/${bean.dpgNum }/input?idx=1");
 							$('#AtagEdit').attr('data-toggle', "");
 							$('#AtagEdit').attr('data-target', "");
-						}
-						if (loginInfoId == writer) {
 							$('#AtagDelete').attr('data-toggle', "");
 							$('#AtagDelete').attr('data-target', "");
-						}
+						}else if (!(loginInfoId !="")) {
+							$('#AtagEdit').attr('data-toggle', "modal");
+							$('#AtagEdit').attr('data-target', "#login");							
+							$('#ButDelete').attr('data-toggle', "modal");
+							$('#ButDelete').attr('data-target', "#login");
+						}else if(loginInfoId != writer){
+							$('#ButDelete').attr('data-toggle', "modal");
+							$('#ButDelete').attr('data-target', "#noRight");
+						}																		
 					});
 	$(function() {
 		$('#content').keyup(function(e) {
@@ -112,9 +118,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">${bean.dpgTitle }
 					<a type="button" id="AtagEdit" class="btn btn-default" href="#"
-						data-toggle="modal" data-target="#join">수정</a> <a id="AtagDelete"
-						type="button" class="btn btn-default" href="#" data-toggle="modal"
-						data-target="#join">삭제</a>
+						data-toggle="modal" data-target="#noRight">수정</a> 						
+						<button id="ButDelete" type="button" class="btn btn-default" 
+							data-toggle="modal" data-target="#DeleteConfim">삭제</button>	
+																												
 				</div>
 				<ul class="list-group">
 					<li class="list-group-item"><span>${bean.dpgWriter }</span> <span>${bean.dpgNalja }</span>
@@ -132,6 +139,8 @@
 
 				</div>
 			</div>
+			
+			
 
 			<div class="panel panel-success">
 				<div class="panel-body">
