@@ -86,13 +86,13 @@
 		<div data-role="content">
 			<form id="joinForm" method="post">
 				<div id="id">
-					<label for="id">아이디</label> <input type="text" name="id"
+					<label for="loginId">아이디</label> <input type="text" name="loginId"
 						id="idInput" />
 					<button type="button" id="idDoubleCheck">중복확인</button>
 				</div>
-				<div id="pw">
+				<div id="loginPw">
 					<label for="password">비밀번호</label> <input type="password"
-						name="password" id="pwInput" />					
+						name="loginPw" id="pwInput" />					
 				</div>
 				<div id="pw2">
 					<label for="password2">비밀번호 확인</label> <input type="password"
@@ -101,8 +101,8 @@
 					<div id="pwInputReErr">암호를 확인해주세요.</div>
 				</div>
 				<div id="name">
-					<label for="name">이름</label> <input type="text" id="userName"
-						name="name">
+					<label for="nickName">이름</label> <input type="text" id="nickName"
+						name="nickName">
 					<div id="nameErr">이름을 입력해주세요.</div>
 				</div>
 				<div id="birth">

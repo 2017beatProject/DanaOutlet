@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
-import com.bit.daNaOutlet.model.entity.LoginVo;
+import com.bit.daNaOutlet.model.entity.KaKaoMemberVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
 import com.bit.daNaOutlet.model.entity.ReplyVo;
 
@@ -24,7 +24,6 @@ public interface MemberService {
 	void selectOne(Model model, int mnum) throws Exception;
 	
 	void memberAdd(MemberVo bean) throws Exception;
-	
 
 	/* 핫딜관련서비스 */
 	String hotDealAdd(HotDealVo bean,MultipartFile file,HttpServletRequest req) throws Exception;
@@ -35,18 +34,30 @@ public interface MemberService {
 	/* 클립관련 서비스 */
 	void clipList(Model model) throws Exception;
 	
-	String login(LoginVo bean, HttpServletRequest req) throws Exception;
+	String login(MemberVo bean, HttpServletRequest req) throws Exception;
 
-	String loginKakao(LoginVo bean, HttpServletRequest req) throws Exception;
+	String loginKakao(KaKaoMemberVo bean, HttpServletRequest req) throws Exception;
 	
 	/* DPG 관련 서비스*/
 	String dpgAdd(DpgVo bean,MultipartFile file,HttpServletRequest req) throws Exception;
-	void dpgDelete(DpgVo bean)throws Exception;
+	String dpgAdd(DpgVo bean) throws Exception;
+	void dpgDelete(int dpgNum, HttpServletResponse resp)throws Exception;
 	void dpgUpdate(DpgVo bean,MultipartFile file,HttpServletRequest req)throws Exception;
 	void dpgShow(Model model,String viewType,int startNum) throws Exception;
 	void dpgMain(Model model) throws Exception;
  	void dpgEx(Model model,int startNum) throws Exception;
  	void dpgNone(Model model,int startNum) throws Exception;
+ 	void dpgNoneInputEditOne(Model model, Object dpgNum,int idx) throws Exception;
+
+	void dpgNoneUpdateInsert(DpgVo bean,Model model, Object dpgNum, int idx) throws Exception;
+	
+	void dpgExInputEditOne(Model model, Object dpgNum,int idx) throws Exception;
+
+	void dpgExUpdateInsert(DpgVo bean,Model model, Object dpgNum, int idx,MultipartFile file,HttpServletRequest req) throws Exception;
+	
+
+	boolean dpgUserChk(HttpServletRequest req) throws Exception;
+
  	/*댓글 서비스*/
  	List<ReplyVo> replyCall( int fatherContentsNum, HttpServletResponse resp) throws Exception;
 
@@ -59,4 +70,5 @@ public interface MemberService {
 	String loginChk(HttpServletRequest req, HttpServletResponse resp) throws Exception;
 
 	boolean idDoubleChk(String chkId, HttpServletRequest req, HttpServletResponse resp) throws Exception;
-}
+
+	}

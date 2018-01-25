@@ -37,8 +37,8 @@ public class Commons {
 		req.setCharacterEncoding("UTF-8");
 		ServletContext context = req.getSession().getServletContext();
 		String realPath = context.getRealPath("/");
-		String path = realPath + "\\resources\\imgs" + rootPath;
-		String srcPath = "C:\\ProjectGit\\DaNaOutlet\\src\\main\\webapp\\resources\\imgs" + rootPath;
+		String path = realPath + "\\resources\\imgs" + rootPath;		
+		String srcPath = "C:\\Users\\1027\\git\\DanaOutlet\\DaNaOutlet\\src\\main\\webapp\\resources\\imgs" + rootPath;
 		String orginalName = file.getOriginalFilename();
 		int pos = orginalName.lastIndexOf(".");
 		String suffix = orginalName.substring(pos);

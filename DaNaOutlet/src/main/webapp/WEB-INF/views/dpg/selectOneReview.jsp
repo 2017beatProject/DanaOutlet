@@ -5,11 +5,9 @@
 <html>
 
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>글 하나 선택</title>
 <link rel="stylesheet" href="../../resources/css/bootstrap.css">
 <link rel="stylesheet" href="../../resources/css/bootstrap-theme.css">
@@ -18,18 +16,54 @@
 <script src="../../resources/js/jquery.bxslider.js"></script>
 <script src="../../resources/js/bootstrap.js"></script>
 <script>
-	$(document).ready(function() {
-		$('.bxslider').bxSlider({
-			auto : true,
-			speed : 300,
-			pause : 2000,
-			mode : 'horizontal',
-			autoControlls : true,
-			pager : false,
-			autoHover : true,
-			controls : false
-		});
-	});
+	var loginInfoId = "${loginInfo.loginId}";
+	var writer = "${bean.dpgLoginId }";
+	$(document)
+			.ready(
+					function() {
+						$('.bxslider').bxSlider({
+							auto : true,
+							speed : 300,
+							pause : 2000,
+							mode : 'horizontal',
+							autoControlls : true,
+							pager : false,
+							autoHover : true,
+							controls : false
+						});
+						$('#AtagDelete')
+								.click(
+										function() {
+											if (loginInfoId == writer) {
+												$
+														.ajax({
+															'url' : '/dpg/delete/'
+																	+ '${bean.dpgNum}',
+															'method' : 'DELETE',
+															'success' : function() {
+																window.location
+																		.replace("/dpg/review?startNum=0");
+															}
+														});
+											}
+										});
+						if (loginInfoId == writer) {
+							$('#AtagEdit').attr('href',
+									"/dpg/review/${bean.dpgNum }/input?idx=1");
+							$('#AtagEdit').attr('data-toggle', "");
+							$('#AtagEdit').attr('data-target', "");
+							$('#AtagDelete').attr('data-toggle', "");
+							$('#AtagDelete').attr('data-target', "");
+						} else if (!(loginInfoId != "")) {
+							$('#AtagEdit').attr('data-toggle', "modal");
+							$('#AtagEdit').attr('data-target', "#login");
+							$('#ButDelete').attr('data-toggle', "modal");
+							$('#ButDelete').attr('data-target', "#login");
+						} else if (loginInfoId != writer) {
+							$('#ButDelete').attr('data-toggle', "modal");
+							$('#ButDelete').attr('data-target', "#noRight");
+						}
+					});
 	$(function() {
 		$('#content').keyup(function(e) {
 			var content = $(this).val();
@@ -75,16 +109,28 @@
 		<div class="col-sm-8">
 			<div class="page-header">
 				<ol class="breadcrumb">
-					<li><h1>리뷰</h1></li>
-					<li><a href="/">Home</a></li>
-					<li><a href="/dpg?startNum=0">DPG</a></li>
-					<li class="active">리뷰</li>
+					<li><h1>자유게시판</h1></li>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Library</a></li>
+					<li class="active">Data</li>
 				</ol>
 			</div>
 			<div class="panel panel-default">
-				<div class="panel-heading">${bean.dpgTitle }</div>
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+							<h4>${bean.dpgTitle }</h4>
+						</div>
+						<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-right">
+							<a type="button" id="AtagEdit" class="btn btn-primary" href="#"
+								data-toggle="modal" data-target="#noRight">수정</a>
+							<button id="ButDelete" type="button" class="btn btn-danger"
+								data-toggle="modal" data-target="#DeleteConfim">삭제</button>
+						</div>
+					</div>
+				</div>
 				<ul class="list-group">
-					<li class="list-group-item"><span>${bean.dpgWriter }</span> <span>2018.01.18</span>
+					<li class="list-group-item"><span>${bean.dpgWriter }</span> <span>${bean.dpgNalja }</span>
 						<span class="glyphicon glyphicon-thumbs-up">추천수</span> <span
 						class="glyphicon glyphicon-comment">조회수</span> <span
 						class="glyphicon glyphicon-tasks">댓글수</span></li>
@@ -99,6 +145,8 @@
 
 				</div>
 			</div>
+
+
 
 			<div class="panel panel-success">
 				<div class="panel-body">
@@ -176,7 +224,6 @@
 			</div>
 		</div>
 	</div>
-
 	<jsp:include page="../template/footer.jsp" flush="false" />
 </body>
 

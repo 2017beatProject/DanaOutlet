@@ -29,7 +29,7 @@
     	function showPW() {
     		pwToggle = !pwToggle;
     		if (pwToggle) {
-    			document.getElementById("pwInput").setAttribute('type', 'text');
+    			document.getElementById("loginPw").setAttribute('type', 'text');
     			document.getElementById("pwInputRe").setAttribute('type', 'text');
     		} else {
     			document.getElementById("pwInput").setAttribute('type', 'password');

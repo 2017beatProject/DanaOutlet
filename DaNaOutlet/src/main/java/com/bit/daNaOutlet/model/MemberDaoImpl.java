@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 import com.bit.daNaOutlet.model.entity.ClipVo;
 import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
-import com.bit.daNaOutlet.model.entity.LoginVo;
+import com.bit.daNaOutlet.model.entity.KaKaoMemberVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
 import com.bit.daNaOutlet.model.entity.ReplyVo;
 
@@ -40,9 +40,12 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public MemberVo selectOne(int mnum) throws Exception {
-		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.selectOne", mnum);
+		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.selectOneInt", mnum);
 	}
-
+	@Override
+	public MemberVo selectOne(MemberVo bean) throws Exception {
+		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.selectOneVo", bean);
+	}
 	@Override
 	public int mNumOne() throws Exception { // 회원 번호 프라이머리키 시퀀스 기능 대신 해주는 Dao
 		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.mnumOne");
@@ -86,13 +89,17 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override // 로그인 아이디 비번 확인- 1 - 확인 2 - 실패
-	public int login(LoginVo bean) throws Exception {
+	public int login(MemberVo bean) throws Exception {
 		// 단위테스트 완료
 		return (Integer) session.selectOne("com.bit.daNaOutlet.model.MemberDao.loginChk", bean);
 	}
 	@Override // 카카오톡 로그인
-	public int loginKakao(LoginVo bean) {
-		return session.insert("com.bit.daNaOutlet.model.MemberDao.loginKakao", bean);
+	public int KakaoUserAdd(KaKaoMemberVo bean) {
+		return session.insert("com.bit.daNaOutlet.model.MemberDao.KakaoUserAdd", bean);
+	}
+	@Override
+	public int KakaoUserCount(KaKaoMemberVo bean) {
+		return (Integer) session.selectOne("com.bit.daNaOutlet.model.MemberDao.KakaoUserCount", bean);
 	}
 
 	@Override
@@ -104,12 +111,10 @@ public class MemberDaoImpl implements MemberDao {
 	public List<DpgVo> dpgBestList() throws Exception {
 		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgBestList");
 	}
-	
 	@Override
 	public List<DpgVo> dpgBestNoneList() throws Exception {
 		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgBestNoneList");
 	}
-	
 	@Override
 	public List<DpgVo> dpgImgLinkListDesc() throws Exception {
 		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgImgLinkListDesc");
@@ -167,8 +172,8 @@ public class MemberDaoImpl implements MemberDao {
 	
 
 	@Override
-	public int dpgDelete(DpgVo bean) throws Exception {
-		return session.delete("com.bit.daNaOutlet.model.MemberDao.dpgDelete", bean);
+	public int dpgDelete(int dpgNum) throws Exception {
+		return session.delete("com.bit.daNaOutlet.model.MemberDao.dpgDelete", dpgNum);
 	}
 
 	@Override
@@ -198,6 +203,8 @@ public class MemberDaoImpl implements MemberDao {
 	public int idDoubleChk(String chkId) throws Exception {
 		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.idDoubleChk", chkId);		
 	}
+
+	
 
 	
 

@@ -3,7 +3,7 @@
 <!DOCTYPE html">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="../resources/js/jquery-1.12.4.js"></script>
 <script>

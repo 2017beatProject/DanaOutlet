@@ -103,7 +103,6 @@
 																	",")
 													+ 'krw</h4>'
 													+ '</div></div></div></div></div></div></div>'
-
 									);
 						}
 						;
@@ -120,7 +119,6 @@
 	margin-bottom: 0px;
 	padding-bottom: 0px;
 }
-
 /* .hotDealImg {
 	min-width: 100%;
 } */

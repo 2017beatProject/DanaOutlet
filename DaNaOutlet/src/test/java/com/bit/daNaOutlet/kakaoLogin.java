@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.bit.daNaOutlet.model.MemberDao;
-import com.bit.daNaOutlet.model.entity.LoginVo;
+import com.bit.daNaOutlet.model.entity.KaKaoMemberVo;
 
 public class kakaoLogin {
 
@@ -22,10 +22,10 @@ public class kakaoLogin {
 
 	@Test
 	public void testLoginKakao() {
-		LoginVo bean=new LoginVo();
+		KaKaoMemberVo bean=new KaKaoMemberVo();
 		bean.setIdKakaoLog(1801000001);
 		bean.setLoginId("22");
-		dao.loginKakao(bean);
+//		dao.loginKakao(bean);
 	}
 
 }

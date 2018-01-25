@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.bit.daNaOutlet.model.entity.LoginVo;
+import com.bit.daNaOutlet.model.entity.KaKaoMemberVo;
+import com.bit.daNaOutlet.model.entity.MemberVo;
 import com.bit.daNaOutlet.service.MemberService;
 import com.bit.daNaOutlet.util.Sessions;
 
@@ -33,7 +34,7 @@ public class LoginController {
 
 	// 로그인으로 아이디 비번 체크
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public void loginChk(HttpServletResponse resp, HttpServletRequest req, @ModelAttribute LoginVo bean)
+	public void loginChk(HttpServletResponse resp, HttpServletRequest req, @ModelAttribute MemberVo bean)
 			throws Exception {
 		resp.setCharacterEncoding("UTF-8");
 		PrintWriter out = resp.getWriter();
@@ -42,11 +43,9 @@ public class LoginController {
 
 	// 카카오톡으로 로그인
 	@RequestMapping(value = "/loginKakao", method = RequestMethod.POST)
-	public void loginKakao(HttpServletResponse resp, HttpServletRequest req, @ModelAttribute LoginVo bean)
+	public void loginKakao(HttpServletResponse resp, HttpServletRequest req, @ModelAttribute KaKaoMemberVo bean)
 			throws Exception {
 		resp.setCharacterEncoding("UTF-8");
-		System.out.println("카카오아이디:" + bean.getLoginId());
-		System.out.println("카카오아이디:" + bean.getNickName());
 		PrintWriter out = resp.getWriter();
 		out.print(memberService.loginKakao(bean, req));
 	}
@@ -57,7 +56,6 @@ public class LoginController {
 		resp.setCharacterEncoding("UTF-8");
 		PrintWriter out = resp.getWriter();
 		out.print(memberService.logout(req));
-
 	}
 
 	// 로그인상태 호출
@@ -69,8 +67,6 @@ public class LoginController {
 	//아이디중복검사
 	@RequestMapping(value="/idDoubleChk", method=RequestMethod.POST)
 	public void idDoubleChk(@RequestParam String chkId, HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		log.debug(memberService.idDoubleChk(chkId, req, resp ));
-		
+		log.debug(memberService.idDoubleChk(chkId, req, resp ));	
 	}
-	
 }

@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
-<title>게시판</title>
+<title>다나&아울렛 플레이그라운드</title>
 <link rel="stylesheet" href="../resources/css/bootstrap.css">
 <link rel="stylesheet" href="../resources/css/bootstrap-theme.css">
 <script src="../resources/js/jquery.min.js"></script>
@@ -29,7 +29,6 @@
 			autoHover : true,
 			controls : false
 		});
-
 		/* $(document).ready(
 				function() {
 					// $('#reviewList').css('width', $(window).width() - 50);
@@ -66,11 +65,9 @@
 ul {
 	list-style: none;
 }
-
 li {
 	margin-top: 5px;
 }
-
 @media ( max-width : 768px) {
 	.img-thumbnail {
 		/* height: 40%px;
@@ -81,7 +78,6 @@ li {
 		display: none;
 	}
 }
-
 #footer {
 	top: 450px;
 	right: 15px;
@@ -92,7 +88,6 @@ li {
 	margin: 0px;
 	text-decoration: none;
 }
-
 #topper {
 	top: 400px;
 	right: 15px;
@@ -103,11 +98,9 @@ li {
 	margin: 0px;
 	text-decoration: none;
 }
-
 #topper>a {
 	text-decoration: none;
 }
-
 #footer>a {
 	text-decoration: none;
 }

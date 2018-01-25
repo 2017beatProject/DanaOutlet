@@ -11,6 +11,7 @@ public class DpgVo {
 	private String dpgSubject;
 	private String dpgContent;
 	private String dpgImgLink;
+	private String dpgLoginId;
 	private String dpgNalja;
 	
 
@@ -99,6 +100,16 @@ public class DpgVo {
 	}
 
 
+	public String getDpgLoginId() {
+		return dpgLoginId;
+	}
+
+
+	public void setDpgLoginId(String dpgLoginId) {
+		this.dpgLoginId = dpgLoginId;
+	}
+
+
 	public String getDpgNalja() {
 		return dpgNalja;
 	}
@@ -110,7 +121,7 @@ public class DpgVo {
 
 
 	public DpgVo(int dpgNum, int dpgCount, String dpgTitle, String dpgWriter, String dpgFrom, String dpgSubject,
-			String dpgContent, String dpgImgLink, String dpgNalja) {
+			String dpgContent, String dpgImgLink, String dpgLoginId, String dpgNalja) {
 		super();
 		this.dpgNum = dpgNum;
 		this.dpgCount = dpgCount;
@@ -120,10 +131,11 @@ public class DpgVo {
 		this.dpgSubject = dpgSubject;
 		this.dpgContent = dpgContent;
 		this.dpgImgLink = dpgImgLink;
+		this.dpgLoginId = dpgLoginId;
 		this.dpgNalja = dpgNalja;
 	}
-	
-	
+
+
 	
 	
 }

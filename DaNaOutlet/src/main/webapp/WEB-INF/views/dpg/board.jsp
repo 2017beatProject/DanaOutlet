@@ -5,11 +5,9 @@
 <html>
 
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시판</title>
 <link rel="stylesheet" href="../resources/css/bootstrap.css">
 <link rel="stylesheet" href="../resources/css/bootstrap-theme.css">
@@ -18,6 +16,8 @@
 <script src="../resources/js/jquery.bxslider.js"></script>
 <script src="../resources/js/bootstrap.js"></script>
 <script>
+var loginInfoNickName="${loginInfo.nickName}";
+
 	$(document).ready(
 			function() {
 				$('.bxslider').bxSlider({
@@ -30,28 +30,21 @@
 					autoHover : true,
 					controls : false
 				});
-				var count = $
-				{
-					count
-				}
-				;
-				var cnt = count / 10;
-				var startNum = $
-				{
-					startNum
-				}
-				;
-				for (var i = 0; i < cnt; i++) {
-					if (startNum > 0)
-						$('#previousLi').attr('href',
-								"/dpg/board?startNum=" + (startNum - 10) + "");
-					if ((startNum + 10) < count)
-						$('#nextLi').attr('href',
-								"/dpg/board?startNum=" + (startNum + 10) + "");
-					$('#pageNum').find('li').last().before(
-							"<li><a href='/dpg/board?startNum=" + (i * 10)
-									+ "'>" + (i + 1) + "</a></li>");
-				}
+				 
+				var count= ${count};
+				var cnt=count/10;
+				var startNum=${startNum};
+				for(var i=0; i<cnt; i++){
+					if(startNum>0)$('#previousLi').attr('href',"/dpg/board?startNum="+(startNum-10)+"");								
+					if((startNum+10)<count)$('#nextLi').attr('href',"/dpg/board?startNum="+(startNum+10)+"");
+					$('#pageNum').find('li').last().before("<li><a href='/dpg/board?startNum="+(i*10)+"'>"+(i+1)+"</a></li>");				
+				};
+			
+				if(loginInfoNickName!=""){
+					$('#writingAtag').attr('href',"/dpg/board/${loginInfo.nickName }/input?idx=0");
+					$('#writingAtag').attr('data-toggle',"");
+					$('#writingAtag').attr('data-target',"");
+				}						
 			});
 	$(function() {
 		$('#content').keyup(function(e) {
@@ -70,7 +63,7 @@
 		<div class="row">
 			<div class="col-sm-8">
 				<ol class="breadcrumb">
-					<li><h1>자유게시판</h1></li>
+					<li><h1>게시판</h1></li>
 					<li><a href="/">Home</a></li>
 					<li><a href="/dpg?startNum=0">DPG</a></li>
 					<li class="active">게시판</li>
@@ -95,7 +88,7 @@
 
 							</a></td>
 							<td class="hidden-xs"><a href="board?id=kdj">${bean.dpgWriter }</a></td>
-							<td class="hidden-xs hidden-sm">2018.1.16</td>
+							<td class="hidden-xs hidden-sm">${bean.dpgNalja }</td>
 							<td class="hidden-xs hidden-sm hidden-md">${bean.dpgCount }</td>
 							
 						</tr>
@@ -108,8 +101,9 @@
 						</tr> -->
 				</table>
 				
-				<nav class="col-xs-12">
-					<a href="/dpg/board/input" class="btn btn-default pull-right">글쓰기</a>
+				<nav class="col-xs-12"> 
+					<a id="writingAtag" href="#" class="btn btn-default pull-right" data-toggle="modal" data-target="#login">글쓰기</a>
+					
 					<ul class="pagination" id="pageNum">
 						<li><a id="previousLi" href="#">Previous</a></li>
 						<li><a id="nextLi" href="#">Next</a></li>

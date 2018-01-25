@@ -15,9 +15,6 @@ var idchk;
 var mmail;
 var maildata;
 var mailchk;
-var stringRegx = new RegExp(/[~!@\#$%<>^&*\()\-=+_\’]|[ㄱ-ㅎ]|[가-힣]/gi);
-var EngRegx = new RegExp(/[a-z]|[A-Z]/gi);
-var numRegx = new RegExp(/[0-9]/gi);
 
 function getTextLength(str) {
 	var len = 0;
@@ -37,23 +34,25 @@ function joinFunc() {
 	resetText();
 	IddoubleCheck();
 	var idChk = $('#id input').eq(0).val();
-
+	
 	$("#mail button").on('click', function() {
 		mmail = $('#email').find('input').eq(0).val();
 		mailCheck();
 	});
 
 	$('#joinForm').on('submit', function() {
-		
+		returnTfCount = 0;
 		result = false;
 		idValidation();// id validation 검사
-		submitCheck();// id를 제외한 나머지 text부분 null값 검사
-		if (returnTfCount == 0 && idchk && mailchk) {
+		pwValidation();
+		resetText();
+		submitCheck();// id를 제외한 나머지 text부분 null값 검사  && idchk && mailchk
+		if (returnTfCount == 0) {
 			result = true;
 		} else {
 			result = false;
 		}
-		alert("경고");
-		return false;
+		alert(returnTfCount+"카운터 값 경고!");
+		return result;
 	});
 }

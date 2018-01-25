@@ -23,10 +23,8 @@
 	var loadPage = 1;
 	var loaded = true;
 	var loadedNum;
-
 	// 4c3dab31-521e-368c-86db-a60223eb7e22 요한
 	// 831b2c9b-12a4-3b28-a338-a5832c3ef3dd 민건
-
 	var loadList = function(num) {
 		$
 				.ajax({
@@ -106,10 +104,8 @@
 	};
 	var search = function() {
 		$('#btn').button('loading');
-
 		$('#content').empty(); //remove();
 		loadList(num);
-
 		setTimeout("$('#btn').button('reset')", 500);
 	};
 	$(function() {

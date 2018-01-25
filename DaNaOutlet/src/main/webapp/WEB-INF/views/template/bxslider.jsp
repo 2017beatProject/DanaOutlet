@@ -20,10 +20,10 @@
 </script>
 
 	<ul class="bxslider">
-		<li><img src="../resources/imgs/bxImgs/iu4.jpg" alt=""
+		<li><img src="../resources/imgs/bxImgs/iu1.jpg" alt=""
 			class="img-responsive bxImg" />
-		<li><img src="../resources/imgs/bxImgs/iu5.jpg" alt=""
+		<li><img src="../resources/imgs/bxImgs/iu2.jpg" alt=""
 			class="img-responsive bxImg" /></li>
-		<li><img src="../resources/imgs/bxImgs/iu6.jpg" alt=""
+		<li><img src="../resources/imgs/bxImgs/iu3.jpg" alt=""
 			class="img-responsive bxImg" /></li>
 	</ul>

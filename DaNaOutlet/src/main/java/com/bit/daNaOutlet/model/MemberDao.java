@@ -5,7 +5,7 @@ import java.util.List;
 import com.bit.daNaOutlet.model.entity.ClipVo;
 import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.HotDealVo;
-import com.bit.daNaOutlet.model.entity.LoginVo;
+import com.bit.daNaOutlet.model.entity.KaKaoMemberVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
 import com.bit.daNaOutlet.model.entity.ReplyVo;
 
@@ -14,7 +14,9 @@ public interface MemberDao {
 	List<MemberVo> selectAll() throws Exception;
 
 	MemberVo selectOne(int mnum) throws Exception;
-
+	
+	MemberVo selectOne(MemberVo bean) throws Exception;
+	
 	int mNumOne() throws Exception;
 
 	void memberAdd(MemberVo bean);
@@ -33,20 +35,20 @@ public interface MemberDao {
 
 	/* -- 로그인 관련 DAO -- */
 
-	int login(LoginVo bean) throws Exception;
+	int login(MemberVo bean) throws Exception;
 
-	int loginKakao(LoginVo bean);
-
+	int KakaoUserAdd(KaKaoMemberVo bean);
+	int KakaoUserCount(KaKaoMemberVo bean);
 	int kakolognum() throws Exception;
 	
 	/*DPG 관련 DAO */
 	List<DpgVo> dpgBestList() throws Exception;
 	
+	List<DpgVo> dpgBestNoneList() throws Exception;
+	
 	List<DpgVo> dpgImgLinkListDesc() throws Exception;
 	
 	List<DpgVo> dpgNoneLinkListDesc() throws Exception;
-	
-	List<DpgVo> dpgBestNoneList() throws Exception;
 	
 	List<DpgVo> dpgImgLinkListAsc(int startNum) throws Exception;
 	
@@ -59,7 +61,7 @@ public interface MemberDao {
 	int dpgNoneCount() throws Exception;
 
 	void dpgAdd(DpgVo bean) throws Exception;
-	int dpgDelete(DpgVo bean) throws Exception;
+	int dpgDelete(int dpgNum) throws Exception;
 	int dpgUpdate(DpgVo bean) throws Exception;
 	
 	/*DPG댓글 관련 DAO*/
