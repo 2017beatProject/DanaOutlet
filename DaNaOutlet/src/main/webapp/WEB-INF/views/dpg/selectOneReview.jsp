@@ -5,9 +5,11 @@
 <html>
 
 <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>글 하나 선택</title>
 <link rel="stylesheet" href="../../resources/css/bootstrap.css">
 <link rel="stylesheet" href="../../resources/css/bootstrap-theme.css">
@@ -54,15 +56,15 @@
 							$('#AtagEdit').attr('data-target', "");
 							$('#AtagDelete').attr('data-toggle', "");
 							$('#AtagDelete').attr('data-target', "");
-						} else if (!(loginInfoId != "")) {
+						}else if (!(loginInfoId !="")) {
 							$('#AtagEdit').attr('data-toggle', "modal");
-							$('#AtagEdit').attr('data-target', "#login");
+							$('#AtagEdit').attr('data-target', "#login");							
 							$('#ButDelete').attr('data-toggle', "modal");
 							$('#ButDelete').attr('data-target', "#login");
-						} else if (loginInfoId != writer) {
+						}else if(loginInfoId != writer){
 							$('#ButDelete').attr('data-toggle', "modal");
 							$('#ButDelete').attr('data-target', "#noRight");
-						}
+						}																		
 					});
 	$(function() {
 		$('#content').keyup(function(e) {
@@ -116,24 +118,18 @@
 				</ol>
 			</div>
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					<div class="row">
-						<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-							<h4>${bean.dpgTitle }</h4>
-						</div>
-						<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-right">
-							<a type="button" id="AtagEdit" class="btn btn-primary" href="#"
-								data-toggle="modal" data-target="#noRight">수정</a>
-							<button id="ButDelete" type="button" class="btn btn-danger"
-								data-toggle="modal" data-target="#DeleteConfim">삭제</button>
-						</div>
-					</div>
+				<div class="panel-heading">${bean.dpgTitle }
+					<a type="button" id="AtagEdit" class="btn btn-default" href="#"
+						data-toggle="modal" data-target="#noRight">수정</a> 						
+						<button id="ButDelete" type="button" class="btn btn-default" 
+							data-toggle="modal" data-target="#DeleteConfim">삭제</button>	
+																												
 				</div>
 				<ul class="list-group">
 					<li class="list-group-item"><span>${bean.dpgWriter }</span> <span>${bean.dpgNalja }</span>
 						<span class="glyphicon glyphicon-thumbs-up">추천수</span> <span
 						class="glyphicon glyphicon-comment">조회수</span> <span
-						class="glyphicon glyphicon-tasks">댓글수</span></li>
+						class="glyphicon glyphicon-tasks">댓글수</span></li>       
 				</ul>
 
 				<div class="panel-body">
@@ -145,8 +141,8 @@
 
 				</div>
 			</div>
-
-
+			
+			
 
 			<div class="panel panel-success">
 				<div class="panel-body">

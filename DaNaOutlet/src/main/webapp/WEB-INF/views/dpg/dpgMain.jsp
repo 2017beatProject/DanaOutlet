@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
-<title>다나&아울렛 플레이그라운드</title>
+<title>게시판</title>
 <link rel="stylesheet" href="../resources/css/bootstrap.css">
 <link rel="stylesheet" href="../resources/css/bootstrap-theme.css">
 <script src="../resources/js/jquery.min.js"></script>
