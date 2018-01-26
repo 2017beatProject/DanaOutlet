@@ -126,9 +126,9 @@ body {
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel">권한이 없습니다</h4>
+				<h4 class="modal-title" id="myModalLabel" style="word-break: keep-all;">권한이 없습니다</h4>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body text-right">
 				<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
 			</div>
 		</div>
@@ -146,9 +146,9 @@ body {
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel">삭제 하시겠습니까</h4>
+				<h4 class="modal-title" id="myModalLabel" style="word-break: keep-all;">삭제하시겠습니까?</h4>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body text-right">
 				<a id="AtagDelete" type="button" class="btn btn-default" href="#"
 					data-toggle="modal" data-target="#DeleteConfim">삭제</a>
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
