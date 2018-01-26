@@ -56,15 +56,15 @@
 							$('#AtagEdit').attr('data-target', "");
 							$('#AtagDelete').attr('data-toggle', "");
 							$('#AtagDelete').attr('data-target', "");
-						}else if (!(loginInfoId !="")) {
+						} else if (!(loginInfoId != "")) {
 							$('#AtagEdit').attr('data-toggle', "modal");
-							$('#AtagEdit').attr('data-target', "#login");							
+							$('#AtagEdit').attr('data-target', "#login");
 							$('#ButDelete').attr('data-toggle', "modal");
 							$('#ButDelete').attr('data-target', "#login");
-						}else if(loginInfoId != writer){
+						} else if (loginInfoId != writer) {
 							$('#ButDelete').attr('data-toggle', "modal");
 							$('#ButDelete').attr('data-target', "#noRight");
-						}																		
+						}
 					});
 	$(function() {
 		$('#content').keyup(function(e) {
@@ -74,6 +74,19 @@
 		});
 		$('#content').keyup();
 	});
+
+	function getThumbnailPrivew(html, $target) {
+		if (html.files && html.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$target.css('display', '');
+				//$target.css('background-image', 'url(\"' + e.target.result + '\")'); // 배경으로 지정시
+				$target
+						.html('<img src="' + e.target.result + '" border="0" alt="" class="img-responsive"/>');
+			}
+			reader.readAsDataURL(html.files[0]);
+		}
+	}
 </script>
 
 <style>
@@ -117,19 +130,20 @@
 					<li class="active">Data</li>
 				</ol>
 			</div>
+			<!-- 요한 수정시작 -->
 			<div class="panel panel-default">
 				<div class="panel-heading">${bean.dpgTitle }
 					<a type="button" id="AtagEdit" class="btn btn-default" href="#"
-						data-toggle="modal" data-target="#noRight">수정</a> 						
-						<button id="ButDelete" type="button" class="btn btn-default" 
-							data-toggle="modal" data-target="#DeleteConfim">삭제</button>	
-																												
+						data-toggle="modal" data-target="#noRight">수정</a>
+					<button id="ButDelete" type="button" class="btn btn-default"
+						data-toggle="modal" data-target="#DeleteConfim">삭제</button>
+
 				</div>
 				<ul class="list-group">
 					<li class="list-group-item"><span>${bean.dpgWriter }</span> <span>${bean.dpgNalja }</span>
 						<span class="glyphicon glyphicon-thumbs-up">추천수</span> <span
 						class="glyphicon glyphicon-comment">조회수</span> <span
-						class="glyphicon glyphicon-tasks">댓글수</span></li>       
+						class="glyphicon glyphicon-tasks">댓글수</span></li>
 				</ul>
 
 				<div class="panel-body">
@@ -141,8 +155,8 @@
 
 				</div>
 			</div>
-			
-			
+
+
 
 			<div class="panel panel-success">
 				<div class="panel-body">
@@ -151,17 +165,30 @@
 							<textarea class="form-control" id="content" maxlength="1000"></textarea>
 						</div>
 						<div class="form-group">
-							<button type="button"
-								class="btn btn-default glyphicon glyphicon-camera">이미지첨부</button>
+
+
+							<label for="cma_file"
+								class="btn btn-default glyphicon glyphicon-camera">이미지첨부</label>
+
+							<input type="file" name="cma_file" id="cma_file" accept="image/*"
+								capture="camera"
+								onchange="getThumbnailPrivew(this,$('#cma_image'))"
+								style="display: none;" />
+
 							<button type="submit"
 								class="glyphicon glyphicon-edit btn btn-default">등록</button>
 							<button type="button" class="btn btn-default" disabled="disabled"
 								id="counter" style="float: right;">###</button>
+							<hr />
+							<div id="cma_image"
+								style="width: 100%; max-width: 100%; border: 1px solid #000; display: none;"></div>
+
 						</div>
 					</form>
 
 				</div>
 			</div>
+			<!-- 요한 수정종료 -->
 
 			<div class="panel panel-warning">
 				<div class="panel-heading">댓글</div>
