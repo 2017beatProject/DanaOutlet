@@ -17,6 +17,7 @@
 <script src="../../../resources/js/jquery-1.12.4.js"></script>
 <script src="../../../resources/js/jquery.bxslider.js"></script>
 <script src="../../../resources/js/bootstrap.js"></script>
+<link rel="shortcut icon" type="image/x-icon" href="../resources/imgs/favicon.png" />
 <script>
 	$(document).ready(function() {
 		$('.bxslider').bxSlider({
@@ -123,8 +124,8 @@
 						<li>
 							<h3>리뷰 입력</h3>
 						</li>
-						<li><a href="#">DPG</a></li>
-						<li><a href="#">리뷰</a></li>
+						<li><a href="/dpg?startNum=0">DPG</a></li>
+						<li><a href="/dpg/review?startNum=0">리뷰</a></li>
 						<li class="active">글쓰기</li>
 					</ol>
 				</div>
