@@ -56,6 +56,23 @@
 		} else {
 			login();
 		}
+
+		history.pushState(null, null, location.href);
+
+		window.onpopstate = function(event) {
+			$('.modal').modal('hide')
+			history.go(1);
+		};
+
+	});
+
+	$(window).bind("pageshow", function(event) {
+		if (event.originalEvent.persisted) {
+			// 뒤로가기로 페이지 로드 시
+			alert('뒤로가기');
+		} else {
+			// 새로운 페이지 로드 시
+		}
 	});
 </script>
 
@@ -126,7 +143,8 @@ body {
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel" style="word-break: keep-all;">권한이 없습니다</h4>
+				<h4 class="modal-title" id="myModalLabel"
+					style="word-break: keep-all;">권한이 없습니다</h4>
 			</div>
 			<div class="modal-body text-right">
 				<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
@@ -146,7 +164,8 @@ body {
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel" style="word-break: keep-all;">삭제하시겠습니까?</h4>
+				<h4 class="modal-title" id="myModalLabel"
+					style="word-break: keep-all;">삭제하시겠습니까?</h4>
 			</div>
 			<div class="modal-body text-right">
 				<a id="AtagDelete" type="button" class="btn btn-default" href="#"
