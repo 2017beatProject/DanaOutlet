@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.ReplyVo;
 import com.bit.daNaOutlet.service.MemberService;
-import com.bit.daNaOutlet.util.Sessions;
+
 
 @Controller
 public class DpgController {
@@ -87,19 +87,38 @@ public class DpgController {
 	   return "redirect:/dpg/review?startNum=0"; 
    }
     
-	
+//민건씨 버전 ajax로 불러오기는 나중에 할게요 지금은 쉽게 간단하게 할게요
 // ajax로 댓글 정보 불러오기
+//	@RequestMapping(value = "/replyCall", method = RequestMethod.GET)
+//	public void dpgReply(HttpServletResponse resp, Model model, @RequestParam("num") int fatherContentsNum)
+//			throws Exception {
+//		memberService.replyCall(fatherContentsNum, resp);		
+//	}
+//	// ajax로 댓글 쓰기
+//	@RequestMapping(value="/replyAdd", method=RequestMethod.POST)
+//	public void dpgReplyAdd(HttpServletRequest req, @ModelAttribute ReplyVo bean, MultipartFile file)
+//			throws Exception {
+//		memberService.replyAdd(bean, file, req);
+//	}
+   
+
 	@RequestMapping(value = "/replyCall", method = RequestMethod.GET)
 	public void dpgReply(HttpServletResponse resp, Model model, @RequestParam("num") int fatherContentsNum)
 			throws Exception {
-		memberService.replyCall(fatherContentsNum, resp);		
+		memberService.replyCallVer_2(fatherContentsNum, resp,model);		
 	}
 	// ajax로 댓글 쓰기
 	@RequestMapping(value="/replyAdd", method=RequestMethod.POST)
-	public void dpgReplyAdd(HttpServletRequest req, @ModelAttribute ReplyVo bean, MultipartFile file)
+	public String dpgReplyAdd(HttpServletRequest req, @ModelAttribute ReplyVo bean, MultipartFile file)
 			throws Exception {
 		memberService.replyAdd(bean, file, req);
+		return "redirect:/dpg/"+bean.getFatherFrom()+"/"+bean.getFatherContentsNum();
 	}
+   
+	 @RequestMapping(value = "/reply/delete/{replyLog}", method = RequestMethod.DELETE)
+	   public void dpgReplyDelete(@PathVariable int replyLog, HttpServletResponse resp) throws Exception {
+		  memberService.dpgReplyDelete(replyLog,resp);	   
+	   }
 }
 
 

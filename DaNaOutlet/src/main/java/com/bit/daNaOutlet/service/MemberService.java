@@ -59,16 +59,26 @@ public interface MemberService {
 	boolean dpgUserChk(HttpServletRequest req) throws Exception;
 
  	/*댓글 서비스*/
- 	List<ReplyVo> replyCall( int fatherContentsNum, HttpServletResponse resp) throws Exception;
+	// 민건씨가 만든 버전은 지금 우리상황에서 못쓰겟어요~ 주석할게요 
+// 	List<ReplyVo> replyCallVer_1( int fatherContentsNum, HttpServletResponse resp) throws Exception; 
+	
+	// 김성식 버전 ajax 안하고 간단하게 만들기 
+	List<ReplyVo> replyCallVer_2( int fatherContentsNum, HttpServletResponse resp,Model model) throws Exception;
 
+	void dpgReplyDelete(int replyLog,HttpServletResponse resp) throws Exception;
+	
+	void replyAdd(ReplyVo bean, MultipartFile file, HttpServletRequest req) throws Exception;
+	
 	void dpgOne(Model model, int dpgNum) throws Exception;
 
-	void replyAdd(ReplyVo bean, MultipartFile file, HttpServletRequest req) throws Exception;
+	
 
 	String logout(HttpServletRequest req) throws Exception;
 
 	String loginChk(HttpServletRequest req, HttpServletResponse resp) throws Exception;
 
 	boolean idDoubleChk(String chkId, HttpServletRequest req, HttpServletResponse resp) throws Exception;
+
+	
 
 	}

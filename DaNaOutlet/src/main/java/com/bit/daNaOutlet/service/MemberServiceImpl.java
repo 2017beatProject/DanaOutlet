@@ -1,5 +1,6 @@
 package com.bit.daNaOutlet.service;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -156,6 +157,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void dpgOne(Model model, int dpgNum) throws Exception {
 		model.addAttribute("bean", dao.dpgOne(dpgNum));
+		model.addAttribute("reply",dao.replyCall(dpgNum));
 	}
 	@Override
 	public void dpgNoneInputEditOne(Model model, Object dpgNum,int idx) throws Exception {
@@ -207,51 +209,75 @@ public class MemberServiceImpl implements MemberService {
 		}	
 	}
 
-	/* 댓글 서비스*/	
-	@Override
-	public List<ReplyVo> replyCall(int fatherContentsNum, HttpServletResponse resp) throws Exception {
-				
-		
-	log.debug(dao.replyCall(fatherContentsNum).toString());	
+//	/* 댓글 서비스*/	
+//	@Override
+//	public List<ReplyVo> replyCallVer_1(int fatherContentsNum, HttpServletResponse resp) throws Exception {
+//				
+//		
+//	log.debug(dao.replyCall(fatherContentsNum).toString());	
+//	
+//	List<ReplyVo> list=dao.replyCall(fatherContentsNum);
+//		/*	
+//		 * json 확인용 logger
+//		 * 		System.out.print("{\"list\":[");
+//					for(int i=0;i<list.size();i++) {
+//						System.out.print("{\"log\":\""+list.get(i).getFatherContentsNum()+"\","
+//								+ "\"id\":\""+list.get(i).getReplyId()+"\","
+//								+ "\"contents\":\""+list.get(i).getReplyContent()+"\","
+//								+ "\"nalja\":\""+list.get(i).getReplyDate()+"\","
+//								+ "\"depth\":\""+list.get(i).getReplyDepth()+"\","
+//								+ "\"conId\":\""+list.get(i).getReplyConId()+"\","
+//								+ "\"fatherNum\":\""+list.get(i).getFatherContentsNum()+"\"}");
+//					if(i!=list.size()-1) {System.out.print(",");}
+//							
+//					}
+//					System.out.print("]}");*/
+//					resp.setContentType("text/json");
+//					resp.setCharacterEncoding("UTF-8");
+//					out=resp.getWriter();
+//					out.print("{\"list\":[");
+//					for(int i=0;i<list.size();i++) {
+//					out.print("{\"log\":\""+list.get(i).getFatherContentsNum()+"\","
+//							+ "\"id\":\""+list.get(i).getReplyId()+"\","
+//							+ "\"contents\":\""+list.get(i).getReplyContent()+"\","
+//							+ "\"nalja\":\""+list.get(i).getReplyDate()+"\","
+//							+ "\"depth\":\""+list.get(i).getReplyDepth()+"\","
+//							+ "\"conId\":\""+list.get(i).getReplyConId()+"\","
+//							+ "\"fatherNum\":\""+list.get(i).getFatherContentsNum()+"\"}");
+//					if(i!=list.size()-1) {out.print(",");}
+//							
+//					}
+//					out.print("]}");		
+//		return null;
+//	}
 	
-	List<ReplyVo> list=dao.replyCall(fatherContentsNum);
-		/*	
-		 * json 확인용 logger
-		 * 		System.out.print("{\"list\":[");
-					for(int i=0;i<list.size();i++) {
-						System.out.print("{\"log\":\""+list.get(i).getFatherContentsNum()+"\","
-								+ "\"id\":\""+list.get(i).getReplyId()+"\","
-								+ "\"contents\":\""+list.get(i).getReplyContent()+"\","
-								+ "\"nalja\":\""+list.get(i).getReplyDate()+"\","
-								+ "\"depth\":\""+list.get(i).getReplyDepth()+"\","
-								+ "\"conId\":\""+list.get(i).getReplyConId()+"\","
-								+ "\"fatherNum\":\""+list.get(i).getFatherContentsNum()+"\"}");
-					if(i!=list.size()-1) {System.out.print(",");}
-							
-					}
-					System.out.print("]}");*/
-					resp.setContentType("text/json");
-					resp.setCharacterEncoding("UTF-8");
-					out=resp.getWriter();
-					out.print("{\"list\":[");
-					for(int i=0;i<list.size();i++) {
-					out.print("{\"log\":\""+list.get(i).getFatherContentsNum()+"\","
-							+ "\"id\":\""+list.get(i).getReplyId()+"\","
-							+ "\"contents\":\""+list.get(i).getReplyContent()+"\","
-							+ "\"nalja\":\""+list.get(i).getReplyDate()+"\","
-							+ "\"depth\":\""+list.get(i).getReplyDepth()+"\","
-							+ "\"conId\":\""+list.get(i).getReplyConId()+"\","
-							+ "\"fatherNum\":\""+list.get(i).getFatherContentsNum()+"\"}");
-					if(i!=list.size()-1) {out.print(",");}
-							
-					}
-					out.print("]}");		
-		return null;
+	@Override
+	public List<ReplyVo> replyCallVer_2(int fatherContentsNum, HttpServletResponse resp,Model model) throws Exception {		
+		return dao.replyCall(fatherContentsNum);
 	}
+	
+	
+	@Override
+	public void dpgReplyDelete(int replyLog, HttpServletResponse resp) throws Exception {
+		out=resp.getWriter();		
+		dao.replyDelete(replyLog);
+		out.print("default");	
+	}
+	@Override
+	public void replyAdd(ReplyVo bean, MultipartFile file, HttpServletRequest req) throws Exception {
+		String rootPath="\\replyImgs\\";
+ 		Commons comUp = new Commons(); 		
+ 		String imgLink=comUp.commonsReplyUp(bean.getReplyConId(), rootPath, file, req);
+ 		if(!(imgLink==null))bean.setReplyImgsLink(imgLink);
+ 		bean.setReplyLog(dao.replyNumOne());
+ 		dao.replyAdd(bean); 	
+	}
+	
 	@Override
 	public void dpgDelete(int dpgNum, HttpServletResponse resp) throws Exception {		
 		out=resp.getWriter();		
 		dao.dpgDelete(dpgNum);
+		dao.replyDpgDeleteAll(dpgNum);
 		out.print("default");
 	}
 	@Override
@@ -275,15 +301,7 @@ public class MemberServiceImpl implements MemberService {
 	public boolean dpgUserChk(HttpServletRequest req) throws Exception {	
 		return sessions.sessionChk(req);
 	}
-	@Override
-	public void replyAdd(ReplyVo bean, MultipartFile file, HttpServletRequest req) throws Exception {
-		String rootPath="\\replyImgs\\";
- 		Commons comUp = new Commons(); 		
- 		String imgLink=comUp.commonsReplyUp(bean.getReplyId(), rootPath, file, req);
- 		if(!(imgLink==null))bean.setReplyImgsLink(imgLink);
- 		bean.setReplyLog(dao.replyNumOne());
- 		dao.replyAdd(bean); 	
-	}
+	
 
 	@Override
 	public String logout(HttpServletRequest req) throws Exception {
@@ -311,6 +329,10 @@ public class MemberServiceImpl implements MemberService {
 		
 		out.print("false");
 		return false;
-	}	
+	}
+
+
+
+
 	
 }

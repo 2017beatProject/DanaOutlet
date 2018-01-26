@@ -320,10 +320,6 @@ li {
 
 		<!-- <div class="row">&nbsp;</div> -->
 	</div>
-
-
 	<jsp:include page="../template/footer.jsp" flush="false" />
-
 </body>
-
 </html>
