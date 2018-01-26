@@ -17,6 +17,7 @@
 <script src="../resources/js/jquery-1.12.4.js"></script>
 <script src="../resources/js/jquery.bxslider.js"></script>
 <script src="../resources/js/bootstrap.js"></script>
+<link rel="shortcut icon" type="image/x-icon" href="../resources/imgs/favicon.png" />
 <script>
 var loginInfoNickName="${loginInfo.nickName}";
 
