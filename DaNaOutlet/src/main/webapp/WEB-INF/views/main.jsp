@@ -8,13 +8,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
-<title>Insert title here</title>
+<title>메인페이지</title>
 <link rel="stylesheet" href="resources/css/bootstrap.css">
 <link rel="stylesheet" href="resources/css/bootstrap-theme.css">
 <script src="resources/js/jquery.min.js"></script>
 <script src="resources/js/jquery-1.12.4.js"></script>
 <script src="resources/js/jquery.bxslider.js"></script>
 <script src="resources/js/bootstrap.js"></script>
+<link rel="shortcut icon" type="image/x-icon" href="../resources/imgs/favicon.png" />
 <script>
 	$(document).ready(function() {
 		// 광고판 기본 설정
