@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -12,6 +13,7 @@
 <script src="/resources/js/IdDoubleCheck.js"></script>
 <script src="/resources/js/idValidation.js"></script>
 <script src="/resources/js/mailCheck.js"></script>
+
 
 <script>
 	var authKey;
