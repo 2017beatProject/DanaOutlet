@@ -15,7 +15,8 @@
 <script src="resources/js/jquery-1.12.4.js"></script>
 <script src="resources/js/jquery.bxslider.js"></script>
 <script src="resources/js/bootstrap.js"></script>
-<link rel="shortcut icon" type="image/x-icon" href="../resources/imgs/favicon.png" />
+<link rel="shortcut icon" type="image/x-icon"
+	href="../resources/imgs/favicon.png" />
 <script>
 	$(document).ready(function() {
 		// 광고판 기본 설정
@@ -108,7 +109,9 @@
 																	/\B(?=(\d{3})+(?!\d))/g,
 																	",")
 													+ 'krw</h4>'
-													+ '</div></div></div></div></div></div></div>');
+													+ '</div></div>'
+													//+ '<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right"><a class="">닫기</a></div>'
+													+ '</div></div></div></div></div>');
 						}
 						;
 					},
@@ -116,9 +119,8 @@
 						console.log("에러");
 					}
 				});
-		
+
 	}
-	
 </script>
 
 <style type="text/css">
@@ -195,7 +197,8 @@
 	</div>
 
 	<!-- 버튼 12개 -->
-	<div class="container well" style="padding-top: 5px; padding-top:5px; margin-top:5px; margin-bottom: 5px;">
+	<div class="container well"
+		style="padding-top: 5px; padding-top: 5px; margin-top: 5px; margin-bottom: 5px;">
 		<div class="row">
 			<div class="col-lg-1 col-md-2 col-sm-3 col-xs-4 text-center">
 				<a href="javascript:void(0);" onclick="load('거실')"><img
