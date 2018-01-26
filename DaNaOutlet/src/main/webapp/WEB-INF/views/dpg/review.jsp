@@ -11,13 +11,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
-<title>게시판</title>
+<title>리뷰</title>
 <link rel="stylesheet" href="../resources/css/bootstrap.css">
 <link rel="stylesheet" href="../resources/css/bootstrap-theme.css">
 <script src="../resources/js/jquery.min.js"></script>
 <script src="../resources/js/jquery-1.12.4.js"></script>
 <script src="../resources/js/jquery.bxslider.js"></script>
 <script src="../resources/js/bootstrap.js"></script>
+<link rel="shortcut icon" type="image/x-icon" href="../resources/imgs/favicon.png" />
 <script>
 var loginInfoNickName="${loginInfo.nickName}";
    $(document)
@@ -56,13 +57,7 @@ var loginInfoNickName="${loginInfo.nickName}";
       $('#content').keyup();
    });
 </script>
-<style>
-@media ( max-width : 768px) {
-   .reviewImg {
-      width: 80px;
-   }
-}
-</style>
+
 </head>
 
 <body>
@@ -81,13 +76,13 @@ var loginInfoNickName="${loginInfo.nickName}";
                <!-- 반복시작 -->
                <c:forEach items="${imgList}" var="bean">
                   <li class="col-xs-12" style="padding: 0px 3px 0px 3px;">
-                     <div class="col-sm-4 col-xs-2">
+                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding: 0px 0px 0px 0px;">
                         <a href="../dpg/review/${bean.dpgNum }"><img
                            src="../resources/imgs/dpgimgs/${bean.dpgImgLink}" alt=""
-                           class="img-thumbnail reviewImg" /></a>
+                           class="img-responsive" /></a>
                      </div>
-                     <div class="col-sm-8 col-xs-10" style="padding: 0px 3px 0px 3px;">
-                        <strong class="col-sm-8 col-md-8 col-xs-7"> <a
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="padding: 0px 3px 0px 3px;">
+                        <strong class="col-sm-8 col-md-8 col-xs-12"> <a
                            href="../dpg/review/${bean.dpgNum }"> <c:set var="text"
                                  value="${bean.dpgTitle}" /> <c:if
                                  test="${fn:length(text) lt 14}">
@@ -98,7 +93,7 @@ var loginInfoNickName="${loginInfo.nickName}";
                         </a>
                         </strong>
                         <!-- <div class="col-sm-12">&nbsp;</div> -->
-                        <div class="col-sm-4 col-md-4 col-xs-5" style="padding: 0px 3px 0px 3px;">
+                        <div class="hidden-xs col-sm-4 col-md-4 col-lg-4" style="padding: 0px 3px 0px 3px;">
                            <p><a href="#">${bean.dpgWriter }</a></p> <p>${bean.dpgNalja }</p>
                            <div style="color: purple;">
                               <span class="glyphicon glyphicon-comment">${bean.dpgCount }</span>
@@ -139,14 +134,15 @@ var loginInfoNickName="${loginInfo.nickName}";
          </div>
          <div class="col-sm-4 hidden-xs">
             <div>
-               <ul class="bxslider">
+               <!-- <ul class="bxslider">
                   <li><img src="../resources/imgs/bxImgs/iu1.jpg" alt=""
                      class="img-responsive" />
                   <li><img src="../resources/imgs/bxImgs/iu2.jpg" alt=""
                      class="img-responsive" /></li>
                   <li><img src="../resources/imgs/bxImgs/iu3.jpg" alt=""
                      class="img-responsive" /></li>
-               </ul>
+               </ul> -->
+               <jsp:include page="../template/bxslider.jsp" />
             </div>
          </div>
       </div>
