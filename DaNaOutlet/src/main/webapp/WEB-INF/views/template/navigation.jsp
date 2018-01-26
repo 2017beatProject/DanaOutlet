@@ -190,14 +190,13 @@ body {
 
 
 					<div class="modal-footer">
-						<div class="row"">
-							<a id="logoutTestG"
-								class="btn "><img
+						<div class="row">
+							<a id="logoutTestG" class="btn "><img
 								src="/resources/imgs/kakao_account_login_btn_medium_narrow.png"
 								class="" /></a>
 							<button type="submit" class="btn btn-primary">확인</button>
 							<button type="button" class="btn btn-default"
-								data-dismiss="modal"">닫기</button>
+								data-dismiss="modal">닫기</button>
 						</div>
 					</div>
 				</form>
@@ -343,5 +342,4 @@ body {
 
 		</div>
 	</div>
-</div>
 </div>
