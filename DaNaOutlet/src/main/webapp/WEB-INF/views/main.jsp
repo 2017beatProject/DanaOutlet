@@ -8,18 +8,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
-<title>메인페이지</title>
+<title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/bootstrap.css">
 <link rel="stylesheet" href="resources/css/bootstrap-theme.css">
 <script src="resources/js/jquery.min.js"></script>
 <script src="resources/js/jquery-1.12.4.js"></script>
 <script src="resources/js/jquery.bxslider.js"></script>
 <script src="resources/js/bootstrap.js"></script>
-<link rel="shortcut icon" type="image/x-icon"
-	href="../resources/imgs/favicon.png" />
 <script>
 	$(document).ready(function() {
-		// 광고판 기본 설정
 		$('.bxslider').bxSlider({
 			auto : true,
 			speed : 300,
@@ -30,16 +27,13 @@
 			autoHover : true,
 			controls : false
 		});
-		// 이미지 24개 불러오기
 		loadList(' ');
-
 	});
 	var load = function(keyword) {
 		$("html,body").animate({
 			scrollTop : $("#content").offset().top - 60
 		}, 1000);
 		loadList(keyword);
-
 	}
 	var loadList = function(keyword) {
 		$('#content').empty();
@@ -73,12 +67,11 @@
 												+ 'tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">'
 													+ '<div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-body">'
 													+ '<div class="row"><div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">'
-													+ '<img src="'
-													+ products.childNodes[i].childNodes[14].firstChild.wholeText
+													+ '<img src="'+products.childNodes[i].childNodes[14].firstChild.wholeText
 													+ '" class="img-responsive" style="width:100%; height=100%;"/></div>'
 													+ '<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">'
 													+ '<hr />'
-													+ '<h3 style="word-break: keep-all;"><a href="'
+													+ '<h3><a href="'
 													+ products.childNodes[i].childNodes[21].firstChild.wholeText
 													+ '">'
 													+ products.childNodes[i].childNodes[1].firstChild.wholeText
@@ -109,17 +102,15 @@
 																	/\B(?=(\d{3})+(?!\d))/g,
 																	",")
 													+ 'krw</h4>'
-													+ '</div></div>'
-													//+ '<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right"><a class="">닫기</a></div>'
-													+ '</div></div></div></div></div>');
+													+ '</div></div></div></div></div></div></div>'
+									);
 						}
 						;
 					},
 					'error' : function(data) {
 						console.log("에러");
 					}
-				});
-
+				})
 	}
 </script>
 
@@ -197,8 +188,7 @@
 	</div>
 
 	<!-- 버튼 12개 -->
-	<div class="container well"
-		style="padding-top: 5px; padding-top: 5px; margin-top: 5px; margin-bottom: 5px;">
+	<div class="container well">
 		<div class="row">
 			<div class="col-lg-1 col-md-2 col-sm-3 col-xs-4 text-center">
 				<a href="javascript:void(0);" onclick="load('거실')"><img
@@ -283,16 +273,14 @@
 
 		<div class="row">
 
-			<!-- #content 내부에 이미지를 불러옵니다 -->
+			<!-- 여기에 이미지를 불러옵니다 -->
 			<div class="col-xs-12" id="content">
-				<!-- 더미 이미지 -->
-				<!-- <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2"
+				<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2"
 					style="padding: 0px 0px 0px 0px">
 					<a data-toggle="modal" data-target="#modal-0"><img
 						src="../resources/imgs/main/cube1.jpg"
 						class="img-responsive hotDealImg" /></a>
-				</div> -->
-				<!-- 더미 이미지 종료 -->
+				</div>
 				<div class="modal fade" id="modal-0" tabindex="-1" role="dialog"
 					aria-labelledby="myLargeModalLabel" aria-hidden="true">
 					<div class="modal-dialog modal-lg">
@@ -333,11 +321,9 @@
 
 		<!-- bxSlider - 차후에 6개로 구현 -->
 		<div class="row">
-			<!-- <div class="col-sm-12"></div> -->
-			<!-- 광고판 시작 -->
+			<div class="col-sm-12">오늘의 추천</div>
 			<div class="col-sm-12" id="bxFirst"
 				style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px; border: 0px 0px 0px 0px;">
-				<!-- bxSlider -->
 				<ul class="bxslider">
 					<li><img src="../resources/imgs/main/bx1.jpg" alt=""
 						class="img-responsive bxImg" /></li>
@@ -346,14 +332,12 @@
 					<li><img src="../resources/imgs/main/bx3.jpg" alt=""
 						class="img-responsive bxImg" /></li>
 				</ul>
-				<!-- bxSlider 종료 -->
 			</div>
-			<!-- 광고판 종료 -->
 		</div>
 
-		<!-- <div class="row">
+		<div class="row">
 			<div class="col-sm-12">뜨는 상품</div>
-		</div> -->
+		</div>
 	</div>
 
 

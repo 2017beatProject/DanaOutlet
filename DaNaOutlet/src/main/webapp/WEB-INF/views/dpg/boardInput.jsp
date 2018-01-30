@@ -78,8 +78,8 @@
 						<li>
 							<h3>게시글 입력</h3>
 						</li>
-						<li><a href="/dpg?startNum=0">DPG</a></li>
-						<li><a href="/dpg/board?startNum=0">게시판</a></li>
+						<li><a href="#">DPG</a></li>
+						<li><a href="#">게시판</a></li>
 						<li class="active">글쓰기</li>
 					</ol>
 				</div>

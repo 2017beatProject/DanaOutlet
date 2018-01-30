@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -13,7 +12,6 @@
 <script src="/resources/js/IdDoubleCheck.js"></script>
 <script src="/resources/js/idValidation.js"></script>
 <script src="/resources/js/mailCheck.js"></script>
-
 
 <script>
 	var authKey;
@@ -55,23 +53,6 @@
 			logoutTool();
 		} else {
 			login();
-		}
-
-		history.pushState(null, null, location.href);
-
-		window.onpopstate = function(event) {
-			$('.modal').modal('hide')
-			history.go(1);
-		};
-
-	});
-
-	$(window).bind("pageshow", function(event) {
-		if (event.originalEvent.persisted) {
-			// 뒤로가기로 페이지 로드 시
-			alert('뒤로가기');
-		} else {
-			// 새로운 페이지 로드 시
 		}
 	});
 </script>
@@ -143,10 +124,9 @@ body {
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel"
-					style="word-break: keep-all;">권한이 없습니다</h4>
+				<h4 class="modal-title" id="myModalLabel">권한이 없습니다</h4>
 			</div>
-			<div class="modal-body text-right">
+			<div class="modal-body">
 				<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
 			</div>
 		</div>
@@ -164,10 +144,9 @@ body {
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel"
-					style="word-break: keep-all;">삭제하시겠습니까?</h4>
+				<h4 class="modal-title" id="myModalLabel">삭제 하시겠습니까</h4>
 			</div>
-			<div class="modal-body text-right">
+			<div class="modal-body">
 				<a id="AtagDelete" type="button" class="btn btn-default" href="#"
 					data-toggle="modal" data-target="#DeleteConfim">삭제</a>
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -211,13 +190,14 @@ body {
 
 
 					<div class="modal-footer">
-						<div class="row">
-							<a id="logoutTestG" class="btn "><img
+						<div class="row"">
+							<a id="logoutTestG"
+								class="btn "><img
 								src="/resources/imgs/kakao_account_login_btn_medium_narrow.png"
 								class="" /></a>
 							<button type="submit" class="btn btn-primary">확인</button>
 							<button type="button" class="btn btn-default"
-								data-dismiss="modal">닫기</button>
+								data-dismiss="modal"">닫기</button>
 						</div>
 					</div>
 				</form>
@@ -363,4 +343,5 @@ body {
 
 		</div>
 	</div>
+</div>
 </div>

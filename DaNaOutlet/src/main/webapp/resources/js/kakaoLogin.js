@@ -24,7 +24,7 @@ function loginTool() {
 	});
 	
 	// 카카오 로그인--------------------------------
-	Kakao.init('1ed0a4ca651380fc768bf01eb21201e5');
+	Kakao.init('b3f2db2221e0c7bfa2a895430e4df2a8');
 	// 카카오 로그인 버튼을 생성.		
 //	Kakao.Auth.createLoginButton({
 //		'container' : '#kakao-login-btn',
