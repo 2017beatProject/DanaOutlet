@@ -76,12 +76,12 @@
 	
 					});
 	$(function() {
-		$('#content').keyup(function(e) {
+		$('#replyContent').keyup(function(e) {
 			var content = $(this).val();
 			$(this).height((((content.split('\n').length) * 0.5) - 9) + 'em');
 			$('#counter').html(content.length + '/1000');
 		});
-		$('#content').keyup();
+		$('#replyContent').keyup();
 	});
 	
 	
@@ -134,10 +134,10 @@
 		<div class="col-sm-8">
 			<div class="page-header">
 				<ol class="breadcrumb">
-					<li><h1>자유게시판</h1></li>
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Library</a></li>
-					<li class="active">Data</li>
+					<li><h1>리뷰</h1></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="/dpg?startNum=0">DPG</a></li>
+					<li class="active">리뷰</li>
 				</ol>
 			</div>
 			<div class="panel panel-default">
@@ -170,14 +170,17 @@
 			<div class="panel panel-success">
 				<div class="panel-body">
 
-					<form id="replyAddForm" method="post" action="/replyAdd" enctype="multipart/form-data">
-						<input type="hidden" name="replyNickName" value="${loginInfo.nickName}">
-						<input type="hidden" name="replyConId" value="${loginInfo.loginId}">
-						<input type="hidden" name="fatherContentsNum" value="${bean.dpgNum }"> 
+					<form id="replyAddForm" method="post" action="/replyAdd"
+						enctype="multipart/form-data">
+						<input type="hidden" name="replyNickName"
+							value="${loginInfo.nickName}"> <input type="hidden"
+							name="replyConId" value="${loginInfo.loginId}"> <input
+							type="hidden" name="fatherContentsNum" value="${bean.dpgNum }">
 						<input type="hidden" name="fatherFrom" value="review">
 						<div class="form-group">
 							<textarea class="form-control" name="replyContent"
-								maxlength="1000" required="required"></textarea>
+								maxlength="1000" required="required" id="replyContent"
+								style="resize: vertical;"></textarea>
 						</div>
 
 						<div class="form-group">
@@ -206,14 +209,12 @@
 				<div class="panel-heading">댓글</div>
 				<ul class="list-group">
 					<c:forEach items="${reply }" var="reply">
-						<li class="list-group-item" >
-						<span style="display: none">${reply.replyConId }</span>
-						<span class="btn btn-info"
-							disabled="disabled">${reply.replyNickName }</span> <span
-							class="btn btn-warning" disabled="disabled">${reply.replyDate }</span>
-							<a type="button" class="AtagReplyDelete btn btn-danger" 
-							data-toggle="modal" data-target="#noRight" style="float : right">삭제</a><span style="display: none">${reply.replyLog }</span> <br />
-							<br />
+						<li class="list-group-item"><span style="display: none">${reply.replyConId }</span>
+							<span class="btn btn-info" disabled="disabled">${reply.replyNickName }</span>
+							<span class="btn btn-warning" disabled="disabled">${reply.replyDate }</span>
+							<a type="button" class="AtagReplyDelete btn btn-danger"
+							data-toggle="modal" data-target="#noRight" style="float: right">삭제</a><span
+							style="display: none">${reply.replyLog }</span> <br /> <br />
 							<p>${reply.replyContent }</p>
 							<p>
 								<img

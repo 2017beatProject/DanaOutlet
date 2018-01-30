@@ -74,12 +74,12 @@
 
 					});
 	$(function() {
-		$('#content').keyup(function(e) {
+		$('#replyContent').keyup(function(e) {
 			var content = $(this).val();
 			$(this).height((((content.split('\n').length) * 0.5) - 9) + 'em');
 			$('#counter').html(content.length + '/1000');
 		});
-		$('#content').keyup();
+		$('#replyContent').keyup();
 	});
 	
 	function getThumbnailPrivew(html, $target) {
@@ -126,27 +126,27 @@
 
 <body>
 	<jsp:include page="../template/navigation.jsp" flush="false" />
-	
-			
+
+
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 				<div class="page-header">
 					<ol class="breadcrumb">
 						<li><h1>자유게시판</h1></li>
-						<li><a href="#">Home</a></li>
-						<li><a href="#">Library</a></li>
-						<li class="active">Data</li>
+						<li><a href="/">Home</a></li>
+						<li><a href="/dpg?startNum=0">DPG</a></li>
+						<li class="active">리뷰</li>
 					</ol>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">${bean.dpgTitle }
 						<a type="button" id="AtagEdit" class="btn btn-default" href="#"
-						data-toggle="modal" data-target="#noRight">수정</a> 						
-						<button id="ButDelete" type="button" class="btn btn-default" 
-							data-toggle="modal" data-target="#DeleteConfim">삭제</button>							
+							data-toggle="modal" data-target="#noRight">수정</a>
+						<button id="ButDelete" type="button" class="btn btn-default"
+							data-toggle="modal" data-target="#DeleteConfim">삭제</button>
 					</div>
-					
+
 					<ul class="list-group">
 						<li class="list-group-item"><span>${bean.dpgWriter}</span> <span>${bean.dpgNalja }</span>
 							<span class="glyphicon glyphicon-thumbs-up">추천수</span> <span
@@ -158,59 +158,61 @@
 						<p>${bean.dpgContent }</p>
 					</div>
 				</div>
-			
+
 				<div class="panel panel-success">
 					<div class="panel-body">
-						<form method="post" id="replyAddForm" action="/replyAdd" enctype="multipart/form-data">
-						<input type="hidden" name="replyNickName" value="${loginInfo.nickName}">
-						<input type="hidden" name="replyConId" value="${loginInfo.loginId}">
-						<input type="hidden" name="fatherContentsNum" value="${bean.dpgNum }">
-						<input type="hidden" name="fatherFrom" value="board">
+						<form method="post" id="replyAddForm" action="/replyAdd"
+							enctype="multipart/form-data">
+							<input type="hidden" name="replyNickName"
+								value="${loginInfo.nickName}"> <input type="hidden"
+								name="replyConId" value="${loginInfo.loginId}"> <input
+								type="hidden" name="fatherContentsNum" value="${bean.dpgNum }">
+							<input type="hidden" name="fatherFrom" value="board">
 							<div class="form-group">
-								<textarea class="form-control" name="replyContent" maxlength="1000" required="required"></textarea>
+								<textarea class="form-control" name="replyContent"
+									maxlength="1000" required="required" id="replyContent"
+									style="resize: vertical;"></textarea>
 							</div>
-												
-							 <div class="form-group">
-                     <label for="cma_file"
-                        class="btn btn-default glyphicon glyphicon-camera">이미지첨부</label>
 
-                     <input type="file" name="file" id="cma_file" accept="image/*"
-                        capture="camera" 
-                        onchange="getThumbnailPrivew(this,$('#cma_image'))"
-                        style="display: none;" />
-                    
-                     <button type="button" class="btn btn-default" disabled="disabled"
-                        id="counter" style="float: right;">###</button>
-                     <hr />
-                     <div id="cma_image"
-                        style="width: 100%; max-width: 100%; border: 1px solid #000; display: none;"></div>
+							<div class="form-group">
+								<label for="cma_file"
+									class="btn btn-default glyphicon glyphicon-camera">이미지첨부</label>
 
-                  </div>
-																																								
+								<input type="file" name="file" id="cma_file" accept="image/*"
+									capture="camera"
+									onchange="getThumbnailPrivew(this,$('#cma_image'))"
+									style="display: none;" />
+
+								<button type="button" class="btn btn-default"
+									disabled="disabled" id="counter" style="float: right;">###</button>
+								<hr />
+								<div id="cma_image"
+									style="width: 100%; max-width: 100%; border: 1px solid #000; display: none;"></div>
+
+							</div>
+
 						</form>
 					</div>
 				</div>
-			
+
 				<div class="panel panel-warning">
 					<div class="panel-heading">댓글</div>
 					<ul class="list-group">
-					<c:forEach items="${reply }" var="reply">
-						<li class="list-group-item" >
-						<span style="display: none">${reply.replyConId }</span>
-						<span class="btn btn-info"
-							disabled="disabled">${reply.replyNickName }</span> <span
-							class="btn btn-warning" disabled="disabled">${reply.replyDate }</span>
-							<a type="button" class="AtagReplyDelete btn btn-danger" 
-							data-toggle="modal" data-target="#noRight" style="float : right">삭제</a><span style="display: none">${reply.replyLog }</span> <br />
-							<br />
-							<p>${reply.replyContent }</p>
-							<p>
-								<img
-									src="../../resources/imgs/replyImgs/${reply.replyImgsLink }"
-									alt="" class="replyImg" />
-							</p></li>
-					</c:forEach>
-						
+						<c:forEach items="${reply }" var="reply">
+							<li class="list-group-item"><span style="display: none">${reply.replyConId }</span>
+								<span class="btn btn-info" disabled="disabled">${reply.replyNickName }</span>
+								<span class="btn btn-warning" disabled="disabled">${reply.replyDate }</span>
+								<a type="button" class="AtagReplyDelete btn btn-danger"
+								data-toggle="modal" data-target="#noRight" style="float: right">삭제</a><span
+								style="display: none">${reply.replyLog }</span> <br /> <br />
+								<p>${reply.replyContent }</p>
+								<p>
+									<img
+										src="../../resources/imgs/replyImgs/${reply.replyImgsLink }"
+										alt="" class="replyImg" />
+								</p></li>
+						</c:forEach>
+
 					</ul>
 				</div>
 			</div>
