@@ -38,11 +38,12 @@ public class Commons {
 		ServletContext context = req.getSession().getServletContext();
 		String realPath = context.getRealPath("/");
 		String path = realPath + "\\resources\\imgs" + rootPath;		
-		String srcPath = "C:\\Users\\1027\\git\\DanaOutlet\\DaNaOutlet\\src\\main\\webapp\\resources\\imgs" + rootPath;
-		String orginalName = file.getOriginalFilename();
-		int pos = orginalName.lastIndexOf(".");
-		String suffix = orginalName.substring(pos);
-		if (!file.isEmpty()) {				
+		String srcPath = "C:\\Users\\hb\\Desktop\\imgs" + rootPath;
+		
+		if (!file.isEmpty()) {	
+			String orginalName = file.getOriginalFilename();
+			int pos = orginalName.lastIndexOf(".");
+			String suffix = orginalName.substring(pos);
 				File realF = new File(path + dTime() + id + suffix);
 				File srcF = new File(srcPath + dTime() + id + suffix);
 				file.transferTo(realF);

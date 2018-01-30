@@ -73,6 +73,12 @@ public interface MemberDao {
 
 	void replyAdd(ReplyVo bean) throws Exception;
 
+	void replyDelete(int replyLog) throws Exception;
+	
 	int idDoubleChk(String chkId) throws Exception;
+
+	void replyDpgDeleteAll(int fatherContentsNum) throws Exception;
+
+	
 
 }

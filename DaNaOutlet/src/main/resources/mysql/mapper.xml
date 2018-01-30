@@ -116,6 +116,14 @@
       SELECT MAX(REPLYLOG+1) FROM REPLYASSEMBLE
     </select>
     <insert id="replyAdd" parameterType="com.bit.daNaOutlet.model.entity.ReplyVo">   
-      INSERT INTO REPLYASSEMBLE VALUES(#{replyLog}, #{replyId}, #{replyContent}, #{replyDate},#{replyDepth},#{replyConId},#{fatherContentsNum},#{replyImgsLink})
+      INSERT INTO REPLYASSEMBLE VALUES(#{replyLog}, #{replyNickName}, #{replyContent}, now(),#{replyDepth},#{replyConId},#{fatherContentsNum},#{replyImgsLink})
     </insert>
+    <delete id="replyDelete" parameterType="int" >
+		DELETE FROM REPLYASSEMBLE WHERE REPLYLOG=#{value}
+	</delete>
+	<delete id="replyDpgDeleteAll" parameterType="int" >
+		DELETE FROM REPLYASSEMBLE WHERE FATHERCONTENTSNUM=#{value}
+	</delete>
+	
+    
 </mapper>

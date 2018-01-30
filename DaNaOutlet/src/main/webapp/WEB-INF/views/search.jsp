@@ -16,6 +16,7 @@
 <script src="../resources/js/jquery-1.12.4.js"></script>
 <script src="../resources/js/jquery.bxslider.js"></script>
 <script src="../resources/js/bootstrap.js"></script>
+<link rel="shortcut icon" type="image/x-icon" href="../resources/imgs/favicon.png" />
 <script>
 	var datas;
 	var products;
@@ -52,7 +53,7 @@
 													+ '<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">'
 													+ '<div class="col-xs-12"><hr class="visible-xs"/><a href="' 
 															+ products.childNodes[i].childNodes[21].firstChild.wholeText 
-															+ '"><h4 style="margin-top:0px;">'
+															+ '"><h4 style="margin-top:0px; word-break: keep-all;">'
 													+ products.childNodes[i].childNodes[1].firstChild.wholeText
 													+ '</h4></a><hr/>'
 													+ '</div>' // 모두 차지하는 제목 div 종료
@@ -150,13 +151,13 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
-					<p>삶, 우주, 모든 것의 시작이 되는 우리의 집, 그 곳을 채우는 가구. 그 곳에 조금 더 가깝게 다가서고자
+					<p style="word-break: keep-all;">삶, 우주, 모든 것의 시작이 되는 우리의 집, 그 곳을 채우는 가구. 그 곳에 조금 더 가깝게 다가서고자
 						합니다.</p>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<strong>당신에게 최적화된 가구를 찾기 시작할 때, 언제나 당신 곁에</strong><img
+					<strong style="word-break: keep-all;">당신에게 최적화된 가구를 찾기 시작할 때, 언제나 당신 곁에</strong><img
 						src="../resources/imgs/dalogo.png" alt="다나n아울렛&#8482;"
 						width="150px">
 				</div>
@@ -193,8 +194,10 @@
 					<!-- 여기에 검색결과를 불러옵니다 -->
 				</div>
 			</div>
-			<div class="col-sm-3 hidden-xs">
+			<div class="col-lg-3 col-md-3 col-sm-3 hidden-xs"> 
+				<!-- 표준 광고판 -->
 				<jsp:include page="template/bxslider.jsp" flush="false" />
+				<!-- 표준 광고판 불러오기 종료 -->
 			</div>
 		</div>
 	</div>

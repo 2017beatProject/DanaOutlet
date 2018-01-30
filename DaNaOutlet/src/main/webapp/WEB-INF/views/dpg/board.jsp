@@ -10,15 +10,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
-<title>게시판</title>
+<title>자유게시판</title>
 <link rel="stylesheet" href="../resources/css/bootstrap.css">
 <link rel="stylesheet" href="../resources/css/bootstrap-theme.css">
 <script src="../resources/js/jquery.min.js"></script>
 <script src="../resources/js/jquery-1.12.4.js"></script>
 <script src="../resources/js/jquery.bxslider.js"></script>
 <script src="../resources/js/bootstrap.js"></script>
+<link rel="shortcut icon" type="image/x-icon"
+	href="../resources/imgs/favicon.png" />
 <script>
-var loginInfoNickName="${loginInfo.nickName}";
+	var loginInfoNickName = "${loginInfo.nickName}";
 
 	$(document).ready(
 			function() {
@@ -32,21 +34,37 @@ var loginInfoNickName="${loginInfo.nickName}";
 					autoHover : true,
 					controls : false
 				});
-				 
-				var count= ${count};
-				var cnt=count/10;
-				var startNum=${startNum};
-				for(var i=0; i<cnt; i++){
-					if(startNum>0)$('#previousLi').attr('href',"/dpg/board?startNum="+(startNum-10)+"");								
-					if((startNum+10)<count)$('#nextLi').attr('href',"/dpg/board?startNum="+(startNum+10)+"");
-					$('#pageNum').find('li').last().before("<li><a href='/dpg/board?startNum="+(i*10)+"'>"+(i+1)+"</a></li>");				
-				};
-			
-				if(loginInfoNickName!=""){
-					$('#writingAtag').attr('href',"/dpg/board/${loginInfo.nickName }/input?idx=0");
-					$('#writingAtag').attr('data-toggle',"");
-					$('#writingAtag').attr('data-target',"");
-				}						
+
+				var count = $
+				{
+					count
+				}
+				;
+				var cnt = count / 10;
+				var startNum = $
+				{
+					startNum
+				}
+				;
+				for (var i = 0; i < cnt; i++) {
+					if (startNum > 0)
+						$('#previousLi').attr('href',
+								"/dpg/board?startNum=" + (startNum - 10) + "");
+					if ((startNum + 10) < count)
+						$('#nextLi').attr('href',
+								"/dpg/board?startNum=" + (startNum + 10) + "");
+					$('#pageNum').find('li').last().before(
+							"<li><a href='/dpg/board?startNum=" + (i * 10)
+									+ "'>" + (i + 1) + "</a></li>");
+				}
+				;
+
+				if (loginInfoNickName != "") {
+					$('#writingAtag').attr('href',
+							"/dpg/board/${loginInfo.nickName }/input?idx=0");
+					$('#writingAtag').attr('data-toggle', "");
+					$('#writingAtag').attr('data-target', "");
+				}
 			});
 	$(function() {
 		$('#content').keyup(function(e) {
@@ -80,32 +98,32 @@ var loginInfoNickName="${loginInfo.nickName}";
 					</tr>
 					<c:forEach items="${list}" var="bean">
 						<tr>
-							<td><a href="../dpg/board/${bean.dpgNum }"> 
-									<c:set var="text" value="${bean.dpgTitle}" /> <c:if
+							<td><a href="../dpg/board/${bean.dpgNum }"> <c:set
+										var="text" value="${bean.dpgTitle}" /> <c:if
 										test="${fn:length(text) lt 21}">
 											${text }
 									</c:if> <c:if test="${fn:length(text) ge 21}">
 										${fn:substring(text,0,21)}...
-									</c:if>
-
+									</c:if><!-- <span class="badge">35</span> -->
 							</a></td>
 							<td class="hidden-xs"><a href="board?id=kdj">${bean.dpgWriter }</a></td>
 							<td class="hidden-xs hidden-sm">${bean.dpgNalja }</td>
 							<td class="hidden-xs hidden-sm hidden-md">${bean.dpgCount }</td>
-							
+
 						</tr>
 					</c:forEach>
-						<!-- <tr>
+					<!-- <tr>
 							<td></td>
 							<td class="hidden-xs"></td>
 							<td class="hidden-xs hidden-sm"></td>
 							<td class="hidden-xs hidden-sm hidden-md"></td>
 						</tr> -->
 				</table>
-				
-				<nav class="col-xs-12"> 
-					<a id="writingAtag" href="#" class="btn btn-default pull-right" data-toggle="modal" data-target="#login">글쓰기</a>
-					
+
+				<nav class="col-xs-12">
+					<a id="writingAtag" href="#" class="btn btn-default pull-right"
+						data-toggle="modal" data-target="#login">글쓰기</a>
+
 					<ul class="pagination" id="pageNum">
 						<li><a id="previousLi" href="#">Previous</a></li>
 						<li><a id="nextLi" href="#">Next</a></li>

@@ -17,9 +17,11 @@
 <script src="../../resources/js/jquery-1.12.4.js"></script>
 <script src="../../resources/js/jquery.bxslider.js"></script>
 <script src="../../resources/js/bootstrap.js"></script>
+<script src="../../resources/js/buttonSession.js"></script>
 <script>
 	var loginInfoId = "${loginInfo.loginId}";
 	var writer = "${bean.dpgLoginId }";
+	var root= "board";
 	$(document)
 			.ready(
 					function() {
@@ -44,37 +46,54 @@
 															'method' : 'DELETE',
 															'success' : function() {
 																window.location
-																		.replace("/dpg/board?startNum=0");
+																		.replace("/dpg/"+root+"?startNum=0");
 															}
 														});
 											}
-										});
-						if (loginInfoId == writer) {
-							$('#AtagEdit').attr('href',
-									"/dpg/board/${bean.dpgNum }/input?idx=1");
-							$('#AtagEdit').attr('data-toggle', "");
-							$('#AtagEdit').attr('data-target', "");
-							$('#AtagDelete').attr('data-toggle', "");
-							$('#AtagDelete').attr('data-target', "");
-						}else if (!(loginInfoId !="")) {
-							$('#AtagEdit').attr('data-toggle', "modal");
-							$('#AtagEdit').attr('data-target', "#login");							
-							$('#ButDelete').attr('data-toggle', "modal");
-							$('#ButDelete').attr('data-target', "#login");
-						}else if(loginInfoId != writer){
-							$('#ButDelete').attr('data-toggle', "modal");
-							$('#ButDelete').attr('data-target', "#noRight");
-						}	
+										});	
+						$('.AtagReplyDelete').click(
+								
+								function() {	 								   
+									var replyLog=$(this).parent().find('span').last().text();
+									var replyConId=$(this).parent().find('span').first().text();																		
+									replySession(replyConId);
+									if (loginInfoId == replyConId) {								 		
+										
+										$
+												.ajax({       
+													'url' : '/reply/delete/'+replyLog,
+					 								'method' : 'DELETE',
+													'success' : function() {
+														window.location
+																.replace("/dpg/"+root+"/${bean.dpgNum}");
+													}
+												});
+									}
+								});
+						buttonSession(root, ${bean.dpgNum});    
 
 					});
 	$(function() {
-		$('#content').keyup(function(e) {
+		$('#replyContent').keyup(function(e) {
 			var content = $(this).val();
 			$(this).height((((content.split('\n').length) * 0.5) - 9) + 'em');
 			$('#counter').html(content.length + '/1000');
 		});
-		$('#content').keyup();
+		$('#replyContent').keyup();
 	});
+	
+	function getThumbnailPrivew(html, $target) {
+	      if (html.files && html.files[0]) {
+	         var reader = new FileReader();
+	         reader.onload = function(e) {
+	            $target.css('display', '');
+	            //$target.css('background-image', 'url(\"' + e.target.result + '\")'); // 배경으로 지정시
+	            $target
+	                  .html('<img src="' + e.target.result + '" border="0" alt="" class="img-responsive"/>');
+	         }
+	         reader.readAsDataURL(html.files[0]);
+	      }
+	   }
 </script>
 
 <style>
@@ -107,27 +126,29 @@
 
 <body>
 	<jsp:include page="../template/navigation.jsp" flush="false" />
-	
-			
+
+
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 				<div class="page-header">
 					<ol class="breadcrumb">
 						<li><h1>자유게시판</h1></li>
-						<li><a href="#">Home</a></li>
-						<li><a href="#">Library</a></li>
-						<li class="active">Data</li>
+						<li><a href="/">Home</a></li>
+						<li><a href="/dpg?startNum=0">DPG</a></li>
+						<li class="active">리뷰</li>
 					</ol>
 				</div>
 				<div class="panel panel-default">
-					<div class="panel-heading">${bean.dpgTitle }
-						<a type="button" id="AtagEdit" class="btn btn-default" href="#"
-						data-toggle="modal" data-target="#noRight">수정</a> 						
-						<button id="ButDelete" type="button" class="btn btn-default" 
-							data-toggle="modal" data-target="#DeleteConfim">삭제</button>							
+					<div class="panel-heading text-right">
+						<strong class="pull-left" style="word-break: keep-all;">${bean.dpgTitle }</strong>
+							<a type="button" id="AtagEdit" class="btn btn-default" href="#"
+							data-toggle="modal" data-target="#noRight">수정</a>
+							<button id="ButDelete" type="button" class="btn btn-danger"
+								data-toggle="modal" data-target="#DeleteConfim">삭제</button>
+						
 					</div>
-					
+
 					<ul class="list-group">
 						<li class="list-group-item"><span>${bean.dpgWriter}</span> <span>${bean.dpgNalja }</span>
 							<span class="glyphicon glyphicon-thumbs-up">추천수</span> <span
@@ -139,68 +160,61 @@
 						<p>${bean.dpgContent }</p>
 					</div>
 				</div>
-			
+
 				<div class="panel panel-success">
 					<div class="panel-body">
-						<form>
+						<form method="post" id="replyAddForm" action="/replyAdd"
+							enctype="multipart/form-data">
+							<input type="hidden" name="replyNickName"
+								value="${loginInfo.nickName}"> <input type="hidden"
+								name="replyConId" value="${loginInfo.loginId}"> <input
+								type="hidden" name="fatherContentsNum" value="${bean.dpgNum }">
+							<input type="hidden" name="fatherFrom" value="board">
 							<div class="form-group">
-								<textarea class="form-control" id="content" maxlength="1000"></textarea>
+								<textarea class="form-control" name="replyContent"
+									maxlength="1000" required="required" id="replyContent"
+									style="resize: vertical;"></textarea>
 							</div>
+
 							<div class="form-group">
-								<button type="button"
-									class="btn btn-default glyphicon glyphicon-camera">이미지첨부</button>
-								<button type="submit"
-									class="glyphicon glyphicon-edit btn btn-default">등록</button>
+								<label for="cma_file"
+									class="btn btn-default glyphicon glyphicon-camera">이미지첨부</label>
+
+								<input type="file" name="file" id="cma_file" accept="image/*"
+									capture="camera"
+									onchange="getThumbnailPrivew(this,$('#cma_image'))"
+									style="display: none;" />
 
 								<button type="button" class="btn btn-default"
 									disabled="disabled" id="counter" style="float: right;">###</button>
-							</div>
-						</form>
+								<hr />
+								<div id="cma_image"
+									style="width: 100%; max-width: 100%; border: 1px solid #000; display: none;"></div>
 
+							</div>
+
+						</form>
 					</div>
 				</div>
-			
+
 				<div class="panel panel-warning">
 					<div class="panel-heading">댓글</div>
 					<ul class="list-group">
-						<li class="list-group-item"><span class="btn btn-info"
-							disabled="disabled">아이디</span> <span class="btn btn-warning"
-							disabled="disabled">2018.01.18</span> <span
-							class="btn btn-danger" style="float: right;">신고</span> <br /> <br />
-							<p>그들은 밥을 있는 품고 시들어 사랑의 밝은 위하여, 가진 철환하였는가? 이것을 청춘의 소담스러운
-								되려니와, 가장 불러 같이 천자만홍이 영락과 위하여서. 바이며, 피부가 있으며, 봄바람이다. 우리는 구하지 봄날의
-								그러므로 역사를 거선의 아니한 듣는다. 아름답고 뛰노는 위하여서 그들은 칼이다. 가치를 타오르고 고동을 낙원을
-								이것을 그림자는 사막이다. 있음으로써 있는 같이, 심장은 되는 속에 약동하다. 이상 같이 하여도 있으며, 있다.
-								따뜻한 가장 속에서 피어나는 더운지라 두기 산야에 소담스러운 소금이라 것이다. 이것이야말로 보이는 그들에게 것이다.
-								무엇을 끓는 찬미를 같이 황금시대의 들어 인류의 따뜻한 두손을 힘있다.</p>
-							<p>
-								<img src="../../resources/imgs/bxImgs/iu3.jpg" alt=""
-									class="replyImg" />
-							</p></li>
-						<li class="list-group-item"><span class="btn btn-info"
-							disabled="disabled">아이디</span> <span class="btn btn-warning"
-							disabled="disabled">2018.01.18</span> <span
-							class="btn btn-danger" style="float: right;">신고</span> <br /> <br />
-							<p>그들은 밥을 있는 품고 시들어 사랑의 밝은 위하여, 가진 철환하였는가? 이것을 청춘의 소담스러운
-								되려니와, 가장 불러 같이 천자만홍이 영락과 위하여서. 바이며, 피부가 있으며, 봄바람이다. 우리는 구하지 봄날의
-								그러므로 역사를 거선의 아니한 듣는다. 아름답고 뛰노는 위하여서 그들은 칼이다. 가치를 타오르고 고동을 낙원을
-								이것을 그림자는 사막이다. 있음으로써 있는 같이, 심장은 되는 속에 약동하다. 이상 같이 하여도 있으며, 있다.
-								따뜻한 가장 속에서 피어나는 더운지라 두기 산야에 소담스러운 소금이라 것이다. 이것이야말로 보이는 그들에게 것이다.
-								무엇을 끓는 찬미를 같이 황금시대의 들어 인류의 따뜻한 두손을 힘있다.</p>
-							<p>
-								<img src="../../resources/imgs/bxImgs/iu3.jpg" alt=""
-									class="replyImg" />
-							</p></li>
-						<li class="list-group-item"><span class="btn btn-info"
-							disabled="disabled">아이디</span> <span class="btn btn-warning"
-							disabled="disabled">2018.01.18</span> <span
-							class="btn btn-danger" style="float: right;">신고</span> <br /> <br />
-							<p>그들은 밥을 있는 품고 시들어 사랑의 밝은 위하여, 가진 철환하였는가? 이것을 청춘의 소담스러운
-								되려니와, 가장 불러 같이 천자만홍이 영락과 위하여서. 바이며, 피부가 있으며, 봄바람이다. 우리는 구하지 봄날의
-								그러므로 역사를 거선의 아니한 듣는다. 아름답고 뛰노는 위하여서 그들은 칼이다. 가치를 타오르고 고동을 낙원을
-								이것을 그림자는 사막이다. 있음으로써 있는 같이, 심장은 되는 속에 약동하다. 이상 같이 하여도 있으며, 있다.
-								따뜻한 가장 속에서 피어나는 더운지라 두기 산야에 소담스러운 소금이라 것이다. 이것이야말로 보이는 그들에게 것이다.
-								무엇을 끓는 찬미를 같이 황금시대의 들어 인류의 따뜻한 두손을 힘있다.</p></li>
+						<c:forEach items="${reply }" var="reply">
+							<li class="list-group-item"><span style="display: none">${reply.replyConId }</span>
+								<span class="btn btn-info" disabled="disabled">${reply.replyNickName }</span>
+								<span class="btn btn-warning" disabled="disabled">${reply.replyDate }</span>
+								<a type="button" class="AtagReplyDelete btn btn-danger"
+								data-toggle="modal" data-target="#noRight" style="float: right">삭제</a><span
+								style="display: none">${reply.replyLog }</span> <br /> <br />
+								<p>${reply.replyContent }</p>
+								<p>
+									<img
+										src="../../resources/imgs/replyImgs/${reply.replyImgsLink }"
+										alt="" class="replyImg" />
+								</p></li>
+						</c:forEach>
+
 					</ul>
 				</div>
 			</div>

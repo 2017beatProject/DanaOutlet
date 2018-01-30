@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -13,10 +14,12 @@
 <script src="/resources/js/idValidation.js"></script>
 <script src="/resources/js/mailCheck.js"></script>
 
+
 <script>
 	var authKey;
 	var param = {};
 	var resparam = {};
+	var modalOnOff = false;
 
 	function login() {
 		$('#loginFunc').css({
@@ -54,6 +57,37 @@
 		} else {
 			login();
 		}
+
+		// 모달창 온오프 확인
+		$('#login').on('show.bs.modal', function(e) {
+			modalOnOff = true;
+		})
+		$('#login').on('hide.bs.modal', function(e) {
+			modalOnOff = false;
+		})
+
+		/* 
+		$.on(뒤로가기 버튼 클릭, function () {
+			if(모달창 켜져있으면){
+				모달창 닫기
+			}else{
+				뒤로가기
+			}
+		})
+		 */
+	// 뒤로가기 안해 아오		
+	/* 
+		history.pushState(null, null, location.href);
+
+		window.onpopstate = function(event) {
+			if(modalOnOff==true){ // 모달 켜져있으면
+				$('.modal').modal('hide')
+				history.go(0);
+			}else if(modalOnOff==false){ // 모달 꺼져있으면
+				history.go(-1);
+			}
+		}
+		 */
 	});
 </script>
 
@@ -124,9 +158,10 @@ body {
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel">권한이 없습니다</h4>
+				<h4 class="modal-title" id="myModalLabel"
+					style="word-break: keep-all;">권한이 없습니다</h4>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body text-right">
 				<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
 			</div>
 		</div>
@@ -144,9 +179,10 @@ body {
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel">삭제 하시겠습니까</h4>
+				<h4 class="modal-title" id="myModalLabel"
+					style="word-break: keep-all;">삭제하시겠습니까?</h4>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body text-right">
 				<a id="AtagDelete" type="button" class="btn btn-default" href="#"
 					data-toggle="modal" data-target="#DeleteConfim">삭제</a>
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -190,14 +226,13 @@ body {
 
 
 					<div class="modal-footer">
-						<div class="row"">
-							<a id="logoutTestG"
-								class="btn "><img
+						<div class="row">
+							<a id="logoutTestG" class="btn "><img
 								src="/resources/imgs/kakao_account_login_btn_medium_narrow.png"
 								class="" /></a>
 							<button type="submit" class="btn btn-primary">확인</button>
 							<button type="button" class="btn btn-default"
-								data-dismiss="modal"">닫기</button>
+								data-dismiss="modal">닫기</button>
 						</div>
 					</div>
 				</form>
@@ -343,5 +378,4 @@ body {
 
 		</div>
 	</div>
-</div>
 </div>

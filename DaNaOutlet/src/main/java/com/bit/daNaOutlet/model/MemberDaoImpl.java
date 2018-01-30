@@ -197,7 +197,16 @@ public class MemberDaoImpl implements MemberDao {
 	public void replyAdd(ReplyVo bean) throws Exception {
 		session.insert("com.bit.daNaOutlet.model.MemberDao.replyAdd", bean);		
 		
+	}	
+	@Override
+	public void replyDelete(int replyLog) throws Exception{
+		session.delete("com.bit.daNaOutlet.model.MemberDao.replyDelete", replyLog);	
 	}
+	@Override
+	public void replyDpgDeleteAll(int fatherContentsNum) throws Exception{
+		session.delete("com.bit.daNaOutlet.model.MemberDao.replyDpgDeleteAll", fatherContentsNum);	
+	}
+	
 
 	@Override
 	public int idDoubleChk(String chkId) throws Exception {
