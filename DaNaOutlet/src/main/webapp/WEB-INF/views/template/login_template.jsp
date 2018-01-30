@@ -19,10 +19,8 @@ $(function(){
 			'type':'post',
 			'data': param,
 			'success':function(data){
-				alert("통신성공"+data);
 			},
 			'err':function(data){
-				alert("로그인에러");	
 			}
 			
 			

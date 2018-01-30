@@ -85,7 +85,18 @@
 	<select id="dpgNoneLinkListAsc" parameterType="int" resultType="com.bit.daNaOutlet.model.entity.DpgVo">
 		SELECT DPGNUM,DPGTITLE,DPGWRITER,DPGNALJA,DPGCOUNT  FROM(SELECT * FROM (SELECT * FROM DANADPG WHERE DPGIMGLINK IS NULL) AS A WHERE DPGFROM='다나와회원' or DPGFROM='카카오회원') AS B ORDER BY DPGNUM DESC LIMIT #{value},10;	
 	</select>
+	<!-- ssssssssssssssssssssssssssssssssssssssssssssss -->
 	
+	
+	<select id="dpgSearchTitleList" parameterType="com.bit.daNaOutlet.model.entity.UtilVo" resultType="com.bit.daNaOutlet.model.entity.DpgVo">
+		SELECT DPGNUM,DPGTITLE,DPGWRITER,DPGNALJA,DPGCOUNT,DPGIMGLINK FROM DANADPG WHERE DPGSUBJECT=#{utilSubject} AND DPGTiTLE LIKE CONCAT('%',#{utilInput},'%') ORDER BY DPGNUM DESC LIMIT #{utilStartNum},10;
+	</select>		
+	
+	<select id="dpgSearchWriterList" parameterType="com.bit.daNaOutlet.model.entity.UtilVo" resultType="com.bit.daNaOutlet.model.entity.DpgVo"> 
+		SELECT DPGNUM,DPGTITLE,DPGWRITER,DPGNALJA,DPGCOUNT,DPGIMGLINK FROM DANADPG WHERE DPGSUBJECT=#{utilSubject} AND DPGWRITER LIKE CONCAT('%',#{utilInput},'%') ORDER BY DPGNUM DESC LIMIT #{utilStartNum},10;
+	</select>
+	
+	<!-- ssssssssssssssssssssssssssssssssssssssssssssss -->
 	<select id="dpgAdminList" resultType="com.bit.daNaOutlet.model.entity.DpgVo">
 		SELECT DPGNUM,DPGTITLE,DPGWRITER,DPGCONTENT,DPGIMGLINK  FROM(SELECT * FROM DANADPG WHERE DPGFROM='운영자') AS B ORDER BY DPGNUM DESC LIMIT 3;	
 	</select>
@@ -98,6 +109,15 @@
 	<select id="dpgNoneCount" resultType="int">
 		SELECT COUNT(DPGNUM) FROM DANADPG WHERE DPGIMGLINK IS NULL AND DPGSUBJECT='자유게시판'
 	</select>
+	
+	<select id="dpgSearchTitleCount" resultType="int" parameterType="com.bit.daNaOutlet.model.entity.UtilVo">
+		SELECT COUNT(DPGNUM) FROM DANADPG WHERE DPGSUBJECT=#{utilSubject} AND DPGTITLE LIKE CONCAT('%',#{utilInput},'%') 
+	</select>
+	<select id="dpgSearchWriterCount" resultType="int" parameterType="com.bit.daNaOutlet.model.entity.UtilVo">
+		SELECT COUNT(DPGNUM) FROM DANADPG WHERE DPGSUBJECT=#{utilSubject} AND DPGWRITER LIKE CONCAT('%',#{utilInput},'%')
+	</select>
+	
+	
 	<insert id="dpgAdd" parameterType="com.bit.daNaOutlet.model.entity.DpgVo">
 		INSERT INTO DANADPG(DPGNUM,DPGTITLE,DPGWRITER,DPGFROM,DPGSUBJECT,DPGCONTENT,DPGCOUNT,DPGIMGLINK,DPGLOGINID,DPGNALJA) VALUES(#{dpgNum},#{dpgTitle},#{dpgWriter},#{dpgFrom},#{dpgSubject},#{dpgContent},#{dpgCount},#{dpgImgLink},#{dpgLoginId},now())
 	</insert>

@@ -74,7 +74,7 @@ var loginInfoNickName="${loginInfo.nickName}";
             <hr style="border: 0; height: 1px; background: #ccc;" />
             <ul class="list-unstyled">
                <!-- 반복시작 -->
-               <c:forEach items="${imgList}" var="bean">
+               <c:forEach items="${list}" var="bean">
                   <li class="col-xs-12" style="padding: 0px 3px 0px 3px;">
                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding: 0px 0px 0px 0px;">
                         <a href="../dpg/review/${bean.dpgNum }"><img
@@ -119,16 +119,17 @@ var loginInfoNickName="${loginInfo.nickName}";
                   <li><a id="nextLi" href="#">Next</a></li>
                </ul>
             </nav>
-            <form class="form-inline col-xs-12">
+            <form class="form-inline col-xs-12" method="post">
                <div class="form-group">
-                  <select class="form-control">
-                     <option>제목+내용</option>
+                  <select class="form-control" name="utilSelect">
+                   <!--   <option>제목+내용</option> -->
                      <option>제목</option>
-                     <option>내용</option>
+                    <!--  <option>내용</option> -->
                      <option>닉네임</option>
-                     <option>아이디</option>
+                  <!--    <option>아이디</option> -->
                   </select> <input type="text" class="form-control" id="exampleInputName2"
-                     placeholder="검색어를 입력하세요">
+                     placeholder="검색어를 입력하세요" name="utilInput">
+                   <input type="hidden" name="utilSubject" value="이미지게시판"/>                  
                   <button type="submit" class="btn btn-default">확인</button>
                </div>
             </form>

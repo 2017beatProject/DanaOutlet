@@ -71,7 +71,6 @@
 			} else {
 				result = false;
 			}
-			alert("경고");
 			return true;
 	
 	});

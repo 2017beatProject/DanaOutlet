@@ -16,7 +16,7 @@
 	var user; 
 	
 	function logoutMsg(){
-		alert("로그아웃상태이당");
+		
 	}
 	
 	

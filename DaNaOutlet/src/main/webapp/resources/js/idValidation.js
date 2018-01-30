@@ -16,8 +16,8 @@ function idValidation() {
 		returnTfCount++;
 	
 	}
-	else if (getTextLength($('#id input').eq(0).val()) < 2) {
-		$("<span id='idErr'> 아이디는 2자 이상입니다</span>").appendTo("#id");
+	else if (getTextLength($('#id input').eq(0).val()) < 4) {
+		$("<span id='idErr'> 아이디는 4자 이상입니다</span>").appendTo("#id");
 		returnTfCount++;	
 	}
 
@@ -53,7 +53,7 @@ function pwValidation() {
 	}
 
 	else if (getTextLength($('#pw input').eq(0).val()) < 2) {
-		$("<span id='pwErr'> 비밀번호는 2자 이상입니다</span>").appendTo("#pw");
+		$("<span id='pwErr'> 비밀번호는 4자 이상입니다</span>").appendTo("#pw");
 		returnTfCount++;
 		
 	}
@@ -65,7 +65,7 @@ function pwValidation() {
 		returnTfCount++;
 	
 	}else if (!numRegx.test($('#pw input').eq(0).val())) {
-		$("<span id='pwErr'>비번에 숫자가 1개 이상 포함되어 있어야 합니다</span>").appendTo("#pw");		
+		$("<span id='pwErr'>비번에 숫자가 4개 이상 포함되어 있어야 합니다</span>").appendTo("#pw");		
 		returnTfCount++;
 	
 

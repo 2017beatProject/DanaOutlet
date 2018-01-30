@@ -14,6 +14,7 @@ import com.bit.daNaOutlet.model.entity.HotDealVo;
 import com.bit.daNaOutlet.model.entity.KaKaoMemberVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
 import com.bit.daNaOutlet.model.entity.ReplyVo;
+import com.bit.daNaOutlet.model.entity.UtilVo;
 
 public interface MemberService {
 
@@ -43,10 +44,13 @@ public interface MemberService {
 	String dpgAdd(DpgVo bean) throws Exception;
 	void dpgDelete(int dpgNum, HttpServletResponse resp)throws Exception;
 	void dpgUpdate(DpgVo bean,MultipartFile file,HttpServletRequest req)throws Exception;
-	void dpgShow(Model model,String viewType,int startNum) throws Exception;
+	void dpgShow(Model model,UtilVo bean,int startNum) throws Exception;
 	void dpgMain(Model model) throws Exception;
  	void dpgEx(Model model,int startNum) throws Exception;
  	void dpgNone(Model model,int startNum) throws Exception;
+ 	void dpgSearchTitle(Model model,UtilVo bean) throws Exception;
+ 	void dpgSearchWriter(Model model,UtilVo bean) throws Exception;
+ 	
  	void dpgNoneInputEditOne(Model model, Object dpgNum,int idx) throws Exception;
 
 	void dpgNoneUpdateInsert(DpgVo bean,Model model, Object dpgNum, int idx) throws Exception;

@@ -43,16 +43,16 @@ function joinFunc() {
 	$('#joinForm').on('submit', function() {
 		returnTfCount = 0;
 		result = false;
+		IddoubleCheck();
 		idValidation();// id validation 검사
 		pwValidation();
 		resetText();
 		submitCheck();// id를 제외한 나머지 text부분 null값 검사  && idchk && mailchk
-		if (returnTfCount == 0) {
+		if (returnTfCount == 0 && idchk) {
 			result = true;
 		} else {
 			result = false;
 		}
-		alert(returnTfCount+"카운터 값 경고!");
 		return result;
 	});
 }

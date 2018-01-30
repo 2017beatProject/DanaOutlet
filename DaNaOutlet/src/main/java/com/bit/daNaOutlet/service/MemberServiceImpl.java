@@ -21,6 +21,7 @@ import com.bit.daNaOutlet.model.entity.HotDealVo;
 import com.bit.daNaOutlet.model.entity.KaKaoMemberVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
 import com.bit.daNaOutlet.model.entity.ReplyVo;
+import com.bit.daNaOutlet.model.entity.UtilVo;
 import com.bit.daNaOutlet.util.Commons;
 import com.bit.daNaOutlet.util.Sessions;
 
@@ -126,11 +127,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void dpgShow(Model model, String viewType,int startNum) throws Exception {
-
-		if(viewType.equals("main")) dpgMain(model);
-		else if(viewType.equals("ex")) dpgEx(model,startNum);
-		else if(viewType.equals("none")) dpgNone(model,startNum);
+	public void dpgShow(Model model, UtilVo bean,int startNum) throws Exception {
+		bean.setUtilStartNum(startNum);
+		if(bean.getUtilSelect().equals("main")) dpgMain(model);
+		else if(bean.getUtilSelect().equals("ex")) dpgEx(model,startNum);
+		else if(bean.getUtilSelect().equals("none")) dpgNone(model,startNum);
+		else if(bean.getUtilSelect().equals("제목")) dpgSearchTitle(model, bean);
+		else if(bean.getUtilSelect().equals("닉네임")) dpgSearchWriter(model, bean);
+		
 	}
 	
 	@Override
@@ -143,7 +147,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public void dpgEx(Model model,int startNum) throws Exception {
-		model.addAttribute("imgList",dao.dpgImgLinkListAsc(startNum));
+		model.addAttribute("list",dao.dpgImgLinkListAsc(startNum));
 		model.addAttribute("count",(dao.dpgImgCount()));
 		model.addAttribute("startNum",startNum);
 	}
@@ -154,6 +158,20 @@ public class MemberServiceImpl implements MemberService {
 		model.addAttribute("startNum",startNum);
 	}
 	
+	@Override
+	public void dpgSearchTitle(Model model, UtilVo bean) throws Exception {
+		model.addAttribute("list",dao.dpgSearchTitleList(bean));
+		model.addAttribute("count",(dao.dpgSearchTitleCount(bean)));
+		model.addAttribute("startNum",bean.getUtilStartNum());		
+	}
+
+	@Override
+	public void dpgSearchWriter(Model model, UtilVo bean) throws Exception {
+		model.addAttribute("list",dao.dpgSearchWriterList(bean));
+		model.addAttribute("count",(dao.dpgSearchWriterCount(bean)));
+		model.addAttribute("startNum",bean.getUtilStartNum());
+		
+	}
 	@Override
 	public void dpgOne(Model model, int dpgNum) throws Exception {
 		model.addAttribute("bean", dao.dpgOne(dpgNum));
@@ -330,8 +348,6 @@ public class MemberServiceImpl implements MemberService {
 		out.print("false");
 		return false;
 	}
-
-
 
 
 	

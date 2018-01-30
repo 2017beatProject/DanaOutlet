@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.bit.daNaOutlet.model.entity.DpgVo;
 import com.bit.daNaOutlet.model.entity.ReplyVo;
+import com.bit.daNaOutlet.model.entity.UtilVo;
 import com.bit.daNaOutlet.service.MemberService;
 
 
@@ -27,7 +28,7 @@ public class DpgController {
 //  여기서부터 dpg ../게시판 메인
    @RequestMapping(value = "/dpg", method = RequestMethod.GET)
    public String dpgMain(Model model,@RequestParam int startNum) throws Exception { 
-	  memberService.dpgShow(model,new String("main") ,startNum );
+	  memberService.dpgShow(model,new UtilVo("main") ,startNum );
       return "dpg/dpgMain";
    }
    @RequestMapping(value = "/dpg/delete/{dpgNum}", method = RequestMethod.DELETE)
@@ -37,9 +38,17 @@ public class DpgController {
    //보드 - 사진이 없는게시판
    @RequestMapping(value = "/dpg/board", method = RequestMethod.GET)
    public String board(Model model,@RequestParam int startNum) throws Exception {            
-	  memberService.dpgShow(model, new String("none") , startNum);
+	  memberService.dpgShow(model, new UtilVo("none"), startNum);
 	  return "dpg/board";
    }
+   
+   @RequestMapping(value = "/dpg/board", method = RequestMethod.POST)
+   public String boardSearch(Model model,@RequestParam int startNum, @ModelAttribute UtilVo bean) throws Exception {
+	  memberService.dpgShow(model, bean , startNum);
+	  return "dpg/board";
+   }
+   
+   
    @RequestMapping(value = "/dpg/board/{dpgNum}", method = RequestMethod.GET)
    public String boardDetail(Model model, @PathVariable int dpgNum) throws Exception {
       memberService.dpgOne(model, dpgNum);
@@ -62,11 +71,16 @@ public class DpgController {
    
    //리뷰 - 사진 있는 게시판
    @RequestMapping(value = "/dpg/review", method = RequestMethod.GET)
-   public String review(Model model,@RequestParam int startNum) throws Exception {
-	  
-	  memberService.dpgShow(model, new String("ex") , startNum);
+   public String review(Model model,@RequestParam int startNum) throws Exception {	  
+	  memberService.dpgShow(model, new UtilVo("ex") , startNum);
 	  return "dpg/review";
-   }   
+   }
+ //리뷰 - 사진 있는 게시판
+   @RequestMapping(value = "/dpg/review", method = RequestMethod.POST)
+   public String reviewSearch(Model model,@RequestParam int startNum, @ModelAttribute UtilVo bean) throws Exception {	  
+	  memberService.dpgShow(model, bean , startNum);
+	  return "dpg/review";
+   }  
    
    @RequestMapping(value = "/dpg/review/{dpgNum}", method = RequestMethod.GET)
    public String reviewDetail(Model model,@PathVariable int dpgNum) throws Exception {	  

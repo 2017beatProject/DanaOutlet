@@ -35,6 +35,6 @@ public class MemberController {
 //			,@RequestParam("idInput") String loginId,@RequestParam("pwInput") String loginPw ,@RequestParam("userName") String nickName
 //			memberService.memberAdd(bean,loginId,loginPw,nickName);		
 			memberService.memberAdd(bean);
-			return "member/success";
+			return "redirect:/";
 		}
 }

@@ -141,10 +141,11 @@
 				</ol>
 			</div>
 			<div class="panel panel-default">
-				<div class="panel-heading">${bean.dpgTitle }
+				<div class="panel-heading text-right">
+					<strong class="pull-left" style="word-break: keep-all;">${bean.dpgTitle }</strong>
 					<a type="button" id="AtagEdit" class="btn btn-default" href="#"
 						data-toggle="modal" data-target="#noRight">수정</a>
-					<button id="ButDelete" type="button" class="btn btn-default"
+					<button id="ButDelete" type="button" class="btn btn-danger"
 						data-toggle="modal" data-target="#DeleteConfim">삭제</button>
 
 				</div>

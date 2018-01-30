@@ -35,11 +35,7 @@
 					controls : false
 				});
 
-				var count = $
-				{
-					count
-				}
-				;
+				var count = ${count};
 				var cnt = count / 10;
 				var startNum = $
 				{
@@ -96,22 +92,25 @@
 						<th class="hidden-xs hidden-sm">작성일</th>
 						<th class="hidden-xs hidden-sm hidden-md">조회</th>
 					</tr>
-					<c:forEach items="${list}" var="bean">
-						<tr>
-							<td><a href="../dpg/board/${bean.dpgNum }"> <c:set
-										var="text" value="${bean.dpgTitle}" /> <c:if
-										test="${fn:length(text) lt 21}">
-											${text }
-									</c:if> <c:if test="${fn:length(text) ge 21}">
-										${fn:substring(text,0,21)}...
-									</c:if><!-- <span class="badge">35</span> -->
-							</a></td>
-							<td class="hidden-xs"><a href="board?id=kdj">${bean.dpgWriter }</a></td>
-							<td class="hidden-xs hidden-sm">${bean.dpgNalja }</td>
-							<td class="hidden-xs hidden-sm hidden-md">${bean.dpgCount }</td>
-
-						</tr>
-					</c:forEach>
+					
+							<c:forEach items="${list}" var="bean">
+								<tr>
+									<td><a href="../dpg/board/${bean.dpgNum }"> <c:set
+												var="text" value="${bean.dpgTitle}" /> <c:if
+												test="${fn:length(text) lt 21}">
+													${text }
+											</c:if> <c:if test="${fn:length(text) ge 21}">
+												${fn:substring(text,0,21)}...
+											</c:if><!-- <span class="badge">35</span> -->
+									</a></td>
+									<td class="hidden-xs"><a href="#">${bean.dpgWriter }</a></td>
+									<td class="hidden-xs hidden-sm">${bean.dpgNalja }</td>
+									<td class="hidden-xs hidden-sm hidden-md">${bean.dpgCount }</td>
+		
+								</tr>
+							</c:forEach> 
+						
+					
 					<!-- <tr>
 							<td></td>
 							<td class="hidden-xs"></td>
@@ -129,16 +128,17 @@
 						<li><a id="nextLi" href="#">Next</a></li>
 					</ul>
 				</nav>
-				<form class="form-inline col-xs-12">
+				<form class="form-inline col-xs-12" method="post">
 					<div class="form-group">
-						<select class="form-control">
-							<option>제목+내용</option>
+						<select class="form-control" name="utilSelect">
+							<!-- <option>제목+내용</option> -->
 							<option>제목</option>
-							<option>내용</option>
+							<!-- <option>내용</option> --> 
 							<option>닉네임</option>
-							<option>아이디</option>
+							<!-- <option>아이디</option> -->
 						</select> <input type="text" class="form-control" id="exampleInputName2"
-							placeholder="검색어를 입력하세요">
+							placeholder="검색어를 입력하세요" name="utilInput">
+							<input type="hidden" name="utilSubject" value="자유게시판"/>
 						<button type="submit" class="btn btn-default">확인</button>
 					</div>
 				</form>

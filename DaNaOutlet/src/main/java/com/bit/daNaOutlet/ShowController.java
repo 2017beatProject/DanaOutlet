@@ -34,12 +34,6 @@ public class ShowController {
 		return "search";
 	}
 
-	//회원가입
-	@RequestMapping(value="/join",method = RequestMethod.GET)
-	public String join() {
-		
-		return "join";
-	}
 	//로그인화면
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String login() {

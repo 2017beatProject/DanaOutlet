@@ -38,8 +38,8 @@
 	$(function() {//ready jquery...
 
 		loginTool();// kakaologin.js에서 받아오는 로그인 기능
-		joinFunc();//join.js에서 받아오는 회원가입 기능
-
+		 joinFunc();//join.js에서 받아오는 회원가입 기능
+ 
 		$('#logoutTestG').on('click', function() {
 			loginCreate();
 		});
@@ -249,9 +249,7 @@ body {
 								placeholder="Password-Re"> <span id="pwInputReErr">암호를
 								확인해주세요.</span>
 						</div>
-						<div class="col-sm-2">
-							<button class="btn btn-default" type="button">보기</button>
-						</div>
+						
 
 					</div>
 					<div class="form-group" id="name">
@@ -281,7 +279,7 @@ body {
 
 					</div>
 					<div class="form-group" id="mail">
-						<label for="mail" class="col-sm-2 control-label">이메일</label>
+						<label for="mail" class="col-sm-2 control-label" >이메일</label>
 						<div class="col-sm-7">
 							<input type="email" class="form-control" placeholder="e-Mail"
 								name="mail" id="email"> <span id="emErr">올바른 이메일
@@ -289,7 +287,7 @@ body {
 						</div>
 
 						<div class="col-sm-2">
-							<button class="btn btn-default" type="button" id="send">인증메일전송</button>
+							<button class="btn btn-default" type="button" id="send" disabled="disabled">인증메일전송</button>
 						</div>
 					</div>
 					<div class="form-group" id="address">

@@ -8,6 +8,7 @@ import com.bit.daNaOutlet.model.entity.HotDealVo;
 import com.bit.daNaOutlet.model.entity.KaKaoMemberVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
 import com.bit.daNaOutlet.model.entity.ReplyVo;
+import com.bit.daNaOutlet.model.entity.UtilVo;
 
 public interface MemberDao {
 	/* -- 회원 관련 DAO -- */
@@ -54,11 +55,18 @@ public interface MemberDao {
 	
 	List<DpgVo> dpgNoneLinkListAsc(int startNum) throws Exception;
 	
+	List<DpgVo> dpgSearchWriterList(UtilVo bean) throws Exception;
+	
+	List<DpgVo> dpgSearchTitleList(UtilVo bean) throws Exception;
+	
 	List<DpgVo> dpgAdminList() throws Exception;
 	
 	int dpgNumOne() throws Exception;
 	int dpgImgCount() throws Exception;
 	int dpgNoneCount() throws Exception;
+	int dpgSearchWriterCount(UtilVo bean) throws Exception;
+	int dpgSearchTitleCount(UtilVo bean) throws Exception;
+	
 
 	void dpgAdd(DpgVo bean) throws Exception;
 	int dpgDelete(int dpgNum) throws Exception;

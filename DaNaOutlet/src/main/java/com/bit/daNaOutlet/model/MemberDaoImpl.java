@@ -11,6 +11,7 @@ import com.bit.daNaOutlet.model.entity.HotDealVo;
 import com.bit.daNaOutlet.model.entity.KaKaoMemberVo;
 import com.bit.daNaOutlet.model.entity.MemberVo;
 import com.bit.daNaOutlet.model.entity.ReplyVo;
+import com.bit.daNaOutlet.model.entity.UtilVo;
 
 public class MemberDaoImpl implements MemberDao {
 	SqlSession session;
@@ -139,7 +140,29 @@ public class MemberDaoImpl implements MemberDao {
 	public List<DpgVo> dpgAdminList() throws Exception {
 		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgAdminList");
 	}
+	@Override
+	public List<DpgVo> dpgSearchWriterList(UtilVo bean) throws Exception {
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgSearchWriterList",bean);
+	}
+
+	@Override
+	public List<DpgVo> dpgSearchTitleList(UtilVo bean) throws Exception {
+		return session.selectList("com.bit.daNaOutlet.model.MemberDao.dpgSearchTitleList",bean);
+	}
+	@Override
+	public int dpgSearchWriterCount(UtilVo bean) throws Exception {
+		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.dpgSearchWriterCount", bean);	
+	}
+
+	@Override
+	public int dpgSearchTitleCount(UtilVo bean) throws Exception {
+		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.dpgSearchTitleCount", bean);	
+	}
+
+	
 	/* ------여기까진 dpg 메인에서 쓸 dao-------  */
+	
+	
 	@Override
 	public int dpgNumOne() throws Exception {
 		
@@ -212,6 +235,8 @@ public class MemberDaoImpl implements MemberDao {
 	public int idDoubleChk(String chkId) throws Exception {
 		return session.selectOne("com.bit.daNaOutlet.model.MemberDao.idDoubleChk", chkId);		
 	}
+
+	
 
 	
 

@@ -11,12 +11,10 @@ function loginTool() {
 			'url' : '/login',
 			'type' : 'post',
 			'data' : param,
-			'success' : function(data) {	
-				alert("로그인성공 : "+data);				
+			'success' : function(data) {				
 				window.location.reload("#");
 			},
 			'err' : function(data) {
-				alert("로그인에러");
 			}
 
 		});
@@ -88,13 +86,12 @@ function loginCreate() {
 							window.location.reload("#");			
 						},
 						'err' : function(data) {
-							alert("로그인에러");
+
 						}
 					});	
 					
 				},
 				fail : function(error) {
-					alert("카카오로그인에러");
 				}
 			});			
 		}
@@ -134,14 +131,12 @@ function logoutTool(){
 			 	'url' : '/logout',
 				'type' : 'post',
 				'data' : param,
-				'success' : function(data) {					
-					alert(data);				
+				'success' : function(data) {								
 					window.location.reload("#");
 //					window.location.replace("http://developers.kakao.com/logout");
 					
 				},
 				'err' : function(data) {
-					alert(data);
 				}						 
 		 });						
 		});

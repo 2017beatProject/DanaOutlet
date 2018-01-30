@@ -29,10 +29,10 @@ var resparam={};
 					'type' : 'post',
 					'data' : param,
 					'success' : function(data) {
-						alert("통신성공" + data);
+						
 					},
 					'err' : function(data) {
-						alert("로그인에러");
+					
 					}
 
 				});
@@ -47,7 +47,7 @@ var resparam={};
 				'container' : '#kakao-login-btn',		
 				'persistAccessToken' : false,
 				'success' : function(authObj) {
-					alert(JSON.stringify(authObj));
+/* 					alert(JSON.stringify(authObj)); */
 					authKey=authObj.access_token;
 					   Kakao.API.request({
 					          url: '/v1/user/me',
