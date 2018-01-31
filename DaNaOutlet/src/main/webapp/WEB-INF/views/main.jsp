@@ -44,79 +44,80 @@
 	var loadList = function(keyword) {
 		$('#content').empty();
 		$
-				.ajax({
-					'url' : 'http://apis.skplanetx.com/11st/v2/common/products',
-					'data' : {
-						'version' : '1',
-						'searchKeyword' : keyword + ", 가구", // 가구에 대한 것들을 불러온다
-						'option' : 'Categories',
-						'page' : '1', // 1페이지에서만
-						'appKey' : '4c3dab31-521e-368c-86db-a60223eb7e22' // 이게 개발자 키
-					},
-					'success' : function(data) {
-						console.log(data);
-						datas = data;
-						products = data.childNodes[0].childNodes[1];
-						for (var i = 5; i < 29; i++) {
-							var pruductTitle = products.childNodes[i].childNodes[1].firstChild.wholeText;
-							$('#content')
-									.append(
-											'<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" '
-													+ 'style="padding: 3px 3px 3px 3px; height:100%;">'
-													+ '<a data-toggle="modal" data-target="#modal-'+i+'">'
-													+ '<img src="'
-													+ products.childNodes[i].childNodes[14].firstChild.wholeText
-													+ '" class="img-responsive hotDealImg" /></a></div>'
-													// 모달창
-													+ '<div class="modal fade"' 
-												+ 'id="modal-'+i+'"'
-												+ 'tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">'
-													+ '<div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-body">'
-													+ '<div class="row"><div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">'
-													+ '<img src="'
-													+ products.childNodes[i].childNodes[14].firstChild.wholeText
-													+ '" class="img-responsive" style="width:100%; height=100%;"/></div>'
-													+ '<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">'
-													+ '<hr />'
-													+ '<h3 style="word-break: keep-all;"><a href="'
-													+ products.childNodes[i].childNodes[21].firstChild.wholeText
-													+ '">'
-													+ products.childNodes[i].childNodes[1].firstChild.wholeText
-													+ '</a></h3><hr />'
-													+ '<div class="col-lg-8 col-md-8 hidden-sm hidden-xs">'
-													+ '셀러닉네임:'
-													+ products.childNodes[i].childNodes[17].firstChild.wholeText
-													+ '<br/>'
-													+ '셀러아이디:'
-													+ products.childNodes[i].childNodes[18].firstChild.wholeText
-													+ '<br/>'
-													+ '셀러등급:'
-													+ products.childNodes[i].childNodes[19].firstChild.wholeText
-													+ '<br/>'
-													+ '상품평가점수:'
-													+ products.childNodes[i].childNodes[20].firstChild.wholeText
-													+ '<br/>'
-													+ '배송비:'
-													+ products.childNodes[i].childNodes[23].firstChild.wholeText
-													+ '<br/>'
-													+ '리뷰수:'
-													+ products.childNodes[i].childNodes[24].firstChild.wholeText
-													+ '</div><div class="col-lg-4 col-md-4 hidden-sm hidden-xs">'
-													+ '<h4>'
-													+ products.childNodes[i].childNodes[2].firstChild.wholeText
-															.toString()
-															.replace(
-																	/\B(?=(\d{3})+(?!\d))/g,
-																	",")
-													+ 'krw</h4>'
-													+ '</div></div>'
-													//+ '<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right"><a class="">닫기</a></div>'
-													+ '</div></div></div></div></div>');
-						}
-						;
-					},
-					'error' : function(data) {
-						console.log("에러");
+		.ajax({
+            'url' : 'http://apis.skplanetx.com/11st/v2/common/products',
+            'data' : {
+               'version' : '1',
+               'searchKeyword' : keyword + ", 가구", // 가구에 대한 것들을 불러온다
+               'option' : 'Categories',
+               'page' : '1', // 1페이지에서만
+               'appKey' : '4c3dab31-521e-368c-86db-a60223eb7e22' // 이게 개발자 키
+            },
+            'success' : function(data) {
+               console.log(data);
+               datas = data;
+               products = data.childNodes[0].childNodes[1];
+               for (var i = 5; i < 29; i++) {
+                  var pruductTitle = products.childNodes[i].childNodes[1].firstChild.wholeText;
+                  $('#content')
+                        .append(
+                              '<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" '
+                                    + 'style="padding: 3px 3px 3px 3px; height:100%;">'
+                                    + '<a data-toggle="modal" data-target="#modal-'+i+'">'
+                                    + '<img src="'
+                                    + products.childNodes[i].childNodes[14].firstChild.wholeText
+                                    + '" class="img-responsive hotDealImg" /></a></div>'
+                                    // 모달창
+                                    + '<div class="modal fade"' 
+                                 + 'id="modal-'+i+'"'
+                                 + 'tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">'
+                                    + '<div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-body">'
+                                    + '<div class="row"><div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">'
+                                    + '<img src="'
+                                    + products.childNodes[i].childNodes[14].firstChild.wholeText
+                                    + '" class="img-responsive" style="width:100%; height=100%;"/></div>'
+                                    + '<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">'
+                                    + '<hr class="hidden-sm hidden-xs" />'
+                                    + '<h3 style="word-break: keep-all;"><a href="'
+                                    + products.childNodes[i].childNodes[21].firstChild.wholeText
+                                    + '">'
+                                    + products.childNodes[i].childNodes[1].firstChild.wholeText
+                                    + '</a></h3><hr class="hidden-sm hidden-xs" />'
+                                    + '<div class="col-lg-8 col-md-8 hidden-sm hidden-xs">'
+                                    + '셀러닉네임:'
+                                    + products.childNodes[i].childNodes[17].firstChild.wholeText
+                                    + '<br/>'
+                                    + '셀러아이디:'
+                                    + products.childNodes[i].childNodes[18].firstChild.wholeText
+                                    + '<br/>'
+                                    + '셀러등급:'
+                                    + products.childNodes[i].childNodes[19].firstChild.wholeText
+                                    + '<br/>'
+                                    + '상품평가점수:'
+                                    + products.childNodes[i].childNodes[20].firstChild.wholeText
+                                    + '<br/>'
+                                    + '배송비:'
+                                    + products.childNodes[i].childNodes[23].firstChild.wholeText
+                                    + '<br/>'
+                                    + '리뷰수:'
+                                    + products.childNodes[i].childNodes[24].firstChild.wholeText
+                                    + '</div><div class="col-lg-4 col-md-4 hidden-sm hidden-xs">'
+                                    + '<h4>'
+                                    + products.childNodes[i].childNodes[2].firstChild.wholeText
+                                          .toString()
+                                          .replace(
+                                                /\B(?=(\d{3})+(?!\d))/g,
+                                                ",")
+                                    + 'krw</h4>'
+                                    + '</div></div>'
+                                    + '<div class="col-lg-7 col-md-7 hidden-sm hidden-xs">&nbsp;</div>'
+                                    + '<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 text-right"><a class="btn btn-default" data-dismiss="modal">닫기</a></div>'
+                                    + '</div></div></div></div></div>');
+               }
+               ;
+            },
+            'error' : function(data) {
+               console.log("에러");
 					}
 				});
 

@@ -44,7 +44,7 @@ public class DpgController {
    
    @RequestMapping(value = "/dpg/board", method = RequestMethod.POST)
    public String boardSearch(Model model,@RequestParam int startNum, @ModelAttribute UtilVo bean) throws Exception {
-	  memberService.dpgShow(model, bean , startNum);
+	  memberService.dpgShow(model, bean , 0);
 	  return "dpg/board";
    }
    
@@ -78,7 +78,7 @@ public class DpgController {
  //리뷰 - 사진 있는 게시판
    @RequestMapping(value = "/dpg/review", method = RequestMethod.POST)
    public String reviewSearch(Model model,@RequestParam int startNum, @ModelAttribute UtilVo bean) throws Exception {	  
-	  memberService.dpgShow(model, bean , startNum);
+	  memberService.dpgShow(model, bean , 0);
 	  return "dpg/review";
    }  
    

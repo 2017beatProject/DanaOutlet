@@ -204,6 +204,7 @@ body {
 
 			</div>
 		</div>
+
 	</div>
 </div>
 
@@ -334,11 +335,13 @@ body {
 						<button type="reset" class="btn btn-default">취소</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 					</div>
+					<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+<img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+</div>
 				</form>
 				<!-- 폼 종료 -->
 			</div>
 
 		</div>
 	</div>
-</div>
 </div>

@@ -37,11 +37,7 @@
 
 				var count = ${count};
 				var cnt = count / 10;
-				var startNum = $
-				{
-					startNum
-				}
-				;
+				var startNum = ${startNum};
 				for (var i = 0; i < cnt; i++) {
 					if (startNum > 0)
 						$('#previousLi').attr('href',
