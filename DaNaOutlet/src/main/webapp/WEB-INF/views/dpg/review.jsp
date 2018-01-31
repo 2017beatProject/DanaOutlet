@@ -66,10 +66,10 @@ var loginInfoNickName="${loginInfo.nickName}";
       <div class="row">
          <div class="col-sm-8">
             <ol class="breadcrumb">
-               <li><h1>리뷰</h1></li>
+               <li><h1>리뷰게시판</h1></li>
                <li><a href="/">Home</a></li>
                <li><a href="/dpg?startNum=0">DPG</a></li>
-               <li class="active">리뷰</li>
+               <li class="active">게시판</li>
             </ol>
             <hr style="border: 0; height: 1px; background: #ccc;" />
             <ul class="list-unstyled">
