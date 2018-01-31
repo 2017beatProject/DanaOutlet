@@ -96,7 +96,7 @@ var loginInfoNickName="${loginInfo.nickName}";
                         </strong>
                         <!-- <div class="col-sm-12">&nbsp;</div> -->
                         <div class="hidden-xs col-sm-4 col-md-4 col-lg-4" style="padding: 0px 3px 0px 3px;">
-                           <p><a href="#">${bean.dpgWriter }</a></p> <p>${bean.dpgNalja }</p>
+                           <p>${bean.dpgWriter }</p> <p>${bean.dpgNalja }</p>
                            <div style="color: purple;">
                               
                               <span class="glyphicon glyphicon-tasks">${bean.dpgCount }</span>

@@ -52,6 +52,7 @@
                'option' : 'Categories',
                'page' : '1', // 1페이지에서만
                'appKey' : '4c3dab31-521e-368c-86db-a60223eb7e22' // 이게 개발자 키
+               
             },
             'success' : function(data) {
                console.log(data);

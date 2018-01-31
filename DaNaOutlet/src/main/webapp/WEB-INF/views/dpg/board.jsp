@@ -99,7 +99,7 @@
 												${fn:substring(text,0,21)}...
 											</c:if><!-- <span class="badge">35</span> -->
 									</a></td>
-									<td class="hidden-xs"><a href="#">${bean.dpgWriter }</a></td>
+									<td class="hidden-xs">${bean.dpgWriter }</td>
 									<td class="hidden-xs hidden-sm">${bean.dpgNalja }</td>
 									<td class="hidden-xs hidden-sm hidden-md">${bean.dpgCount }</td>
 		

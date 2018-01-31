@@ -35,7 +35,8 @@
 						'searchKeyword' : $('#productSearch').val() + " 가구",
 						'option' : 'Categories',
 						'page' : loadPage,
-						'appKey' : '831b2c9b-12a4-3b28-a338-a5832c3ef3dd'
+						'appKey' : '831b2c9b-12a4-3b28-a338-a5832c3ef3dd',
+						'sortCode' : 'G'
 					},
 					'success' : function(data) {
 						console.log(data);

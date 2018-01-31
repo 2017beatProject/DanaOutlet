@@ -1,32 +1,41 @@
 
 
 function idValidation() {	
-	$('#idErr').remove();
-	$('#doubleMsg').remove();
+	
 	var stringRegx = new RegExp(/[~!@\#$%<>^&*\()\-=+_\’]|[ㄱ-ㅎ]|[가-힣]/gi);
 	var EngRegx = new RegExp(/[a-z]|[A-Z]/gi);
 	var numRegx = new RegExp(/[0-9]/gi);
 	if (getTextLength($('#id input').eq(0).val()) == 0) {
+		$('#idErr').remove();
+		$('#doubleMsg').remove();
 		$("<span id='idErr'> 아이디를 입력해주세요</span>").appendTo("#id");	
 		returnTfCount++;	
 	}
 	else if (stringRegx.test($('#id input').eq(0).val())) {
+		$('#idErr').remove();
+		$('#doubleMsg').remove();
 		$("<span id='idErr'>한글과 ~!@\#$%<>^&*\()\-=+_\’ 는 포함할 수 없습니다.</span>")
 				.appendTo("#id");
 		returnTfCount++;
 	
 	}
 	else if (getTextLength($('#id input').eq(0).val()) < 4) {
+		$('#idErr').remove();
+		$('#doubleMsg').remove();
 		$("<span id='idErr'> 아이디는 4자 이상입니다</span>").appendTo("#id");
 		returnTfCount++;	
 	}
 
 	else if (!numRegx.test($('#id input').eq(0).val())) {
+		$('#idErr').remove();
+		$('#doubleMsg').remove();
 		$("<span id='idErr'>아이디에 숫자가 1개 이상 포함되어 있어야 합니다</span>").appendTo("#id");		
 		returnTfCount++;
 		
 
 	}else if (!EngRegx.test($('#id input').eq(0).val())) {
+		$('#idErr').remove();
+		$('#doubleMsg').remove();
 		$("<div id='idErr'>아이디에 영문 글자 1개 이상 포함되어 있어야 합니다</span>").appendTo("#id");
 		returnTfCount++;
 		
