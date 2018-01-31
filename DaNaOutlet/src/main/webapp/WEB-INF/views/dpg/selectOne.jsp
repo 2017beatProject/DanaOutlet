@@ -210,9 +210,12 @@
 								style="display: none">${reply.replyLog }</span> <br /> <br />
 								<p>${reply.replyContent }</p>
 								<p>
+								<c:set value="${reply.replyImgsLink }" var="imgLink"></c:set>
+								<c:if test="${!empty imgLink }">
 									<img
 										src="../../resources/imgs/replyImgs/${reply.replyImgsLink }"
 										alt="" class="replyImg" />
+								</c:if>
 								</p></li>
 						</c:forEach>
 
