@@ -39,8 +39,10 @@ function joinFunc() {
 		mmail = $('#email').find('input').eq(0).val();
 		mailCheck();
 	});
-
+	
 	$('#joinForm').on('submit', function() {
+		
+		
 		returnTfCount = 0;
 		result = false;
 		IddoubleCheck();

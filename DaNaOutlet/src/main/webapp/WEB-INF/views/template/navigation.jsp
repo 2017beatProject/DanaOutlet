@@ -8,9 +8,10 @@
 <script src="/resources/js/join.js"></script>
 <script src="/resources/js/mailCheck.js"></script>
 <script src="/resources/js/address.js"></script>
-<script src="/resources/js/joinValidation.js"></script>
+<script src="/resources/js/joinValidation.js"></script> 
 <script src="/resources/js/IdDoubleCheck.js"></script>
-<script src="/resources/js/idValidation.js"></script>
+<script src="/resources/js/IdDoubleCheck2.js"></script>
+<script src="/resources/js/idValidation.js"></script> 
 <script src="/resources/js/mailCheck.js"></script>
 
 <script>
